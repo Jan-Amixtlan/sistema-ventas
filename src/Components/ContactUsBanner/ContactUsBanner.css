@@ -1,0 +1,237 @@
+/* Variables CSS para la paleta de colores */
+:root {
+    --azul-principal: #2563EB;
+    --gris-oscuro: #1F2937;
+    --gris-claro: #F8FAFC;
+    --naranja-acento: #F59E0B;
+    --gris-medio: #6B7280;
+    --gris-claro-medio: #9CA3AF;
+    --blanco: #FFFFFF;
+}
+
+/* Sección principal del banner */
+.contact-banner {
+    position: relative;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Imagen de fondo */
+.banner-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1200&h=800&fit=crop');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+
+/* Overlay oscuro */
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg,
+        rgba(31, 41, 55, 0.45) 0%,
+        rgba(37, 99, 235, 0.25) 100%);
+    z-index: 2;
+}
+
+/* Container del contenido */
+.banner-container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Contenido centrado */
+.banner-content {
+    text-align: center;
+    color: var(--blanco);
+}
+
+/* Título principal */
+.banner-title {
+    font-size: 4rem;
+    font-weight: 900;
+    margin: 0 0 1.5rem 0;
+    line-height: 1.1;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: -1px;
+}
+
+/* Línea decorativa */
+.decorative-line {
+    width: 4rem;
+    height: 4px;
+    background-color: var(--naranja-acento);
+    margin: 0 auto 2rem auto;
+    border-radius: 2px;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    font-size: 1rem;
+    margin-top: 2rem;
+}
+
+.breadcrumb-link {
+    color: var(--blanco);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: 500;
+}
+
+.breadcrumb-link:hover {
+    color: var(--naranja-acento);
+    text-decoration: underline;
+}
+
+.breadcrumb-separator {
+    color: var(--gris-claro-medio);
+    font-weight: 300;
+}
+
+.breadcrumb-current {
+    color: var(--naranja-acento);
+    font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .contact-banner {
+        min-height: 50vh;
+    }
+
+    .banner-title {
+        font-size: 3rem;
+    }
+
+    .decorative-line {
+        width: 3rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .breadcrumb {
+        font-size: 0.9rem;
+        margin-top: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-banner {
+        min-height: 40vh;
+    }
+
+    .banner-title {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .decorative-line {
+        width: 2.5rem;
+        height: 3px;
+        margin-bottom: 1rem;
+    }
+
+    .breadcrumb {
+        font-size: 0.875rem;
+        margin-top: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .banner-container {
+        padding: 0 0.75rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .banner-title {
+        font-size: 2rem;
+    }
+
+    .breadcrumb {
+        font-size: 0.8rem;
+    }
+}
+
+/* Animación de entrada */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.banner-content {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+/* Efecto parallax sutil (opcional) */
+@media (prefers-reduced-motion: no-preference) {
+    .banner-background {
+        background-attachment: fixed;
+    }
+}
+
+/* Accesibilidad - respeta las preferencias de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+    .banner-content {
+        animation: none;
+    }
+
+    .banner-background {
+        background-attachment: scroll;
+    }
+}
+
+/* Estados adicionales para mejor UX */
+.breadcrumb-link:focus {
+    outline: 2px solid var(--naranja-acento);
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+/* Mejora la legibilidad del texto */
+.banner-title,
+.breadcrumb {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hover state para toda la sección */
+.contact-banner:hover .decorative-line {
+    width: 5rem;
+    transition: width 0.3s ease;
+}
+
+/* Gradiente adicional para mejor contraste en móviles */
+@media (max-width: 768px) {
+    .banner-overlay {
+        background: linear-gradient(135deg,
+                rgba(31, 41, 55, 0.55) 0%,
+                rgba(37, 99, 235, 0.35) 100%);
+    }
+}

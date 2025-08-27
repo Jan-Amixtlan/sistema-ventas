@@ -1,0 +1,195 @@
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.banner-content-left {
+    animation: fadeInUp 0.8s ease-out;
+}
+.banner-content-right {
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+.service-single-banner {
+    position: relative;
+    width: 100%;
+    min-height: 420px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.banner-background {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/public/vite.svg') center/cover no-repeat;
+    filter: brightness(0.85);
+    z-index: 1;
+}
+
+.banner-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 2;
+}
+
+.banner-container {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 56px 48px;
+    display: flex;
+    align-items: center;
+}
+
+.banner-content {
+    color: #fff;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto auto auto;
+    gap: 8px 32px;
+    align-items: end;
+    width: 100%;
+}
+
+.banner-badge-block {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.banner-badge-logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+.banner-badge-label {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+}
+.badge-title { font-size: 16px; font-weight: bold; }
+.badge-subtitle { font-size: 14px; color: #00bfff; }
+.banner-content-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+    color: #fff;
+}
+.banner-content-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    min-width: 180px;
+}
+.banner-title {
+    font-size: 38px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    line-height: 1.1;
+}
+.banner-address {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+.banner-address-icon {
+    font-size: 18px;
+}
+.banner-rating-block {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+    align-self: center;
+}
+.banner-stars {
+    color: #ffd700;
+    font-size: 22px;
+    display: flex;
+    gap: 2px;
+}
+.banner-rating-label {
+    font-size: 13px;
+    color: #fff;
+}
+.banner-rating-score {
+    background: #ff6f3c;
+    color: #fff;
+    font-size: 22px;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 98px;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 700px) {
+    .banner-title {
+        font-size: 24px;
+    }
+    .banner-container {
+        padding: 18px 8px;
+    }
+    .banner-content {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto auto;
+        gap: 8px;
+    }
+    .banner-badge-logo {
+        width: 40px;
+        height: 40px;
+    }
+    .banner-rating-block {
+        grid-column: 1;
+        grid-row: 5;
+        margin-top: 0;
+        justify-content: flex-start;
+    }
+    .banner-rating-score {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+}

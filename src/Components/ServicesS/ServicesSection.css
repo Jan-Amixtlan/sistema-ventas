@@ -1,0 +1,434 @@
+/* Services Section */
+.services-section {
+    background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.services-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232563eb' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.services-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Header */
+.services-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.section-subtitle {
+    display: inline-block;
+    color: #6B7280;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, #EBF8FF 0%, #DBEAFE 100%);
+    padding: 8px 20px;
+    border-radius: 25px;
+    border: 1px solid #BFDBFE;
+}
+
+.section-title {
+    font-size: 48px;
+    font-weight: 800;
+    color: #1F2937;
+    margin: 0 0 25px 0;
+    line-height: 1.2;
+}
+
+.title-divider {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #F59E0B 0%, #D97706 100%);
+    border-radius: 2px;
+    margin: 0 auto;
+}
+
+/* Main Content */
+.services-content {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: start;
+}
+
+/* Left Side - Image */
+.services-image {
+    position: relative;
+}
+
+.service-img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    transition: transform 0.4s ease;
+}
+
+.service-img:hover {
+    transform: scale(1.02);
+}
+
+/* Right Side - Content */
+.services-info {
+    padding: 20px 0;
+}
+
+/* Service Header */
+.service-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #E5E7EB;
+}
+
+.service-icon {
+    flex-shrink: 0;
+    padding: 8px;
+}
+
+.service-title-section {
+    flex: 1;
+}
+
+.service-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1F2937;
+    margin: 0 0 10px 0;
+    line-height: 1.2;
+}
+
+.service-price-section {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.service-description {
+    color: #6B7280;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.service-price {
+    color: #F59E0B;
+    font-size: 28px;
+    font-weight: 800;
+}
+
+/* Guarantee Badge */
+.guarantee-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #1F2937 0%, #374151 100%);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 50px;
+    box-shadow: 0 8px 25px rgba(31, 41, 55, 0.3);
+    flex-shrink: 0;
+}
+
+.badge-icon {
+    color: #F59E0B;
+}
+
+.badge-text {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.badge-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.badge-subtitle {
+    font-size: 11px;
+    font-weight: 600;
+    color: #F59E0B;
+    letter-spacing: 1px;
+}
+
+/* Description */
+.service-description-text {
+    color: #64748B;
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 35px;
+}
+
+/* Service Checklist */
+.service-checklist {
+    margin-bottom: 40px;
+}
+
+.checklist-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.check-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    transition: all 0.3s ease;
+}
+
+.check-item:hover {
+    transform: translateX(5px);
+}
+
+.check-icon {
+    color: #10B981;
+    flex-shrink: 0;
+}
+
+.check-text {
+    color: #374151;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* CTA Button */
+.service-cta {
+    margin-top: 40px;
+}
+
+.view-services-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 16px 32px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
+}
+
+.view-services-btn:hover {
+    background: linear-gradient(135deg, #D97706 0%, #B45309 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(245, 158, 11, 0.4);
+}
+
+.btn-icon {
+    transition: transform 0.3s ease;
+}
+
+.view-services-btn:hover .btn-icon {
+    transform: translateX(4px);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .services-content {
+        gap: 60px;
+    }
+
+    .section-title {
+        font-size: 40px;
+    }
+
+    .service-title {
+        font-size: 28px;
+    }
+
+    .service-price {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .services-section {
+        padding: 80px 0;
+    }
+
+    .services-container {
+        padding: 0 16px;
+    }
+
+    .services-header {
+        margin-bottom: 60px;
+    }
+
+    .section-title {
+        font-size: 36px;
+    }
+
+    .services-content {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .service-img {
+        height: 400px;
+    }
+
+    .services-info {
+        text-align: center;
+    }
+
+    .service-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .service-description-text {
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .guarantee-badge {
+        order: -1;
+    }
+
+    .checklist-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .service-cta {
+        text-align: center;
+    }
+}
+
+@media (max-width: 640px) {
+    .services-section {
+        padding: 60px 0;
+    }
+
+    .services-container {
+        padding: 0 12px;
+    }
+
+    .section-title {
+        font-size: 28px;
+    }
+
+    .service-title {
+        font-size: 24px;
+    }
+
+    .service-img {
+        height: 300px;
+    }
+
+    .services-info {
+        text-align: center;
+    }
+
+    .service-header {
+        gap: 15px;
+    }
+
+    .service-description-text {
+        text-align: center;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .checklist-grid {
+        max-width: 350px;
+        margin: 0 auto;
+    }
+
+    .guarantee-badge {
+        padding: 12px 16px;
+        border-radius: 25px;
+    }
+
+    .badge-title,
+    .badge-subtitle {
+        font-size: 10px;
+    }
+
+    .view-services-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 14px 24px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .services-section {
+        padding: 50px 0;
+    }
+
+    .section-subtitle {
+        font-size: 14px;
+        padding: 6px 16px;
+    }
+
+    .section-title {
+        font-size: 24px;
+    }
+
+    .service-title {
+        font-size: 20px;
+    }
+
+    .service-price {
+        font-size: 20px;
+    }
+
+    .services-info {
+        text-align: center;
+    }
+
+    .service-description-text {
+        font-size: 14px;
+        text-align: center;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .checklist-grid {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .check-text {
+        font-size: 13px;
+    }
+
+    .service-cta {
+        text-align: center;
+    }
+}

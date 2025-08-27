@@ -1,0 +1,275 @@
+/* Variables CSS */
+:root {
+    --azul-principal: #2563EB;
+    --gris-oscuro: #1F2937;
+    --gris-claro: #F8FAFC;
+    --naranja-acento: #F59E0B;
+    --gris-medio: #6B7280;
+    --blanco: #FFFFFF;
+    --verde-exito: #10B981;
+    --rojo-error: #EF4444;
+}
+
+/* API Tester */
+.api-tester {
+    min-height: 100vh;
+    background: var(--gris-claro);
+    padding: 2rem 1rem;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Header */
+.tester-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.tester-header h1 {
+    font-size: 2.5rem;
+    color: var(--gris-oscuro);
+    margin: 0 0 0.5rem 0;
+}
+
+.tester-header p {
+    color: var(--gris-medio);
+    font-size: 1.125rem;
+    margin: 0;
+}
+
+/* Navigation */
+.tester-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.nav-button {
+    background: var(--blanco);
+    border: 2px solid #E5E7EB;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    color: var(--gris-oscuro);
+}
+
+.nav-button:hover {
+    border-color: var(--azul-principal);
+    color: var(--azul-principal);
+}
+
+.nav-button.active {
+    background: var(--azul-principal);
+    border-color: var(--azul-principal);
+    color: var(--blanco);
+}
+
+/* Test Section */
+.test-section {
+    background: var(--blanco);
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.test-section h2 {
+    color: var(--gris-oscuro);
+    margin: 0 0 1.5rem 0;
+    font-size: 1.5rem;
+}
+
+/* Test Buttons */
+.test-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.test-button {
+    background: var(--azul-principal);
+    color: var(--blanco);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.test-button:hover:not(:disabled) {
+    background: #1D4ED8;
+    transform: translateY(-2px);
+}
+
+.test-button:disabled {
+    background: var(--gris-medio);
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Test Data */
+.test-data {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: #F1F5F9;
+    border-radius: 0.5rem;
+    border-left: 4px solid var(--azul-principal);
+}
+
+.test-data h3 {
+    margin: 0 0 0.75rem 0;
+    color: var(--gris-oscuro);
+    font-size: 1rem;
+}
+
+.test-data pre {
+    background: var(--gris-oscuro);
+    color: #E5E7EB;
+    padding: 1rem;
+    border-radius: 0.375rem;
+    overflow-x: auto;
+    font-size: 0.875rem;
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+/* Loading Section */
+.loading-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2rem;
+    text-align: center;
+}
+
+.spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid #E5E7EB;
+    border-top: 3px solid var(--azul-principal);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Result Sections */
+.result-section {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    border-left: 4px solid;
+}
+
+.result-section.success {
+    background: #F0FDF4;
+    border-left-color: var(--verde-exito);
+}
+
+.result-section.error {
+    background: #FEF2F2;
+    border-left-color: var(--rojo-error);
+}
+
+.result-section h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1.125rem;
+}
+
+.result-section.success h3 {
+    color: var(--verde-exito);
+}
+
+.result-section.error h3 {
+    color: var(--rojo-error);
+}
+
+.result-section pre {
+    background: var(--gris-oscuro);
+    color: #E5E7EB;
+    padding: 1rem;
+    border-radius: 0.375rem;
+    overflow-x: auto;
+    font-size: 0.875rem;
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+.result-section p {
+    color: var(--rojo-error);
+    margin: 0;
+    font-weight: 500;
+}
+
+/* API Info */
+.api-info {
+    background: var(--blanco);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.api-info h3 {
+    color: var(--gris-oscuro);
+    margin: 0 0 1rem 0;
+}
+
+.api-info code {
+    background: var(--gris-oscuro);
+    color: var(--naranja-acento);
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.875rem;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.api-note {
+    color: var(--gris-medio);
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .tester-header h1 {
+        font-size: 2rem;
+    }
+    
+    .tester-nav {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .nav-button {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .test-buttons {
+        flex-direction: column;
+    }
+    
+    .test-button {
+        width: 100%;
+    }
+    
+    .test-section {
+        padding: 1rem;
+    }
+}

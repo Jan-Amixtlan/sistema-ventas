@@ -1,0 +1,298 @@
+@media (max-width: 480px) {
+    .news-carousel-nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        margin-top: 18px;
+    }
+
+    .carousel-btn {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--blanco);
+        border: 2px solid #e5e7eb;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: #6B7280;
+        cursor: pointer;
+        transition: all 0.3s;
+        outline: none;
+    }
+    .carousel-btn:active {
+        transform: scale(0.97);
+    }
+    .carousel-btn:hover {
+        background: var(--azul-principal);
+        color: var(--blanco);
+        border-color: var(--azul-principal);
+    }
+
+    .carousel-indicators {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .carousel-indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50px;
+        background: #d1d5db;
+        transition: all 0.3s;
+        display: inline-block;
+    }
+    .carousel-indicator.active {
+        width: 38px;
+        height: 16px;
+        border-radius: 12px;
+        background: var(--naranja-acento);
+        box-shadow: 0 0 0 4px #e0e7ff;
+        border: none;
+    }
+}
+/* Variables CSS para la paleta de colores */
+:root {
+    --azul-principal: #2563EB;
+    --gris-oscuro: #1F2937;
+    --gris-claro: #F8FAFC;
+    --naranja-acento: #F59E0B;
+    --gris-medio: #6B7280;
+    --gris-claro-medio: #9CA3AF;
+    --blanco: #FFFFFF;
+}
+
+/* Sección principal */
+.news-section {
+    background-color: var(--gris-claro);
+    padding: 4rem 1rem;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 3rem;
+    gap: 2rem;
+}
+
+.header-content {
+    flex: 1;
+}
+
+.badge {
+    display: inline-block;
+    background-color: rgba(37, 99, 235, 0.1);
+    color: var(--gris-medio);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.title {
+    color: var(--gris-oscuro);
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin: 0 0 1rem 0;
+    line-height: 1.1;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+}
+
+/* Línea decorativa */
+.decorative-line {
+    width: 4rem;
+    height: 4px;
+    background-color: var(--naranja-acento);
+}
+
+/* Botón principal */
+.read-more-btn {
+    background: transparent;
+    color: var(--azul-principal);
+    border: 2px solid var(--azul-principal);
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.read-more-btn:hover {
+    background-color: var(--azul-principal);
+    color: var(--blanco);
+}
+
+/* Grid de noticias */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* Tarjeta de noticia */
+.news-card {
+    background: var(--blanco);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.news-card:hover {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Imagen de la tarjeta */
+.card-image {
+    position: relative;
+    height: 16rem;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.news-card:hover .card-image img {
+    transform: scale(1.05);
+}
+
+/* Badge de categoría */
+.category-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background-color: var(--naranja-acento);
+    color: var(--blanco);
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: bold;
+    border-radius: 0.25rem;
+}
+
+/* Contenido de la tarjeta */
+.card-content {
+    padding: 1.5rem;
+}
+
+/* Meta información */
+.meta-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    color: var(--gris-medio);
+}
+
+.author-name {
+    color: var(--azul-principal);
+}
+
+/* Título de la tarjeta */
+.card-title {
+    color: var(--gris-oscuro);
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin: 0 0 0.75rem 0;
+    line-height: 1.3;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.card-title:hover {
+    color: var(--azul-principal);
+}
+
+/* Excerpt */
+.excerpt {
+    color: var(--gris-medio);
+    line-height: 1.6;
+    margin: 0 0 1.5rem 0;
+}
+
+/* Botón de leer más */
+.card-read-more {
+    background: none;
+    border: none;
+    color: var(--azul-principal);
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.card-read-more:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .news-section {
+        padding: 2rem 1rem;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .news-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .card-image {
+        height: 12rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 2rem;
+    }
+
+    .badge {
+        font-size: 0.625rem;
+        padding: 0.4rem 1rem;
+    }
+
+    .read-more-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .card-content {
+        padding: 1rem;
+    }
+
+    .meta-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+}

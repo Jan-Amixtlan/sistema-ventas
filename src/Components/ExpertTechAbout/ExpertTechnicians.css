@@ -1,0 +1,340 @@
+/* Variables CSS para la paleta de colores */
+:root {
+    --azul-principal: #2563EB;
+    --gris-oscuro: #1F2937;
+    --gris-claro: #F8FAFC;
+    --naranja-acento: #F59E0B;
+    --gris-medio: #6B7280;
+    --gris-claro-medio: #9CA3AF;
+    --blanco: #FFFFFF;
+}
+
+/* Sección principal */
+.technicians-section {
+    background-color: var(--gris-claro);
+    padding: 5rem 1rem;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header de la sección */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+    gap: 2rem;
+}
+
+.header-content {
+    flex: 1;
+}
+
+.subtitle {
+    color: var(--gris-medio);
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin: 0 0 1rem 0;
+    letter-spacing: 0.5px;
+}
+
+.main-title {
+    color: var(--gris-oscuro);
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0 0 1.5rem 0;
+    line-height: 1.2;
+}
+
+/* Línea decorativa */
+.decorative-line {
+    width: 4rem;
+    height: 4px;
+    background-color: var(--naranja-acento);
+    margin-bottom: 1rem;
+}
+
+/* Controles de navegación */
+.navigation-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.nav-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid var(--gris-claro-medio);
+    background: var(--blanco);
+    color: var(--gris-medio);
+    font-size: 1.25rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.nav-button:hover {
+    border-color: var(--azul-principal);
+    color: var(--azul-principal);
+    background: var(--azul-principal);
+    color: var(--blanco);
+}
+
+.nav-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Contenedor del carousel */
+.carousel-container {
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.carousel-wrapper {
+    width: 100%;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 150%;
+    /* Ajustado para 6 elementos */
+}
+
+/* Tarjeta de técnico */
+.technician-card {
+    flex: 0 0 25%;
+    /* 4 por fila en desktop */
+    padding: 0 0.75rem;
+    box-sizing: border-box;
+}
+
+.technician-card .card-image {
+    position: relative;
+    margin-bottom: 1.5rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.technician-card:hover .card-image {
+    transform: translateY(-5px);
+}
+
+.technician-photo {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Contenido de la tarjeta */
+.card-content {
+    text-align: center;
+}
+
+.technician-name {
+    color: var(--gris-oscuro);
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin: 0 0 0.5rem 0;
+}
+
+.technician-position {
+    color: var(--gris-medio);
+    font-size: 0.875rem;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Indicadores (dots) */
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: none;
+    background: var(--gris-claro-medio);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dot.active {
+    background: var(--azul-principal);
+}
+
+.dot:hover {
+    background: var(--azul-principal);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .main-title {
+        font-size: 2.25rem;
+    }
+
+    .technician-card {
+        flex: 0 0 33.333%;
+        /* 3 por fila en tablet */
+    }
+
+    .carousel-track {
+        width: 200%;
+        /* Ajustado para 6 elementos en 3 columnas */
+    }
+
+    .technician-photo {
+        height: 280px;
+    }
+}
+
+@media (max-width: 768px) {
+    .technicians-section {
+        padding: 3rem 1rem;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+
+    .main-title {
+        font-size: 2rem;
+    }
+
+    .technician-card {
+        flex: 0 0 50%;
+        /* 2 por fila en tablet pequeño */
+    }
+
+    .carousel-track {
+        width: 300%;
+        /* Ajustado para 6 elementos en 2 columnas */
+    }
+
+    .technician-photo {
+        height: 250px;
+    }
+
+    .navigation-controls {
+        align-self: flex-end;
+    }
+}
+
+@media (max-width: 480px) {
+    .technicians-section {
+        padding: 2rem 1rem;
+    }
+
+    .main-title {
+        font-size: 1.75rem;
+    }
+
+    .technician-card {
+        flex: 0 0 100%;
+        /* 1 por fila en móvil */
+        padding: 0 0.5rem;
+    }
+
+    .carousel-track {
+        width: 600%;
+        /* 6 elementos en 1 columna */
+    }
+
+    .technician-photo {
+        height: 300px;
+    }
+
+    .nav-button {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+
+    .section-header {
+        text-align: center;
+    }
+
+    .navigation-controls {
+        align-self: center;
+    }
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.technician-card {
+    animation: fadeInUp 0.6s ease-out both;
+}
+
+.technician-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.technician-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.technician-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.technician-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+/* Estados de hover adicionales */
+.technician-card:hover .technician-name {
+    color: var(--azul-principal);
+    transition: color 0.3s ease;
+}
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+
+    .carousel-track,
+    .technician-card,
+    .card-image,
+    .nav-button {
+        transition: none;
+        animation: none;
+    }
+}
+
+/* Focus states para accesibilidad */
+.nav-button:focus,
+.dot:focus {
+    outline: 2px solid var(--azul-principal);
+    outline-offset: 2px;
+}
+
+/* Smooth scrolling behavior */
+@media (prefers-reduced-motion: no-preference) {
+    .carousel-track {
+        scroll-behavior: smooth;
+    }
+}

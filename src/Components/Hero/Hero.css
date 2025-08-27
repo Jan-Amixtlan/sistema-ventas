@@ -1,0 +1,142 @@
+:root {
+    --blue-main: #2563eb;
+    --dark-gray: #1f2937;
+    --light-gray: #f8fafc;
+    --orange-accent: #f59e0b;
+}
+
+.hero-carousel {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    overflow: hidden;
+
+}
+
+.hero-slide {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    transition: background-image 0.6s ease-in-out;
+}
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3));
+    display: flex;
+    align-items: center;
+    padding: 0 8%;
+}
+
+.hero-content {
+    color: white;
+    max-width: 600px;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.hero-content h1 span {
+    color: var(--orange-accent);
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: #e5e7eb;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 0.9rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.btn-primary {
+    background-color: var(--blue-main);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--orange-accent);
+}
+
+.btn-secondary {
+    background-color: white;
+    color: var(--dark-gray);
+}
+
+.btn-secondary:hover {
+    background-color: var(--orange-accent);
+    color: white;
+}
+
+/* Flechas */
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+    background: rgba(0, 0, 0, 0.3);
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+    border-radius: 50%;
+}
+
+.arrow:hover {
+    background: var(--orange-accent);
+}
+
+.arrow.left {
+    left: 20px;
+}
+
+.arrow.right {
+    right: 20px;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .hero-content {
+        text-align: center;
+        max-width: 100%;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .arrow {
+        font-size: 2rem;
+    }
+}

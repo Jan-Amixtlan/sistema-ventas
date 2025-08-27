@@ -1,0 +1,492 @@
+/* Variables CSS para la paleta de colores */
+:root {
+  --azul-principal: #2563EB;
+  --gris-oscuro: #1F2937;
+  --gris-claro: #F8FAFC;
+  --naranja-acento: #F59E0B;
+  --gris-medio: #6B7280;
+  --gris-claro-medio: #9CA3AF;
+  --blanco: #FFFFFF;
+  --azul-oscuro: #1e3a8a;
+  --azul-navy: #0f172a;
+}
+
+/* Sección principal */
+.why-choose-exact {
+  background: linear-gradient(135deg, var(--azul-oscuro) 0%, var(--azul-navy) 100%);
+  padding: 5rem 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Contenedor principal */
+.content-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+/* Contenido de texto */
+.text-content {
+  color: var(--blanco);
+}
+
+.subtitle {
+  color: var(--gris-claro-medio);
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin: 0 0 1rem 0;
+  letter-spacing: 0.5px;
+}
+
+.main-title {
+  font-size: 2.75rem;
+  font-weight: bold;
+  line-height: 1.2;
+  margin: 0 0 1.5rem 0;
+  color: var(--blanco);
+}
+
+/* Línea decorativa */
+.decorative-line {
+  width: 4rem;
+  height: 4px;
+  background-color: var(--naranja-acento);
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.decorative-line::before {
+  content: '';
+  position: absolute;
+  left: -0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0.75rem;
+  height: 1px;
+  background-color: var(--naranja-acento);
+}
+
+.decorative-line::after {
+  content: '';
+  position: absolute;
+  right: -0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0.75rem;
+  height: 1px;
+  background-color: var(--naranja-acento);
+}
+
+.description {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--gris-claro-medio);
+  margin: 0 0 2.5rem 0;
+}
+
+/* Lista de servicios */
+.services-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.service-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.service-icon-wrapper {
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.service-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Icono de auto con servicio */
+.car-service-icon {
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+}
+
+.car-body {
+  width: 20px;
+  height: 12px;
+  background: var(--naranja-acento);
+  border-radius: 4px 4px 2px 2px;
+  position: relative;
+}
+
+.car-body::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 2px;
+  width: 4px;
+  height: 4px;
+  background: var(--naranja-acento);
+  border-radius: 50%;
+  box-shadow: 12px 0 0 var(--naranja-acento);
+}
+
+.car-detail {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 6px;
+  height: 6px;
+  background: var(--blanco);
+  border-radius: 2px;
+}
+
+.wrench {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 8px;
+  height: 2px;
+  background: var(--naranja-acento);
+  border-radius: 1px;
+  transform: rotate(45deg);
+}
+
+/* Icono de herramientas */
+.repair-tools-icon {
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+}
+
+.tool-1 {
+  width: 3px;
+  height: 16px;
+  background: var(--naranja-acento);
+  position: absolute;
+  left: 8px;
+  border-radius: 1px;
+  transform: rotate(45deg);
+}
+
+.tool-1::after {
+  content: '';
+  width: 8px;
+  height: 4px;
+  background: var(--naranja-acento);
+  position: absolute;
+  top: -2px;
+  left: -2.5px;
+  border-radius: 1px;
+}
+
+.tool-2 {
+  width: 2px;
+  height: 18px;
+  background: var(--naranja-acento);
+  position: absolute;
+  right: 8px;
+  border-radius: 1px;
+  transform: rotate(-45deg);
+}
+
+.tool-2::after {
+  content: '';
+  width: 6px;
+  height: 2px;
+  background: var(--naranja-acento);
+  position: absolute;
+  top: -1px;
+  left: -2px;
+  border-radius: 1px;
+}
+
+/* Icono de especialistas */
+.specialists-icon {
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+}
+
+.tool-set {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+
+.tool {
+  width: 3px;
+  height: 12px;
+  background: var(--naranja-acento);
+  border-radius: 1px;
+}
+
+.tool:nth-child(2) {
+  height: 16px;
+}
+
+/* Contenido del servicio */
+.service-content {
+  flex: 1;
+}
+
+.service-title {
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: var(--blanco);
+  margin: 0 0 0.5rem 0;
+}
+
+.service-underline {
+  width: 2rem;
+  height: 2px;
+  background-color: var(--naranja-acento);
+  margin-bottom: 0.5rem;
+}
+
+.service-description {
+  font-size: 0.875rem;
+  color: var(--gris-claro-medio);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Contenido visual */
+.visual-content {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+}
+
+.mechanic-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+}
+
+/* Botón de play */
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  background: var(--naranja-acento);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+}
+
+.play-button:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 12px 30px rgba(245, 158, 11, 0.6);
+}
+
+.play-icon {
+  color: var(--blanco);
+  font-size: 1.5rem;
+  margin-left: 3px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .content-wrapper {
+    gap: 3rem;
+  }
+
+  .main-title {
+    font-size: 2.25rem;
+  }
+
+  .mechanic-image {
+    height: 350px;
+  }
+}
+
+@media (max-width: 768px) {
+  .why-choose-exact {
+    padding: 3rem 1rem;
+  }
+
+  .content-wrapper {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    text-align: center;
+  }
+
+  .main-title {
+    font-size: 2rem;
+  }
+
+  .mechanic-image {
+    height: 300px;
+  }
+
+  .play-button {
+    width: 60px;
+    height: 60px;
+  }
+
+  .play-icon {
+    font-size: 1.25rem;
+  }
+
+  .services-list {
+    max-width: 10px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .why-choose-exact {
+    padding: 2rem 1rem;
+  }
+
+  .main-title {
+    font-size: 1.75rem;
+  }
+
+  .service-item {
+    gap: 0.75rem;
+    text-align: left;
+  }
+
+  .service-icon-wrapper {
+    width: 45px;
+    height: 45px;
+  }
+
+  .service-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .mechanic-image {
+    height: 250px;
+  }
+
+  .play-button {
+    width: 50px;
+    height: 50px;
+  }
+
+  .play-icon {
+    font-size: 1rem;
+  }
+}
+
+/* Animaciones sutiles */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.text-content {
+  animation: fadeInLeft 0.8s ease-out;
+}
+
+.visual-content {
+  animation: fadeInRight 0.8s ease-out 0.2s both;
+}
+
+.service-item {
+  animation: fadeInLeft 0.6s ease-out both;
+}
+
+.service-item:nth-child(1) { animation-delay: 0.3s; }
+.service-item:nth-child(2) { animation-delay: 0.4s; }
+.service-item:nth-child(3) { animation-delay: 0.5s; }
+
+/* Estados hover simples */
+.service-item:hover .service-title {
+  color: var(--naranja-acento);
+  transition: color 0.3s ease;
+}
+
+.service-item:hover .service-icon {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  .text-content,
+  .visual-content,
+  .service-item,
+  .play-button,
+  .service-icon {
+    animation: none;
+    transition: none;
+  }
+
+  .play-button:hover {
+    transform: translate(-50%, -50%);
+  }
+
+  .service-item:hover .service-icon {
+    transform: none;
+  }
+}
+
+/* Estados de focus */
+.play-button:focus {
+  outline: 2px solid var(--naranja-acento);
+  outline-offset: 2px;
+}
+
+/* Mejora de tipografía */
+.main-title,
+.service-title,
+.description {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
