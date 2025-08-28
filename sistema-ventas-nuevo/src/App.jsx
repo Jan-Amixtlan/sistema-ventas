@@ -4,12 +4,14 @@ import { AuthProvider } from './context/AuthContext';
 import HomeScreens from './pages/HomeScreens.jsx';
 import AdminPanel from './components/AdminPanel/AdminPanel.jsx';
 
+
 function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomeScreens />} />
+          
           <Route path="/admin" element={<AdminPanel />} />
          {/* <Route path="/about" element={<AboutScreen />} /> */}
          {/* <Route path="/services/grid" element={<ServicesGrid />} />}

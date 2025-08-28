@@ -34,10 +34,14 @@ const HomeScreens = () => {
             <Navbar />
             <Hero />
            
-            <SalesDashboard />
+            <div id="dashboard">
+                <SalesDashboard />
+            </div>
             
             {/* Tabla de Control de Vendedores */}
-            <VendorsTable />
+            <div id="vendedores">
+                <VendorsTable />
+            </div>
             
             {/* Botón Ver Beneficios del Sistema */}
             <div className="benefits-button-container">

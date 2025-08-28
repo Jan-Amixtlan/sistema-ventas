@@ -40,7 +40,7 @@ const SalesFooter = () => {
     };
 
     return (
-        <footer className="sales-footer">
+        <footer id="contacto" className="sales-footer">
             {/* Background Effects */}
             <div className="footer-background">
                 <div className="bg-overlay"></div>

@@ -45,6 +45,73 @@ const Navbar = () => {
     setShowUserMenu(!showUserMenu);
   };
 
+  // Función específica para scroll al dashboard (VendorsTable)
+  const scrollToDashboard = (e) => {
+    e.preventDefault();
+    // Buscar el elemento dashboard por ID primero
+    const dashboardElement = document.getElementById('dashboard');
+    
+    if (dashboardElement) {
+      // Agregar un pequeño offset para que no quede pegado al navbar
+      const navbarHeight = document.querySelector('.navbar')?.offsetHeight || 80;
+      const elementPosition = dashboardElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navbarHeight - 20;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    } else {
+      // Fallback: scroll hacia abajo
+      window.scrollTo({ 
+        top: window.innerHeight * 0.8, 
+        behavior: 'smooth' 
+      });
+    }
+    closeMenu();
+  };
+
+  // Función específica para scroll al footer (contacto)
+  const scrollToFooter = (e) => {
+    e.preventDefault();
+    const footerElement = document.getElementById('contacto');
+    
+    if (footerElement) {
+      // Agregar un pequeño offset para mejor visualización
+      const navbarHeight = document.querySelector('.navbar')?.offsetHeight || 80;
+      const elementPosition = footerElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navbarHeight - 20;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    } else {
+      // Fallback: scroll al final de la página
+      window.scrollTo({ 
+        top: document.body.scrollHeight, 
+        behavior: 'smooth' 
+      });
+    }
+    closeMenu();
+  };
+
+  // Función mejorada para scroll a otras secciones
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const navbarHeight = document.querySelector('.navbar')?.offsetHeight || 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navbarHeight - 20;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+    closeMenu();
+  };
+
   // Close menu when clicking outside or pressing Escape
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -89,19 +156,19 @@ const Navbar = () => {
         {/* Desktop Menu */}
         <ul className={`navbar-menu ${isMenuOpen ? 'active' : ''}`}>
           <li className="navbar-item">
-            <a href="#home" className="navbar-link" onClick={closeMenu}>Inicio</a>
+            <a href="/" className="navbar-link" onClick={closeMenu}>Inicio</a>
           </li>
           <li className="navbar-item">
-            <a href="#dashboard" className="navbar-link" onClick={closeMenu}>Dashboard</a>
+            <a href="#dashboard" className="navbar-link" onClick={scrollToDashboard}>Dashboard</a>
           </li>
           <li className="navbar-item">
-            <a href="#vendedores" className="navbar-link" onClick={closeMenu}>Vendedores</a>
+            <a href="#vendedores" className="navbar-link" onClick={(e) => { e.preventDefault(); scrollToSection('vendedores'); }}>Vendedores</a>
           </li>
           <li className="navbar-item">
-            <a href="#reportes" className="navbar-link" onClick={closeMenu}>Reportes</a>
+            <a href="#reportes" className="navbar-link" onClick={(e) => { e.preventDefault(); scrollToSection('reportes'); }}>Reportes</a>
           </li>
           <li className="navbar-item">
-            <a href="#contacto" className="navbar-link" onClick={closeMenu}>Contacto</a>
+            <a href="#contacto" className="navbar-link" onClick={scrollToFooter}>Contacto</a>
           </li>
         </ul>
 
