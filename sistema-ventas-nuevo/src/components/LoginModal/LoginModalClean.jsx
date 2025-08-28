@@ -168,9 +168,6 @@ const LoginModal = ({ isOpen, onClose }) => {
                             Email: admin@empresa.com<br/>
                             Contraseña: admin123</p>
                             
-                            <p><strong>Vendedor:</strong><br/>
-                            Email: vendedor@empresa.com<br/>
-                            Contraseña: vendedor123</p>
                         </div>
                     </div>
                 </div>
