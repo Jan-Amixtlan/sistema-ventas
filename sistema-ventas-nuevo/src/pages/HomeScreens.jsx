@@ -6,6 +6,7 @@ import Dashboard from './Dashboard.jsx';
 import Footer from '../components/Footer/Footer.jsx';
 import SalesDashboard from '../components/SalesDashboard/SalesDashboard.jsx';
 import SalesBenefitsTimeline from '../components/SalesBenefitsTime/SalesBenefitsTimeline.jsx';
+import VendorsTable from '../components/VendorsTable/VendorsTable.jsx';
 import './HomeScreens.css';
 
 const HomeScreens = () => {
@@ -34,6 +35,9 @@ const HomeScreens = () => {
             <Hero />
            
             <SalesDashboard />
+            
+            {/* Tabla de Control de Vendedores */}
+            <VendorsTable />
             
             {/* Botón Ver Beneficios del Sistema */}
             <div className="benefits-button-container">
