@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useAuth } from '../../context/AuthContext';
 import './LoginModal.css';
 
 const LoginModal = ({ isOpen, onClose }) => {
@@ -6,8 +7,9 @@ const LoginModal = ({ isOpen, onClose }) => {
         email: '',
         password: ''
     });
-    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const { login, isLoading } = useAuth();
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -15,19 +17,22 @@ const LoginModal = ({ isOpen, onClose }) => {
             ...prev,
             [name]: value
         }));
+        // Limpiar error cuando el usuario empiece a escribir
+        if (error) setError('');
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setIsLoading(true);
+        setError('');
         
-        // Simulación de login (aquí iría la lógica real)
-        setTimeout(() => {
-            console.log('Datos de login:', formData);
-            setIsLoading(false);
+        try {
+            await login(formData.email, formData.password);
+            // Si el login es exitoso, cerrar el modal
             onClose();
-            // Aquí se manejaría la autenticación real
-        }, 2000);
+            setFormData({ email: '', password: '' });
+        } catch (err) {
+            setError(err.message);
+        }
     };
 
     const handleOverlayClick = (e) => {
@@ -121,6 +126,17 @@ const LoginModal = ({ isOpen, onClose }) => {
                             </label>
                             <a href="#" className="forgot-password">¿Olvidaste tu contraseña?</a>
                         </div>
+
+                        {error && (
+                            <div className="error-message">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="15" y1="9" x2="9" y2="15"></line>
+                                    <line x1="9" y1="9" x2="15" y2="15"></line>
+                                </svg>
+                                {error}
+                            </div>
+                        )}
 
                         <button 
                             type="submit" 
