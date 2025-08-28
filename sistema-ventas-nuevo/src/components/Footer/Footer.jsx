@@ -115,11 +115,15 @@ const SalesFooter = () => {
                                 required
                             >
                                 <option value="">¿Qué servicio te interesa?</option>
-                                <option value="Sistema de Ventas">Sistema de Ventas</option>
-                                <option value="CRM">CRM - Gestión de Clientes</option>
-                                <option value="Dashboard">Dashboard de Análisis</option>
-                                <option value="Consultoría">Consultoría Comercial</option>
-                                <option value="Capacitación">Capacitación de Equipos</option>
+                                <option value="Sistema de Ventas">Diseño Web</option>
+                                <option value="CRM">Diseño Gráfico</option>
+                                <option value="Dashboard">UX/UI</option>
+                                <option value="Consultoría">Experiencial</option>
+                                <option value="Capacitación">Logotipo</option>
+                                <option value="Marca">Recursos de Marca</option>
+                                <option value="Decks">Decks</option>
+                                <option value="Otros">Otros</option>
+
                             </select>
                         </div>
 
@@ -154,7 +158,7 @@ const SalesFooter = () => {
                 {/* Company Info Section */}
                 <div className="info-section">
                     <p className="contact-intro">
-                        En <strong>SalesForce Pro</strong> será un placer atenderte;
+                        En <strong>Osdems Digital</strong> será un placer atenderte;
                         escríbenos por cualquiera de nuestros medios:
                     </p>
 
@@ -186,7 +190,7 @@ const SalesFooter = () => {
                             <svg className="email-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                             </svg>
-                            <span>hello@salesforcepro.com</span>
+                            <span>hello@osdemsdigital.com</span>
                         </div>
 
                         <div className="address-item">

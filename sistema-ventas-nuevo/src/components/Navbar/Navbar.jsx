@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import LoginModal from '../LoginModal/LoginModal.jsx';
+import logoImage from '../../assets/images/logo letra negra.png';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -53,8 +54,15 @@ const Navbar = () => {
         <div className="navbar-container">
         {/* Logo */}
         <div className="navbar-logo">
-          <span className="logo-icon">💼</span>
-          <span className="logo-text">SistemaVentas</span>
+          <img 
+            src={logoImage} 
+            alt="OSDEMS Digital" 
+            className="logo-image"
+          />
+          <div className="logo-content">
+            <span className="logo-text">OSDEMSDigital</span>
+            <span className="logo-subtitle">Sales Forecast</span>
+          </div>
         </div>
 
         {/* Desktop Menu */}
