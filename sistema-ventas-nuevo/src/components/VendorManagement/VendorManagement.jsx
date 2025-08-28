@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
+import SalesForm from '../SalesForm/SalesForm';
 import './VendorManagement.css';
 
 const VendorManagement = () => {
     const { user, isAdmin } = useAuth();
     const [vendors, setVendors] = useState([]);
+    const [sales, setSales] = useState([]);
     const [loading, setLoading] = useState(true);
     const [editingVendor, setEditingVendor] = useState(null);
     const [showAddForm, setShowAddForm] = useState(false);
+    const [showSalesForm, setShowSalesForm] = useState(false);
 
     // Datos de ejemplo de vendedores
     const initialVendors = [
@@ -282,6 +285,27 @@ const VendorManagement = () => {
         setShowAddForm(false);
     };
 
+    const handleSaveSale = (saleData) => {
+        // Agregar la nueva venta
+        const newSale = {
+            ...saleData,
+            id: Date.now()
+        };
+        setSales([...sales, newSale]);
+
+        // Actualizar las ventas del vendedor
+        const vendorId = parseInt(saleData.vendorId);
+        const saleAmount = parseFloat(saleData.amount);
+        
+        setVendors(vendors.map(vendor => 
+            vendor.id === vendorId 
+                ? { ...vendor, ventas: vendor.ventas + saleAmount }
+                : vendor
+        ));
+
+        setShowSalesForm(false);
+    };
+
     if (!isAdmin()) {
         return (
             <div className="access-denied">
@@ -318,6 +342,18 @@ const VendorManagement = () => {
                             <line x1="12" y1="15" x2="12" y2="3"></line>
                         </svg>
                         Descargar CSV
+                    </button>
+                    
+                    <button 
+                        className="btn btn-success"
+                        onClick={() => setShowSalesForm(true)}
+                    >
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="16"></line>
+                            <line x1="8" y1="12" x2="16" y2="12"></line>
+                        </svg>
+                        Registrar Venta
                     </button>
                     
                     <button 
@@ -407,6 +443,15 @@ const VendorManagement = () => {
                 <AddVendorModal
                     onAdd={handleAddVendor}
                     onCancel={() => setShowAddForm(false)}
+                />
+            )}
+
+            {/* Modal de Registrar Venta */}
+            {showSalesForm && (
+                <SalesForm
+                    onSaveSale={handleSaveSale}
+                    onCancel={() => setShowSalesForm(false)}
+                    vendors={vendors}
                 />
             )}
         </div>

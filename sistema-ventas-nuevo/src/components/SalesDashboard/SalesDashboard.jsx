@@ -1,10 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, Legend } from 'recharts';
+import { useState, useEffect } from 'react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
+import EditableTable from '../EditableTable/EditableTable.jsx';
 import './SalesDashboard.css';
 
 const SalesDashboard = () => {
     const [animationKey, setAnimationKey] = useState(0);
     const [selectedPeriod, setSelectedPeriod] = useState('2024');
+    
+    const [salesData, setSalesData] = useState({
+        totalVendedores: 20,
+        cotizacionesTotales: 156,
+        cotizacionesAprobadas: 89,
+        cotizacionesRechazadas: 67,
+        dineroTotal: 2450000,
+        metaMensual: 3000000
+    });
+
+    const [vendedores, setVendedores] = useState([
+        { id: 1, nombre: 'Juan Pérez', activo: true, cotizaciones: 12, aprobadas: 8, rechazadas: 4, ventas: 125000, clientes: 15 },
+        { id: 2, nombre: 'María García', activo: true, cotizaciones: 9, aprobadas: 6, rechazadas: 3, ventas: 98000, clientes: 12 },
+        { id: 3, nombre: 'Carlos López', activo: true, cotizaciones: 15, aprobadas: 10, rechazadas: 5, ventas: 187000, clientes: 20 },
+        { id: 4, nombre: 'Ana Martínez', activo: true, cotizaciones: 8, aprobadas: 5, rechazadas: 3, ventas: 76000, clientes: 10 },
+        { id: 5, nombre: 'Luis Rodríguez', activo: false, cotizaciones: 6, aprobadas: 2, rechazadas: 4, ventas: 32000, clientes: 8 }
+    ]);
+
+    const [filtroActivo, setFiltroActivo] = useState('todos');
+    const [ordenarPor, setOrdenarPor] = useState('ventas');
+    const [vistaActiva, setVistaActiva] = useState('equipo');
+    const [periodoSeleccionado, setPeriodoSeleccionado] = useState('semana');
 
     // Datos para el gráfico de barras - Ventas por Vendedor
     const salesByVendor = [
@@ -46,6 +69,20 @@ const SalesDashboard = () => {
         { mes: 'Dic', real: 68000, forecast: 65000 }
     ];
 
+    const porcentajeAprobacion = ((salesData.cotizacionesAprobadas / salesData.cotizacionesTotales) * 100).toFixed(1);
+    const porcentajeMeta = ((salesData.dineroTotal / salesData.metaMensual) * 100).toFixed(1);
+
+    const vendedoresFiltrados = vendedores.filter(v => {
+        if (filtroActivo === 'activos') return v.activo;
+        if (filtroActivo === 'inactivos') return !v.activo;
+        return true;
+    }).sort((a, b) => {
+        if (ordenarPor === 'ventas') return b.ventas - a.ventas;
+        if (ordenarPor === 'cotizaciones') return b.cotizaciones - a.cotizaciones;
+        if (ordenarPor === 'aprobadas') return b.aprobadas - a.aprobadas;
+        return a.nombre.localeCompare(b.nombre);
+    });
+
     // Trigger animation on mount
     useEffect(() => {
         const timer = setTimeout(() => setAnimationKey(1), 100);
@@ -79,10 +116,6 @@ const SalesDashboard = () => {
                     <div className="tooltip-content">
                         {payload.map((entry, index) => (
                             <div key={index} className="tooltip-value">
-                                <span
-                                    className="tooltip-dot"
-                                    style={{ backgroundColor: entry.color }}
-                                ></span>
                                 <span className="tooltip-label">{entry.name}:</span>
                                 <span className="tooltip-amount">${entry.value.toLocaleString()}</span>
                             </div>
@@ -95,31 +128,101 @@ const SalesDashboard = () => {
     };
 
     return (
-        <div className="sales-dashboard">
-            {/* Header */}
+        <div className="sales-dashboard-container">
             <div className="dashboard-header">
-                <div className="header-content">
-                    <h1 className="dashboard-title">Dashboard de Ventas</h1>
-                    <p className="dashboard-subtitle">Análisis de rendimiento y proyecciones</p>
-                </div>
-                <div className="header-actions">
-                    <div className="period-selector">
-                        <select
-                            value={selectedPeriod}
-                            onChange={(e) => setSelectedPeriod(e.target.value)}
-                            className="period-select"
-                        >
-                            <option value="2024">2024</option>
-                            <option value="2023">2023</option>
-                            <option value="2022">2022</option>
-                        </select>
-                    </div>
-                    <button className="refresh-btn">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                        </svg>
-                        Actualizar
+                <h1>Dashboard de Ventas</h1>
+                <p>Control total de tu equipo comercial</p>
+            </div>
+
+            {/* Vista Selector */}
+            <div className="view-selector-container">
+                <div className="view-buttons">
+                    <button 
+                        className={`view-btn ${vistaActiva === 'equipo' ? 'active' : ''}`}
+                        onClick={() => setVistaActiva('equipo')}
+                    >
+                        Vista de Equipo
                     </button>
+                    <button 
+                        className={`view-btn ${vistaActiva === 'individual' ? 'active' : ''}`}
+                        onClick={() => setVistaActiva('individual')}
+                    >
+                        Vista Individual
+                    </button>
+                    <button 
+                        className={`view-btn ${vistaActiva === 'forecast' ? 'active' : ''}`}
+                        onClick={() => setVistaActiva('forecast')}
+                    >
+                        Forecast
+                    </button>
+                </div>
+                <div className="period-selector">
+                    <label htmlFor="periodo">Período:</label>
+                    <select 
+                        id="periodo" 
+                        value={periodoSeleccionado} 
+                        onChange={(e) => setPeriodoSeleccionado(e.target.value)}
+                        className="period-select"
+                    >
+                        <option value="semana">Esta Semana</option>
+                        <option value="mes">Este Mes</option>
+                        <option value="trimestre">Este Trimestre</option>
+                        <option value="año">Este Año</option>
+                    </select>
+                </div>
+            </div>
+
+            {/* Métricas Principales */}
+            <div className="metrics-grid">
+                <div className="metric-card">
+                    <div className="metric-icon">👥</div>
+                    <div className="metric-info">
+                        <h3>{salesData.totalVendedores}</h3>
+                        <p>Vendedores Totales</p>
+                    </div>
+                </div>
+                
+                <div className="metric-card">
+                    <div className="metric-icon">📋</div>
+                    <div className="metric-info">
+                        <h3>{salesData.cotizacionesTotales}</h3>
+                        <p>Cotizaciones Totales</p>
+                    </div>
+                </div>
+                
+                <div className="metric-card success">
+                    <div className="metric-icon">✅</div>
+                    <div className="metric-info">
+                        <h3>{salesData.cotizacionesAprobadas}</h3>
+                        <p>Aprobadas ({porcentajeAprobacion}%)</p>
+                    </div>
+                </div>
+                
+                <div className="metric-card danger">
+                    <div className="metric-icon">❌</div>
+                    <div className="metric-info">
+                        <h3>{salesData.cotizacionesRechazadas}</h3>
+                        <p>Rechazadas</p>
+                    </div>
+                </div>
+                
+                <div className="metric-card primary">
+                    <div className="metric-icon">💰</div>
+                    <div className="metric-info">
+                        <h3>${salesData.dineroTotal.toLocaleString()}</h3>
+                        <p>Total en Ventas</p>
+                    </div>
+                </div>
+                
+                <div className="metric-card">
+                    <div className="metric-icon">🎯</div>
+                    <div className="metric-info">
+                        <h3>{porcentajeMeta}%</h3>
+                        <p>Meta Mensual</p>
+                        <div className="progress-bar">
+                            <div className="progress-fill" style={{ width: `${Math.min(porcentajeMeta, 100)}%` }}></div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -266,47 +369,107 @@ const SalesDashboard = () => {
                 </div>
             </div>
 
-            {/* Summary Cards */}
-            <div className="summary-cards">
-                <div className="summary-card primary">
-                    <div className="card-icon">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                        </svg>
-                    </div>
-                    <div className="card-content">
-                        <h4 className="card-title">Ventas Totales</h4>
-                        <p className="card-value">$628,500</p>
-                        <p className="card-change positive">+12.5% vs mes anterior</p>
-                    </div>
+            {/* Controles de Filtro */}
+            <div className="dashboard-controls">
+                <div className="filter-controls">
+                    <select 
+                        value={filtroActivo} 
+                        onChange={(e) => setFiltroActivo(e.target.value)}
+                        className="filter-select"
+                    >
+                        <option value="todos">Todos los Vendedores</option>
+                        <option value="activos">Solo Activos</option>
+                        <option value="inactivos">Solo Inactivos</option>
+                    </select>
+
+                    <select 
+                        value={ordenarPor} 
+                        onChange={(e) => setOrdenarPor(e.target.value)}
+                        className="filter-select"
+                    >
+                        <option value="ventas">Ordenar por Ventas</option>
+                        <option value="cotizaciones">Ordenar por Cotizaciones</option>
+                        <option value="aprobadas">Ordenar por Aprobadas</option>
+                        <option value="nombre">Ordenar por Nombre</option>
+                    </select>
                 </div>
 
-                <div className="summary-card success">
-                    <div className="card-icon">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                        </svg>
-                    </div>
-                    <div className="card-content">
-                        <h4 className="card-title">Meta Alcanzada</h4>
-                        <p className="card-value">108.2%</p>
-                        <p className="card-change positive">Superamos la meta</p>
-                    </div>
-                </div>
+                <button className="btn-export">Exportar a Excel</button>
+            </div>
 
-                <div className="summary-card orange">
-                    <div className="card-icon">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                        </svg>
-                    </div>
-                    <div className="card-content">
-                        <h4 className="card-title">Vendedores Activos</h4>
-                        <p className="card-value">20</p>
-                        <p className="card-change">Promedio: $31,425</p>
+            {/* Tabla de Vendedores */}
+            <div className="vendedores-table">
+                <h2>Detalle por Vendedor</h2>
+                <div className="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Vendedor</th>
+                                <th>Estado</th>
+                                <th>Cotizaciones</th>
+                                <th>Aprobadas</th>
+                                <th>Rechazadas</th>
+                                <th>% Aprobación</th>
+                                <th>Clientes</th>
+                                <th>Ventas</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {vendedoresFiltrados.map(vendedor => (
+                                <tr key={vendedor.id} className={!vendedor.activo ? 'inactive' : ''}>
+                                    <td className="vendedor-nombre">{vendedor.nombre}</td>
+                                    <td>
+                                        <span className={`status ${vendedor.activo ? 'active' : 'inactive'}`}>
+                                            {vendedor.activo ? 'Activo' : 'Inactivo'}
+                                        </span>
+                                    </td>
+                                    <td>{vendedor.cotizaciones}</td>
+                                    <td className="aprobadas">{vendedor.aprobadas}</td>
+                                    <td className="rechazadas">{vendedor.rechazadas}</td>
+                                    <td>{vendedor.cotizaciones > 0 ? ((vendedor.aprobadas / vendedor.cotizaciones) * 100).toFixed(1) + '%' : '0%'}</td>
+                                    <td>{vendedor.clientes}</td>
+                                    <td className="ventas">${vendedor.ventas.toLocaleString()}</td>
+                                    <td>
+                                        <div className="action-buttons">
+                                            <button className="btn-edit">✏️</button>
+                                            <button className="btn-view">👁️</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            {/* Resumen Final */}
+            <div className="dashboard-summary">
+                <div className="summary-card">
+                    <h3>Resumen de Resultados</h3>
+                    <div className="summary-grid">
+                        <div className="summary-item">
+                            <span>Total Cotizaciones:</span>
+                            <strong>{salesData.cotizacionesTotales}</strong>
+                        </div>
+                        <div className="summary-item success">
+                            <span>Aprobadas:</span>
+                            <strong>{salesData.cotizacionesAprobadas} ({porcentajeAprobacion}%)</strong>
+                        </div>
+                        <div className="summary-item danger">
+                            <span>Rechazadas:</span>
+                            <strong>{salesData.cotizacionesRechazadas}</strong>
+                        </div>
+                        <div className="summary-item primary">
+                            <span>Total en Dinero:</span>
+                            <strong>${salesData.dineroTotal.toLocaleString()}</strong>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            {/* Tabla Editable Estilo Excel */}
+            <EditableTable />
         </div>
     );
 };
