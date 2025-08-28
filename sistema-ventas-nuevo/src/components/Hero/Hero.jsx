@@ -1,111 +1,91 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./Hero.css";
 
 const Hero = () => {
-    const [currentSlide, setCurrentSlide] = useState(0);
-
-    // AQUÍ PUEDES AGREGAR TUS RUTAS DE IMÁGENES
-    const slides = [
-        {
-            id: 1,
-            image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1926&q=80", // Cambia por tu imagen 1
-            title: "Revoluciona tu Sistema",
-            highlight: "de Ventas",
-            description: "Gestiona a tus vendedores, cotizaciones y reportes de manera eficiente con nuestro sistema integral.",
-            primaryButton: "Comenzar Ahora",
-            secondaryButton: "Ver Demo"
-        },
-        {
-            id: 2,
-            image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2015&q=80", // Cambia por tu imagen 2
-            title: "Controla cada Venta",
-            highlight: "en Tiempo Real",
-            description: "Monitorea el rendimiento de tu equipo de ventas y toma decisiones inteligentes basadas en datos.",
-            primaryButton: "Ver Estadísticas",
-            secondaryButton: "Solicitar Info"
-        },
-        {
-            id: 3,
-            image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80", // Cambia por tu imagen 3
-            title: "Aumenta tus Ventas",
-            highlight: "hasta un 300%",
-            description: "Con herramientas avanzadas de análisis y gestión, potencia el rendimiento de tu equipo comercial.",
-            primaryButton: "Descubrir Más",
-            secondaryButton: "Contactar"
-        }
-    ];
-
-    // Auto-play del carrusel (cambia cada 5 segundos)
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setCurrentSlide((prev) => (prev + 1) % slides.length);
-        }, 5000);
-
-        return () => clearInterval(timer);
-    }, [slides.length]);
-
-    // Funciones de navegación
-    const nextSlide = () => {
-        setCurrentSlide((prev) => (prev + 1) % slides.length);
-    };
-
-    const prevSlide = () => {
-        setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-    };
-
-    const goToSlide = (index) => {
-        setCurrentSlide(index);
-    };
-
     return (
-        <section id="home" className="hero-carousel">
-            <div className="carousel-container">
-                {/* Slides del Carrusel */}
-                {slides.map((slide, index) => (
-                    <div
-                        key={slide.id}
-                        className={`carousel-slide ${index === currentSlide ? 'active' : ''}`}
-                        style={{ backgroundImage: `url(${slide.image})` }}
-                    >
-                        <div className="hero-overlay">
-                            <div className="hero-content">
-                                <h1>
-                                    {slide.title} <br />
-                                    <span>{slide.highlight}</span>
-                                </h1>
-                                <p>{slide.description}</p>
-                                <div className="hero-buttons">
-                                    <button className="btn btn-primary">{slide.primaryButton}</button>
-                                    <button className="btn btn-secondary">{slide.secondaryButton}</button>
-                                </div>
-                            </div>
+        <section id="home" className="hero-section">
+            <div className="hero-container">
+                {/* Header Principal */}
+                <div className="hero-header">
+                    <h1 className="hero-title">
+                        Sistema de Ventas
+                        <span className="hero-highlight"> Inteligente</span>
+                    </h1>
+                    <p className="hero-subtitle">
+                        Gestiona, controla y potencia tu equipo de ventas con herramientas avanzadas de análisis y reportes en tiempo real
+                    </p>
+                </div>
+
+                {/* Características Principales */}
+                <div className="hero-features">
+                    <div className="feature-card">
+                        <div className="feature-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <path d="M12 2L2 7v10c0 5.55 3.84 10 9 9s9-4.65 9-10V7l-10-5z"/>
+                                <path d="M8 11l2 2 4-4"/>
+                            </svg>
                         </div>
+                        <h3>Gestión Segura</h3>
+                        <p>Control total sobre tus vendedores, cotizaciones y procesos de venta con máxima seguridad</p>
                     </div>
-                ))}
 
-                {/* Botón Anterior */}
-                <button className="carousel-nav carousel-prev" onClick={prevSlide}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                </button>
-                
-                {/* Botón Siguiente */}
-                <button className="carousel-nav carousel-next" onClick={nextSlide}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                </button>
+                    <div className="feature-card">
+                        <div className="feature-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <path d="M3 3v18h18"/>
+                                <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/>
+                            </svg>
+                        </div>
+                        <h3>Análisis en Tiempo Real</h3>
+                        <p>Monitorea el rendimiento de tu equipo y toma decisiones inteligentes basadas en datos actuales</p>
+                    </div>
 
-                {/* Indicadores (puntos) */}
-                <div className="carousel-indicators">
-                    {slides.map((_, index) => (
-                        <button
-                            key={index}
-                            className={`indicator ${index === currentSlide ? 'active' : ''}`}
-                            onClick={() => goToSlide(index)}
-                        ></button>
-                    ))}
+                    <div className="feature-card">
+                        <div className="feature-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <circle cx="12" cy="12" r="3"/>
+                                <path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24"/>
+                            </svg>
+                        </div>
+                        <h3>Automatización</h3>
+                        <p>Automatiza procesos repetitivos y aumenta la productividad de tu equipo comercial</p>
+                    </div>
+                </div>
+
+                {/* Estadísticas */}
+                <div className="hero-stats">
+                    <div className="stat-item">
+                        <div className="stat-number">300%</div>
+                        <div className="stat-label">Aumento en Ventas</div>
+                    </div>
+                    <div className="stat-item">
+                        <div className="stat-number">24/7</div>
+                        <div className="stat-label">Monitoreo Continuo</div>
+                    </div>
+                    <div className="stat-item">
+                        <div className="stat-number">99.9%</div>
+                        <div className="stat-label">Disponibilidad</div>
+                    </div>
+                    <div className="stat-item">
+                        <div className="stat-number">500+</div>
+                        <div className="stat-label">Empresas Confían</div>
+                    </div>
+                </div>
+
+                {/* Botones de Acción */}
+                <div className="hero-actions">
+                    <button className="btn btn-primary">
+                        <span>Comenzar Ahora</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                    <button className="btn btn-secondary">
+                        <span>Ver Demo</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <polygon points="5,3 19,12 5,21"/>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </section>
