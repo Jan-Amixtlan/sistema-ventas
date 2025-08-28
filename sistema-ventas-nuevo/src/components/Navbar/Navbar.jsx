@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
+import LoginModal from '../LoginModal/LoginModal.jsx';
 import './Navbar.css';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -10,6 +12,15 @@ const Navbar = () => {
 
   const closeMenu = () => {
     setIsMenuOpen(false);
+  };
+
+  const openLoginModal = () => {
+    setIsLoginModalOpen(true);
+    closeMenu(); // Close mobile menu if open
+  };
+
+  const closeLoginModal = () => {
+    setIsLoginModalOpen(false);
   };
 
   // Close menu when clicking outside or pressing Escape
@@ -74,11 +85,22 @@ const Navbar = () => {
 
         {/* User Actions */}
         <div className="navbar-actions">
-          <button className="btn-login">Iniciar Sesión</button>
+          <button 
+            className="btn-login"
+            onClick={openLoginModal}
+          >
+            Iniciar Sesión
+          </button>
           <button className="btn-signup">Registrarse</button>
         </div>
         </div>
       </nav>
+
+      {/* Login Modal */}
+      <LoginModal 
+        isOpen={isLoginModalOpen} 
+        onClose={closeLoginModal} 
+      />
     </>
   );
 };
