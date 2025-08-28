@@ -17,6 +17,18 @@ const EditableTable = () => {
 
     const [editingCell, setEditingCell] = useState({ row: null, column: null });
     const [tempValue, setTempValue] = useState('');
+    const [showModal, setShowModal] = useState(false);
+    const [newVendedor, setNewVendedor] = useState({
+        nombre: '',
+        telefono: '',
+        email: '',
+        activo: true,
+        cotizaciones: 0,
+        aprobadas: 0,
+        rechazadas: 0,
+        clientes: 0,
+        ventasTotal: 0
+    });
     const inputRef = useRef(null);
 
     // Calcular totales
@@ -73,20 +85,59 @@ const EditableTable = () => {
     };
 
     const agregarVendedor = () => {
-        const nuevoId = Math.max(...vendedoresData.map(v => v.id)) + 1;
-        const nuevoVendedor = {
-            id: nuevoId,
-            nombre: 'Nuevo Vendedor',
-            telefono: '555-0000',
-            email: 'nuevo@empresa.com',
+        setShowModal(true);
+    };
+
+    const cerrarModal = () => {
+        setShowModal(false);
+        setNewVendedor({
+            nombre: '',
+            telefono: '',
+            email: '',
             activo: true,
             cotizaciones: 0,
             aprobadas: 0,
             rechazadas: 0,
             clientes: 0,
             ventasTotal: 0
+        });
+    };
+
+    const handleInputChange = (e) => {
+        const { name, value, type, checked } = e.target;
+        setNewVendedor(prev => ({
+            ...prev,
+            [name]: type === 'checkbox' ? checked : 
+                   ['cotizaciones', 'aprobadas', 'rechazadas', 'clientes', 'ventasTotal'].includes(name) 
+                   ? (parseInt(value) || 0) : value
+        }));
+    };
+
+    const guardarVendedor = (e) => {
+        e.preventDefault();
+        
+        // Validaciones básicas
+        if (!newVendedor.nombre.trim()) {
+            alert('El nombre es requerido');
+            return;
+        }
+        if (!newVendedor.email.trim()) {
+            alert('El email es requerido');
+            return;
+        }
+        if (!newVendedor.telefono.trim()) {
+            alert('El teléfono es requerido');
+            return;
+        }
+
+        const nuevoId = Math.max(...vendedoresData.map(v => v.id)) + 1;
+        const vendedorCompleto = {
+            ...newVendedor,
+            id: nuevoId
         };
-        setVendedoresData([...vendedoresData, nuevoVendedor]);
+        
+        setVendedoresData([...vendedoresData, vendedorCompleto]);
+        cerrarModal();
     };
 
     const eliminarVendedor = (id) => {
@@ -266,6 +317,158 @@ const EditableTable = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Modal para agregar vendedor */}
+            {showModal && (
+                <div className="modal-overlay">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h3>Agregar Nuevo Vendedor</h3>
+                            <button className="modal-close" onClick={cerrarModal}>
+                                ✕
+                            </button>
+                        </div>
+                        
+                        <form onSubmit={guardarVendedor} className="vendor-form">
+                            <div className="form-row">
+                                <div className="form-group">
+                                    <label htmlFor="nombre">Nombre Completo *</label>
+                                    <input
+                                        type="text"
+                                        id="nombre"
+                                        name="nombre"
+                                        value={newVendedor.nombre}
+                                        onChange={handleInputChange}
+                                        placeholder="Ej: Juan Pérez"
+                                        required
+                                    />
+                                </div>
+                                
+                                <div className="form-group">
+                                    <label htmlFor="telefono">Teléfono *</label>
+                                    <input
+                                        type="tel"
+                                        id="telefono"
+                                        name="telefono"
+                                        value={newVendedor.telefono}
+                                        onChange={handleInputChange}
+                                        placeholder="Ej: 555-0123"
+                                        required
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="form-row">
+                                <div className="form-group full-width">
+                                    <label htmlFor="email">Email *</label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        value={newVendedor.email}
+                                        onChange={handleInputChange}
+                                        placeholder="Ej: juan@empresa.com"
+                                        required
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="form-row">
+                                <div className="form-group">
+                                    <label htmlFor="cotizaciones">Cotizaciones</label>
+                                    <input
+                                        type="number"
+                                        id="cotizaciones"
+                                        name="cotizaciones"
+                                        value={newVendedor.cotizaciones}
+                                        onChange={handleInputChange}
+                                        min="0"
+                                        placeholder="0"
+                                    />
+                                </div>
+                                
+                                <div className="form-group">
+                                    <label htmlFor="aprobadas">Aprobadas</label>
+                                    <input
+                                        type="number"
+                                        id="aprobadas"
+                                        name="aprobadas"
+                                        value={newVendedor.aprobadas}
+                                        onChange={handleInputChange}
+                                        min="0"
+                                        placeholder="0"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="form-row">
+                                <div className="form-group">
+                                    <label htmlFor="rechazadas">Rechazadas</label>
+                                    <input
+                                        type="number"
+                                        id="rechazadas"
+                                        name="rechazadas"
+                                        value={newVendedor.rechazadas}
+                                        onChange={handleInputChange}
+                                        min="0"
+                                        placeholder="0"
+                                    />
+                                </div>
+                                
+                                <div className="form-group">
+                                    <label htmlFor="clientes">Clientes</label>
+                                    <input
+                                        type="number"
+                                        id="clientes"
+                                        name="clientes"
+                                        value={newVendedor.clientes}
+                                        onChange={handleInputChange}
+                                        min="0"
+                                        placeholder="0"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="form-row">
+                                <div className="form-group">
+                                    <label htmlFor="ventasTotal">Ventas Total ($)</label>
+                                    <input
+                                        type="number"
+                                        id="ventasTotal"
+                                        name="ventasTotal"
+                                        value={newVendedor.ventasTotal}
+                                        onChange={handleInputChange}
+                                        min="0"
+                                        placeholder="0"
+                                    />
+                                </div>
+                                
+                                <div className="form-group">
+                                    <label className="checkbox-label">
+                                        <input
+                                            type="checkbox"
+                                            name="activo"
+                                            checked={newVendedor.activo}
+                                            onChange={handleInputChange}
+                                        />
+                                        <span className="checkmark"></span>
+                                        Vendedor Activo
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div className="modal-footer">
+                                <button type="button" className="btn-cancel" onClick={cerrarModal}>
+                                    Cancelar
+                                </button>
+                                <button type="submit" className="btn-save">
+                                    💾 Guardar Vendedor
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
