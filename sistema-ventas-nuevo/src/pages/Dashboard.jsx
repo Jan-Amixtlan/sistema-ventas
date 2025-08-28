@@ -22,6 +22,8 @@ const Dashboard = () => {
 
     const [filtroActivo, setFiltroActivo] = useState('todos');
     const [ordenarPor, setOrdenarPor] = useState('ventas');
+    const [vistaActiva, setVistaActiva] = useState('equipo');
+    const [periodoSeleccionado, setPeriodoSeleccionado] = useState('semana');
 
     const porcentajeAprobacion = ((salesData.cotizacionesAprobadas / salesData.cotizacionesTotales) * 100).toFixed(1);
     const porcentajeMeta = ((salesData.dineroTotal / salesData.metaMensual) * 100).toFixed(1);
@@ -42,6 +44,44 @@ const Dashboard = () => {
             <div className="dashboard-header">
                 <h1>Dashboard de Ventas</h1>
                 <p>Control total de tu equipo comercial</p>
+            </div>
+
+            {/* Vista Selector */}
+            <div className="view-selector-container">
+                <div className="view-buttons">
+                    <button 
+                        className={`view-btn ${vistaActiva === 'equipo' ? 'active' : ''}`}
+                        onClick={() => setVistaActiva('equipo')}
+                    >
+                        Vista de Equipo
+                    </button>
+                    <button 
+                        className={`view-btn ${vistaActiva === 'individual' ? 'active' : ''}`}
+                        onClick={() => setVistaActiva('individual')}
+                    >
+                        Vista Individual
+                    </button>
+                    <button 
+                        className={`view-btn ${vistaActiva === 'forecast' ? 'active' : ''}`}
+                        onClick={() => setVistaActiva('forecast')}
+                    >
+                        Forecast
+                    </button>
+                </div>
+                <div className="period-selector">
+                    <label htmlFor="periodo">Período:</label>
+                    <select 
+                        id="periodo" 
+                        value={periodoSeleccionado} 
+                        onChange={(e) => setPeriodoSeleccionado(e.target.value)}
+                        className="period-select"
+                    >
+                        <option value="semana">Esta Semana</option>
+                        <option value="mes">Este Mes</option>
+                        <option value="trimestre">Este Trimestre</option>
+                        <option value="año">Este Año</option>
+                    </select>
+                </div>
             </div>
 
             {/* Métricas Principales */}
