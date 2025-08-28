@@ -73,49 +73,51 @@ const Hero = () => {
 
     return (
         <section id="home" className="hero-professional">
-            {/* Animated Gradient Background */}
-            <div className="hero-animated-bg">
-                <div className="gradient-orb orb-1"></div>
-                <div className="gradient-orb orb-2"></div>
-                <div className="gradient-orb orb-3"></div>
-                <div className="animated-grid"></div>
+            {/* Background Image with Overlay */}
+            <div className="hero-background">
+                <div className="hero-overlay"></div>
+                <img 
+                    src={slides[currentSlide].image} 
+                    alt="Background" 
+                    className="hero-bg-image"
+                />
             </div>
 
             {/* Main Content */}
             <div className="hero-container">
                 <div className="hero-content">
                     {/* Left Content */}
-                    <div className="hero-text animate-slide-in-left">
-                        <div className="hero-badge animate-fade-in">
+                    <div className="hero-text">
+                        <div className="hero-badge">
                             <span>Soluciones Empresariales</span>
                         </div>
                         
-                        <h1 className="hero-title animate-slide-in-left">
+                        <h1 className="hero-title">
                             {slides[currentSlide].title}
-                            <span className="hero-subtitle animate-slide-in-left">
+                            <span className="hero-subtitle">
                                 {slides[currentSlide].subtitle}
                             </span>
                         </h1>
                         
-                        <p className="hero-description animate-slide-in-left">
+                        <p className="hero-description">
                             {slides[currentSlide].description}
                         </p>
 
                         {/* Action Buttons */}
-                        <div className="hero-actions animate-slide-in-up">
-                            <button className="btn btn-primary animate-bounce-hover">
+                        <div className="hero-actions">
+                            <button className="btn btn-primary">
                                 {slides[currentSlide].primaryButton}
                             </button>
-                            <button className="btn btn-secondary animate-bounce-hover">
+                            <button className="btn btn-secondary">
                                 {slides[currentSlide].secondaryButton}
                             </button>
                         </div>
 
                         {/* Statistics */}
-                        <div className="hero-stats animate-stagger-up">
+                        <div className="hero-stats">
                             {slides[currentSlide].stats.map((stat, index) => (
-                                <div key={index} className="stat-item animate-scale-in" style={{'--delay': `${index * 0.1}s`}}>
-                                    <div className="stat-icon animate-pulse">{stat.icon}</div>
+                                <div key={index} className="stat-item">
+                                    <div className="stat-icon">{stat.icon}</div>
                                     <div className="stat-content">
                                         <div className="stat-number">{stat.number}</div>
                                         <div className="stat-label">{stat.label}</div>
@@ -126,36 +128,36 @@ const Hero = () => {
                     </div>
 
                     {/* Right Content - Visual Element */}
-                    <div className="hero-visual animate-slide-in-right">
-                        <div className="visual-card animate-float">
-                            <div className="card-header animate-fade-in">
+                    <div className="hero-visual">
+                        <div className="visual-card">
+                            <div className="card-header">
                                 <h3>Panel de Control</h3>
-                                <div className="status-indicator animate-pulse">
-                                    <span className="status-dot animate-ping"></span>
+                                <div className="status-indicator">
+                                    <span className="status-dot"></span>
                                     Sistema Activo
                                 </div>
                             </div>
                             
-                            <div className="metrics-grid animate-stagger-in">
-                                <div className="metric-item animate-count-up" style={{'--delay': '0.2s'}}>
+                            <div className="metrics-grid">
+                                <div className="metric-item">
                                     <div className="metric-value">$1.2M</div>
                                     <div className="metric-label">Ventas del Mes</div>
-                                    <div className="metric-trend positive animate-bounce">+15%</div>
+                                    <div className="metric-trend positive">+15%</div>
                                 </div>
-                                <div className="metric-item animate-count-up" style={{'--delay': '0.4s'}}>
+                                <div className="metric-item">
                                     <div className="metric-value">247</div>
                                     <div className="metric-label">Leads Activos</div>
-                                    <div className="metric-trend positive animate-bounce">+8%</div>
+                                    <div className="metric-trend positive">+8%</div>
                                 </div>
-                                <div className="metric-item animate-count-up" style={{'--delay': '0.6s'}}>
+                                <div className="metric-item">
                                     <div className="metric-value">89%</div>
                                     <div className="metric-label">Tasa Conversión</div>
-                                    <div className="metric-trend positive animate-bounce">+3%</div>
+                                    <div className="metric-trend positive">+3%</div>
                                 </div>
-                                <div className="metric-item animate-count-up" style={{'--delay': '0.8s'}}>
+                                <div className="metric-item">
                                     <div className="metric-value">156</div>
                                     <div className="metric-label">Clientes Nuevos</div>
-                                    <div className="metric-trend positive animate-bounce">+22%</div>
+                                    <div className="metric-trend positive">+22%</div>
                                 </div>
                             </div>
 

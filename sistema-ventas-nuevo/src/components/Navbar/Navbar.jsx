@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import LoginModal from '../LoginModal/LoginModal.jsx';
-import logoImage from '../../assets/images/logo.png';
+import logoImage from '../../assets/images/logo letra negra.png';
 import './Navbar.css';
 
 const Navbar = () => {
