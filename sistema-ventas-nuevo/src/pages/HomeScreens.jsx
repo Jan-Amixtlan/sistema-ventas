@@ -2,7 +2,9 @@
 import Navbar from '../components/Navbar/Navbar.jsx';
 import Hero from '../components/Hero/Hero.jsx';
 import Dashboard from './Dashboard.jsx';
-import './HomeScreens.css';
+import Footer from '../components/Footer/Footer.jsx';
+
+
 
 const HomeScreens = () => {
     return (
@@ -10,6 +12,7 @@ const HomeScreens = () => {
             <Navbar />
             <Hero />
             <Dashboard />
+            <Footer />
         </>
     );
 }
