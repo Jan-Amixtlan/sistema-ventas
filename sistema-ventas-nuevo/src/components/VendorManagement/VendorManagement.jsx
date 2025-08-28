@@ -98,26 +98,177 @@ const VendorManagement = () => {
     };
 
     const handleDownloadCSV = () => {
-        const csvContent = [
-            ['Nombre', 'Email', 'Teléfono', 'Ventas', 'Región', 'Fecha Ingreso', 'Estado'],
+        // Crear el contenido del CSV con codificación UTF-8
+        const headers = ['ID', 'Nombre', 'Email', 'Teléfono', 'Ventas (USD)', 'Región', 'Fecha de Ingreso', 'Estado'];
+        
+        const csvRows = [
+            headers.join(','),
             ...vendors.map(v => [
+                v.id,
+                `"${v.name}"`,
+                `"${v.email}"`,
+                `"${v.phone}"`,
+                `"$${v.ventas.toLocaleString()}"`,
+                `"${v.region}"`,
+                `"${new Date(v.fechaIngreso).toLocaleDateString('es-ES')}"`,
+                `"${v.status === 'activo' ? 'Activo' : 'Inactivo'}"`
+            ].join(','))
+        ];
+
+        // Agregar información adicional al final
+        csvRows.push('');
+        csvRows.push(`"Reporte generado el: ${new Date().toLocaleDateString('es-ES')} a las ${new Date().toLocaleTimeString('es-ES')}"`);
+        csvRows.push(`"Total de vendedores: ${vendors.length}"`);
+        csvRows.push(`"Vendedores activos: ${vendors.filter(v => v.status === 'activo').length}"`);
+        csvRows.push(`"Vendedores inactivos: ${vendors.filter(v => v.status === 'inactivo').length}"`);
+        
+        const totalVentas = vendors.reduce((sum, v) => sum + v.ventas, 0);
+        csvRows.push(`"Total en ventas: $${totalVentas.toLocaleString()}"`);
+
+        const csvContent = csvRows.join('\n');
+        
+        // Agregar BOM (Byte Order Mark) para UTF-8
+        const BOM = '\uFEFF';
+        const csvWithBOM = BOM + csvContent;
+        
+        // Crear el blob con la codificación correcta
+        const blob = new Blob([csvWithBOM], { 
+            type: 'text/csv;charset=utf-8;' 
+        });
+        
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `reporte-vendedores-${new Date().toISOString().split('T')[0]}.csv`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+
+        // Mostrar notificación de éxito
+        const notification = document.createElement('div');
+        notification.innerHTML = `
+            <div style="
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #10b981;
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            ">
+                ✅ Archivo CSV descargado exitosamente
+            </div>
+        `;
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            document.body.removeChild(notification);
+        }, 3000);
+    };
+
+    const handleDownloadExcel = () => {
+        // Crear datos para Excel
+        const data = [
+            ['ID', 'Nombre', 'Email', 'Teléfono', 'Ventas (USD)', 'Región', 'Fecha de Ingreso', 'Estado'],
+            ...vendors.map(v => [
+                v.id,
                 v.name,
                 v.email,
                 v.phone,
                 v.ventas,
                 v.region,
-                v.fechaIngreso,
-                v.status
-            ])
-        ].map(row => row.join(',')).join('\\n');
+                new Date(v.fechaIngreso).toLocaleDateString('es-ES'),
+                v.status === 'activo' ? 'Activo' : 'Inactivo'
+            ]),
+            [],
+            ['Resumen del Reporte'],
+            [`Generado el: ${new Date().toLocaleDateString('es-ES')} a las ${new Date().toLocaleTimeString('es-ES')}`],
+            [`Total de vendedores: ${vendors.length}`],
+            [`Vendedores activos: ${vendors.filter(v => v.status === 'activo').length}`],
+            [`Vendedores inactivos: ${vendors.filter(v => v.status === 'inactivo').length}`],
+            [`Total en ventas: $${vendors.reduce((sum, v) => sum + v.ventas, 0).toLocaleString()}`]
+        ];
 
-        const blob = new Blob([csvContent], { type: 'text/csv' });
+        // Crear contenido HTML para Excel
+        let excelContent = `
+            <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
+            <head>
+                <meta charset="UTF-8">
+                <!--[if gte mso 9]>
+                <xml>
+                    <x:ExcelWorkbook>
+                        <x:ExcelWorksheets>
+                            <x:ExcelWorksheet>
+                                <x:Name>Vendedores</x:Name>
+                                <x:WorksheetSource HRef="sheet1.htm"/>
+                            </x:ExcelWorksheet>
+                        </x:ExcelWorksheets>
+                    </x:ExcelWorkbook>
+                </xml>
+                <![endif]-->
+            </head>
+            <body>
+                <table border="1">
+        `;
+
+        data.forEach((row, index) => {
+            excelContent += '<tr>';
+            row.forEach(cell => {
+                if (index === 0) {
+                    excelContent += `<th style="background-color: #f3f4f6; font-weight: bold;">${cell}</th>`;
+                } else {
+                    excelContent += `<td>${cell}</td>`;
+                }
+            });
+            excelContent += '</tr>';
+        });
+
+        excelContent += `
+                </table>
+            </body>
+            </html>
+        `;
+
+        const blob = new Blob([excelContent], { 
+            type: 'application/vnd.ms-excel;charset=utf-8;' 
+        });
+        
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'vendedores.csv';
+        a.download = `reporte-vendedores-${new Date().toISOString().split('T')[0]}.xls`;
+        document.body.appendChild(a);
         a.click();
+        document.body.removeChild(a);
         window.URL.revokeObjectURL(url);
+
+        // Mostrar notificación de éxito
+        const notification = document.createElement('div');
+        notification.innerHTML = `
+            <div style="
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #059669;
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            ">
+                📊 Archivo Excel descargado exitosamente
+            </div>
+        `;
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            document.body.removeChild(notification);
+        }, 3000);
     };
 
     const handleAddVendor = (newVendor) => {
@@ -168,6 +319,7 @@ const VendorManagement = () => {
                         </svg>
                         Descargar CSV
                     </button>
+                    
                     <button 
                         className="btn btn-primary"
                         onClick={() => setShowAddForm(true)}
