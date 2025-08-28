@@ -1,0 +1,747 @@
+/* SalesControl.css */
+
+/* Variables de colores de la paleta */
+:root {
+    --primary-blue: #2563EB;
+    --success-green: #10B981;
+    --conversion-orange: #F59E0B;
+    --neutral-gray: #6B7280;
+
+    /* Colores adicionales */
+    --white: #FFFFFF;
+    --gray-50: #F9FAFB;
+    --gray-100: #F3F4F6;
+    --gray-200: #E5E7EB;
+    --gray-300: #D1D5DB;
+    --gray-400: #9CA3AF;
+    --gray-500: #6B7280;
+    --gray-600: #4B5563;
+    --gray-700: #374151;
+    --gray-800: #1F2937;
+    --gray-900: #111827;
+
+    /* Estados */
+    --danger-red: #EF4444;
+    --warning-yellow: #F59E0B;
+    --info-blue: #3B82F6;
+
+    /* Efectos */
+    --glass-bg: rgba(255, 255, 255, 0.95);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Contenedor principal */
+.sales-control {
+    padding: 2rem;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Header */
+.control-header {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, #3B82F6 100%);
+    color: var(--white);
+    padding: 2rem;
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow-xl);
+    position: relative;
+    overflow: hidden;
+}
+
+.control-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+    pointer-events: none;
+}
+
+.header-content {
+    position: relative;
+    z-index: 10;
+}
+
+.header-title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+}
+
+.header-subtitle {
+    font-size: 1rem;
+    opacity: 0.9;
+    font-weight: 500;
+}
+
+.header-actions {
+    display: flex;
+    gap: 1rem;
+    position: relative;
+    z-index: 10;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.5rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.action-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.action-btn:hover::before {
+    left: 100%;
+}
+
+.action-btn.primary {
+    background: var(--conversion-orange);
+    color: var(--white);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+.action-btn.primary:hover {
+    background: #D97706;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(245, 158, 11, 0.4);
+}
+
+.action-btn.secondary {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--white);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.action-btn.secondary:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.action-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Contenedor de tabla */
+.table-container {
+    background: var(--white);
+    border-radius: 0 0 20px 20px;
+    box-shadow: var(--shadow-xl);
+    overflow: hidden;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+/* Tabla */
+.sales-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    background: var(--white);
+}
+
+/* Header de tabla */
+.sales-table thead {
+    background: linear-gradient(135deg, var(--gray-50), var(--gray-100));
+    border-bottom: 2px solid var(--gray-200);
+}
+
+.sales-table th {
+    padding: 1rem 0.75rem;
+    text-align: left;
+    font-weight: 700;
+    color: var(--gray-700);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    position: relative;
+    user-select: none;
+}
+
+.sales-table th.sortable {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding-right: 2rem;
+}
+
+.sales-table th.sortable:hover {
+    background: rgba(37, 99, 235, 0.05);
+    color: var(--primary-blue);
+}
+
+.sort-indicator {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8rem;
+    color: var(--primary-blue);
+    font-weight: bold;
+}
+
+/* Cuerpo de tabla */
+.sales-table tbody tr {
+    border-bottom: 1px solid var(--gray-200);
+    transition: all 0.2s ease;
+}
+
+.sales-table tbody tr:hover {
+    background: rgba(37, 99, 235, 0.02);
+    transform: scale(1.001);
+}
+
+.sales-table tbody tr.inactive-row {
+    background: rgba(107, 114, 128, 0.05);
+    opacity: 0.7;
+}
+
+.sales-table tbody tr.inactive-row:hover {
+    background: rgba(107, 114, 128, 0.1);
+}
+
+.sales-table td {
+    padding: 1rem 0.75rem;
+    color: var(--gray-700);
+    font-weight: 500;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+/* Estilos específicos de celdas */
+.name-cell {
+    font-weight: 600;
+    color: var(--gray-900);
+}
+
+.email-cell {
+    color: var(--primary-blue);
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+}
+
+.number-cell {
+    text-align: center;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+.number-cell.success {
+    color: var(--success-green);
+}
+
+.number-cell.danger {
+    color: var(--danger-red);
+}
+
+.percentage-cell {
+    text-align: center;
+    font-weight: 700;
+    color: var(--primary-blue);
+    font-variant-numeric: tabular-nums;
+}
+
+.money-cell {
+    text-align: right;
+    font-weight: 700;
+    color: var(--success-green);
+    font-variant-numeric: tabular-nums;
+}
+
+/* Badges de estado */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.status-badge.active {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success-green);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.status-badge.inactive {
+    background: rgba(107, 114, 128, 0.1);
+    color: var(--neutral-gray);
+    border: 1px solid rgba(107, 114, 128, 0.2);
+}
+
+/* Acciones */
+.actions-cell {
+    text-align: center;
+}
+
+.delete-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger-red);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.delete-btn:hover {
+    background: var(--danger-red);
+    color: var(--white);
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.delete-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Fila de totales */
+.totals-row {
+    background: linear-gradient(135deg, var(--conversion-orange), #FB923C);
+    color: var(--white);
+    font-weight: 700;
+    border-top: 3px solid var(--warning-yellow);
+}
+
+.totals-row td {
+    color: var(--white);
+    padding: 1.25rem 0.75rem;
+    border-bottom: none;
+}
+
+.total-number,
+.total-percentage,
+.total-money {
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.total-number.success,
+.total-number.danger {
+    color: var(--white);
+}
+
+.total-money {
+    text-align: right;
+}
+
+/* Resumen estadístico */
+.statistics-summary {
+    margin-top: 2rem;
+    max-width: 500px;
+}
+
+.summary-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--gray-200);
+}
+
+.summary-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--gray-200);
+    padding-bottom: 0.5rem;
+}
+
+.summary-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background: var(--gray-50);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.stat-item:hover {
+    background: var(--gray-100);
+    transform: translateX(5px);
+}
+
+.stat-label {
+    font-weight: 600;
+    color: var(--gray-700);
+}
+
+.stat-value {
+    font-weight: 800;
+    font-size: 1.1rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.stat-value.primary {
+    color: var(--primary-blue);
+}
+
+.stat-value.success {
+    color: var(--success-green);
+}
+
+.stat-value.danger {
+    color: var(--danger-red);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .sales-table {
+        font-size: 0.85rem;
+    }
+
+    .sales-table th,
+    .sales-table td {
+        padding: 0.875rem 0.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .sales-control {
+        padding: 1rem;
+    }
+
+    .control-header {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+        padding: 1.5rem;
+    }
+
+    .header-title {
+        font-size: 1.75rem;
+    }
+
+    .header-actions {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .action-btn {
+        flex: 1;
+        min-width: 140px;
+        justify-content: center;
+    }
+
+    .table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .sales-table {
+        min-width: 1000px;
+        font-size: 0.8rem;
+    }
+
+    .sales-table th,
+    .sales-table td {
+        padding: 0.75rem 0.4rem;
+    }
+
+    .summary-stats {
+        gap: 0.75rem;
+    }
+
+    .stat-item {
+        padding: 0.6rem;
+    }
+
+    .stat-value {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .sales-control {
+        padding: 0.5rem;
+    }
+
+    .control-header {
+        padding: 1rem;
+        border-radius: 16px 16px 0 0;
+    }
+
+    .header-title {
+        font-size: 1.5rem;
+    }
+
+    .header-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .action-btn {
+        padding: 0.75rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .action-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .table-container {
+        border-radius: 0 0 16px 16px;
+    }
+
+    .sales-table {
+        font-size: 0.75rem;
+    }
+
+    .sales-table th,
+    .sales-table td {
+        padding: 0.6rem 0.3rem;
+    }
+
+    .status-badge {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.7rem;
+    }
+
+    .delete-btn {
+        width: 32px;
+        height: 32px;
+    }
+
+    .delete-btn svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    .summary-card {
+        padding: 1.5rem;
+    }
+
+    .summary-title {
+        font-size: 1.1rem;
+    }
+}
+
+/* Animaciones adicionales */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.sales-control {
+    animation: slideIn 0.6s ease-out;
+}
+
+.control-header {
+    animation: slideIn 0.6s ease-out 0.1s both;
+}
+
+.table-container {
+    animation: slideIn 0.6s ease-out 0.2s both;
+}
+
+.statistics-summary {
+    animation: slideIn 0.6s ease-out 0.3s both;
+}
+
+/* Efectos hover mejorados */
+@media (hover: hover) {
+    .sales-table tbody tr:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Estados de focus para accesibilidad */
+.action-btn:focus,
+.delete-btn:focus {
+    outline: 3px solid rgba(37, 99, 235, 0.3);
+    outline-offset: 2px;
+}
+
+.sales-table th.sortable:focus {
+    outline: 2px solid rgba(37, 99, 235, 0.3);
+    outline-offset: -2px;
+}
+
+/* Mejoras de rendimiento */
+.sales-table {
+    will-change: scroll-position;
+}
+
+.sales-table tbody tr {
+    will-change: transform, background-color;
+}
+
+/* Estados de carga */
+.loading {
+    position: relative;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    margin: -12px 0 0 -12px;
+    border: 2px solid var(--gray-300);
+    border-top: 2px solid var(--primary-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Estilos para impresión */
+@media print {
+    .sales-control {
+        background: white;
+        padding: 0;
+    }
+
+    .control-header {
+        background: white;
+        color: black;
+        box-shadow: none;
+        border-bottom: 2px solid #000;
+    }
+
+    .header-actions {
+        display: none;
+    }
+
+    .table-container {
+        box-shadow: none;
+    }
+
+    .sales-table {
+        font-size: 0.8rem;
+    }
+
+    .actions-cell {
+        display: none;
+    }
+
+    .statistics-summary {
+        page-break-inside: avoid;
+        margin-top: 1rem;
+    }
+}
+
+/* Mejoras para dispositivos táctiles */
+@media (pointer: coarse) {
+
+    .action-btn,
+    .delete-btn {
+        min-height: 44px;
+    }
+
+    .sales-table th.sortable,
+    .sales-table td {
+        min-height: 44px;
+    }
+}
+
+/* Mejoras de contraste para accesibilidad */
+@media (prefers-contrast: high) {
+    .status-badge.active {
+        background: var(--success-green);
+        color: white;
+    }
+
+    .status-badge.inactive {
+        background: var(--neutral-gray);
+        color: white;
+    }
+
+    .sales-table tbody tr:hover {
+        background: rgba(37, 99, 235, 0.1);
+    }
+}
+
+/* Animaciones reducidas para usuarios que las prefieren */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .sales-table tbody tr:hover {
+        transform: none;
+    }
+
+    .action-btn:hover,
+    .delete-btn:hover {
+        transform: none;
+    }
+}

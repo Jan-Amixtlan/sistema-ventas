@@ -32,7 +32,7 @@ const HomeScreens = () => {
         <>
             <Navbar />
             <Hero />
-            <Dashboard />
+           
             <SalesDashboard />
             
             {/* Botón Ver Beneficios del Sistema */}

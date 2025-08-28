@@ -165,23 +165,30 @@
 }
 
 .status-badge {
-    padding: 4px 12px;
+    padding: 6px 14px;
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: 600;
     text-align: center;
     display: inline-block;
-    min-width: 70px;
+    min-width: 80px;
+    white-space: nowrap;
 }
 
 .status-badge.active {
     background: #c8e6c9;
     color: #2e7d32;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .status-badge.inactive {
     background: #ffcdd2;
     color: #c62828;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .actions-cell {
@@ -258,6 +265,7 @@
 .stat-item.success {
     background: #e8f5e8;
     color: #2e7d32;
+    justify-content: center;
 }
 
 .stat-item.danger {
@@ -276,6 +284,28 @@
 
 .stat-item strong {
     font-weight: 700;
+}
+
+/* Estilos específicos para columnas */
+.excel-table th:nth-child(5),
+.excel-table td:nth-child(5) {
+    width: 120px;
+    min-width: 120px;
+    text-align: center;
+}
+
+.excel-table th:nth-child(1),
+.excel-table td:nth-child(1) {
+    width: 60px;
+    min-width: 60px;
+    text-align: center;
+}
+
+.excel-table th:nth-child(12),
+.excel-table td:nth-child(12) {
+    width: 80px;
+    min-width: 80px;
+    text-align: center;
 }
 
 /* Responsive Design */
@@ -338,8 +368,15 @@
 
     .status-badge {
         font-size: 0.7rem;
-        padding: 2px 8px;
-        min-width: 50px;
+        padding: 3px 10px;
+        min-width: 60px;
+    }
+
+    /* Mantener ancho mínimo de columna estado en móvil */
+    .excel-table th:nth-child(5),
+    .excel-table td:nth-child(5) {
+        width: px;
+        min-width: 90px;
     }
 }
 

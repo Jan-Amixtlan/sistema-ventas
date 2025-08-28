@@ -370,106 +370,15 @@ const SalesDashboard = () => {
             </div>
 
             {/* Controles de Filtro */}
-            <div className="dashboard-controls">
-                <div className="filter-controls">
-                    <select 
-                        value={filtroActivo} 
-                        onChange={(e) => setFiltroActivo(e.target.value)}
-                        className="filter-select"
-                    >
-                        <option value="todos">Todos los Vendedores</option>
-                        <option value="activos">Solo Activos</option>
-                        <option value="inactivos">Solo Inactivos</option>
-                    </select>
-
-                    <select 
-                        value={ordenarPor} 
-                        onChange={(e) => setOrdenarPor(e.target.value)}
-                        className="filter-select"
-                    >
-                        <option value="ventas">Ordenar por Ventas</option>
-                        <option value="cotizaciones">Ordenar por Cotizaciones</option>
-                        <option value="aprobadas">Ordenar por Aprobadas</option>
-                        <option value="nombre">Ordenar por Nombre</option>
-                    </select>
-                </div>
-
-                <button className="btn-export">Exportar a Excel</button>
-            </div>
+           
 
             {/* Tabla de Vendedores */}
-            <div className="vendedores-table">
-                <h2>Detalle por Vendedor</h2>
-                <div className="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Vendedor</th>
-                                <th>Estado</th>
-                                <th>Cotizaciones</th>
-                                <th>Aprobadas</th>
-                                <th>Rechazadas</th>
-                                <th>% Aprobación</th>
-                                <th>Clientes</th>
-                                <th>Ventas</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {vendedoresFiltrados.map(vendedor => (
-                                <tr key={vendedor.id} className={!vendedor.activo ? 'inactive' : ''}>
-                                    <td className="vendedor-nombre">{vendedor.nombre}</td>
-                                    <td>
-                                        <span className={`status ${vendedor.activo ? 'active' : 'inactive'}`}>
-                                            {vendedor.activo ? 'Activo' : 'Inactivo'}
-                                        </span>
-                                    </td>
-                                    <td>{vendedor.cotizaciones}</td>
-                                    <td className="aprobadas">{vendedor.aprobadas}</td>
-                                    <td className="rechazadas">{vendedor.rechazadas}</td>
-                                    <td>{vendedor.cotizaciones > 0 ? ((vendedor.aprobadas / vendedor.cotizaciones) * 100).toFixed(1) + '%' : '0%'}</td>
-                                    <td>{vendedor.clientes}</td>
-                                    <td className="ventas">${vendedor.ventas.toLocaleString()}</td>
-                                    <td>
-                                        <div className="action-buttons">
-                                            <button className="btn-edit">✏️</button>
-                                            <button className="btn-view">👁️</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            
 
             {/* Resumen Final */}
-            <div className="dashboard-summary">
-                <div className="summary-card">
-                    <h3>Resumen de Resultados</h3>
-                    <div className="summary-grid">
-                        <div className="summary-item">
-                            <span>Total Cotizaciones:</span>
-                            <strong>{salesData.cotizacionesTotales}</strong>
-                        </div>
-                        <div className="summary-item success">
-                            <span>Aprobadas:</span>
-                            <strong>{salesData.cotizacionesAprobadas} ({porcentajeAprobacion}%)</strong>
-                        </div>
-                        <div className="summary-item danger">
-                            <span>Rechazadas:</span>
-                            <strong>{salesData.cotizacionesRechazadas}</strong>
-                        </div>
-                        <div className="summary-item primary">
-                            <span>Total en Dinero:</span>
-                            <strong>${salesData.dineroTotal.toLocaleString()}</strong>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            
             {/* Tabla Editable Estilo Excel */}
-            <EditableTable />
+       
         </div>
     );
 };

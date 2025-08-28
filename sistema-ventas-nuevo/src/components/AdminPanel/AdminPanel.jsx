@@ -3,9 +3,12 @@ import { useAuth } from '../../context/AuthContext';
 import AdminNavbar from '../AdminNavbar/AdminNavbar';
 import VendorManagement from '../VendorManagement/VendorManagement';
 import SalesDashboard from '../SalesDashboard/SalesDashboard';
+import SalesControl from '../SalesControl/SalesControl';    
+import EditableTable from '../EditableTable/EditableTable';
 import './AdminPanel.css';
 
 const AdminPanel = () => {
+    
     const { isAuthenticated, isAdmin } = useAuth();
     const [currentView, setCurrentView] = useState('dashboard');
 
@@ -33,10 +36,14 @@ const AdminPanel = () => {
                 return <SalesDashboard />;
             case 'vendors':
                 return <VendorManagement />;
+            case 'salesControl':
+                return <SalesControl />;
             case 'reports':
                 return <ReportsView />;
             case 'settings':
                 return <SettingsView />;
+            case 'table':
+                return <EditableTable />;   
             default:
                 return <SalesDashboard />;
         }
@@ -153,7 +160,11 @@ const SettingsView = () => {
                 </div>
             </div>
         </div>
+        
     );
 };
+
+<SalesControl />
+
 
 export default AdminPanel;
