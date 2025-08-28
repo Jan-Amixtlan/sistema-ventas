@@ -1,17 +1,22 @@
-import './App.css'
+
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import HomeScreens from './pages/HomeScreens.jsx';
+
 
 function App() {
   return (
-    <div className="app-container">
-      <h1 className="hello-title">¡Hola Mundo!</h1>
-      <p className="hello-subtitle">Sistema de Ventas con React + Vite</p>
-      <div className="hello-message">
-        <p>👋 Bienvenido al sistema</p>
-        <p>🚀 Construido con React y Vite</p>
-        <p>💼 Listo para gestionar ventas</p>
-      </div>
-    </div>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomeScreens />} />
+       {/* <Route path="/about" element={<AboutScreen />} /> */}
+       {/* <Route path="/services/grid" element={<ServicesGrid />} />}
+        <Route path="/services/list" element={<ServicesList />} />
+        <Route path="/services/single" element={<ServicesSingle />} />
+        <Route path="/contact" element={<ContactScreen />} />
+        <Route path="/appointment" element={<AppointmentScreen />} />
+        <Route path="/api-test" element={<ApiTester />} /> */}
+      </Routes>
+    </BrowserRouter>
+  );
 }
-
-export default App
+export default App;
