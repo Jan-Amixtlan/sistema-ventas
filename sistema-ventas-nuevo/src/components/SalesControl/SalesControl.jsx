@@ -125,7 +125,6 @@ const SalesControl = () => {
         }
     ]);
 
-    const [showAddModal, setShowAddModal] = useState(false);
     const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
 
     // Calcular estadísticas
@@ -195,37 +194,6 @@ const SalesControl = () => {
         });
     }, [salespeople, sortConfig]);
 
-    // Función para exportar CSV
-    const exportarCSV = () => {
-        const headers = ['ID', 'Nombre', 'Teléfono', 'Email', 'Estado', 'Cotizaciones', 'Aprobadas', 'Rechazadas', '% Éxito', 'Clientes', 'Ventas Total'];
-        const csvContent = [
-            headers.join(','),
-            ...salespeople.map(person => [
-                person.id,
-                person.nombre,
-                person.telefono,
-                person.email,
-                person.estado,
-                person.cotizaciones,
-                person.aprobadas,
-                person.rechazadas,
-                `${calcularPorcentajeExito(person.aprobadas, person.cotizaciones)}%`,
-                person.clientes,
-                `$${person.ventasTotal.toLocaleString()}`
-            ].join(','))
-        ].join('\n');
-
-        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-        const link = document.createElement('a');
-        const url = URL.createObjectURL(blob);
-        link.setAttribute('href', url);
-        link.setAttribute('download', 'control_vendedores.csv');
-        link.style.visibility = 'hidden';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    };
-
     return (
         <div className="sales-control">
             {/* Header */}
@@ -233,29 +201,6 @@ const SalesControl = () => {
                 <div className="header-content">
                     <h1 className="header-title">Control de Vendedores</h1>
                     <p className="header-subtitle">Gestión y seguimiento del equipo comercial</p>
-                </div>
-
-                <div className="header-actions">
-                    <button
-                        className="action-btn secondary"
-                        onClick={exportarCSV}
-                    >
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                        Exportar CSV
-                    </button>
-
-                    <button
-                        className="action-btn primary"
-                        onClick={() => setShowAddModal(true)}
-                    >
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                        </svg>
-                        Agregar Vendedor
-                    </button>
                 </div>
             </div>
 
