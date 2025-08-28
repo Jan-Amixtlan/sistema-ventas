@@ -4,20 +4,46 @@
     --dark-gray: #1F2937;
     --light-gray: #F8FAFC;
     --orange-accent: #F59E0B;
+    --white: #ffffff;
 }
 
-.hero {
-    background: url("https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/blogs/2147505187/images/fee882f-aafc-d3e1-42f0-8bc0b06acb_Como_vender_cada_dia_de_forma_constante.jpeg") no-repeat center center/cover;
+/* Carrusel Container */
+.hero-carousel {
     position: relative;
     height: 100vh;
+    overflow: hidden;
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* Slides */
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+.carousel-slide.active {
+    opacity: 1;
+    z-index: 1;
+}
+
 .hero-overlay {
-    background: rgba(0, 0, 0, 0.4);
-    /* oscurecer un poco la imagen */
+    background: rgba(0, 0, 0, 0.5);
     width: 100%;
     height: 100%;
     display: flex;
@@ -29,12 +55,13 @@
 .hero-content {
     color: white;
     max-width: 600px;
+    animation: slideInLeft 1s ease-out;
 }
 
 .hero-content h1 {
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: 800;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     line-height: 1.2;
 }
 
@@ -43,10 +70,10 @@
 }
 
 .hero-content p {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     margin-bottom: 2rem;
     color: #e5e7eb;
-    /* gris claro */
+    line-height: 1.6;
 }
 
 .hero-buttons {
@@ -55,22 +82,26 @@
 }
 
 .btn {
-    padding: 0.9rem 1.5rem;
+    padding: 1rem 2rem;
     font-size: 1rem;
     font-weight: 600;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
     border: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .btn-primary {
-    background-color: var(--blue-main);
+    background-color: var(--orange-accent);
     color: white;
 }
 
 .btn-primary:hover {
-    background-color: var(--orange-accent);
+    background-color: #e89308;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3);
 }
 
 .btn-secondary {
@@ -79,6 +110,214 @@
 }
 
 .btn-secondary:hover {
-    background-color: var(--orange-accent);
+    background-color: var(--blue-main);
     color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+}
+
+/* Controles de navegación */
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-nav:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-prev {
+    left: 30px;
+}
+
+.carousel-next {
+    right: 30px;
+}
+
+/* Indicadores */
+.carousel-indicators {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 10;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator.active {
+    background: var(--orange-accent);
+    border-color: var(--orange-accent);
+    transform: scale(1.2);
+}
+
+.indicator:hover {
+    background: rgba(255, 255, 255, 0.7);
+    transform: scale(1.1);
+}
+
+/* Animaciones */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+    
+    .carousel-nav {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .carousel-prev {
+        left: 20px;
+    }
+    
+    .carousel-next {
+        right: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-carousel {
+        height: 80vh;
+    }
+    
+    .hero-overlay {
+        padding: 0 3%;
+    }
+    
+    .hero-content {
+        max-width: 100%;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .btn {
+        padding: 0.9rem 1.8rem;
+        font-size: 0.9rem;
+    }
+    
+    .carousel-nav {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .carousel-prev {
+        left: 15px;
+    }
+    
+    .carousel-next {
+        right: 15px;
+    }
+    
+    .carousel-indicators {
+        bottom: 20px;
+        gap: 8px;
+    }
+    
+    .indicator {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-carousel {
+        height: 70vh;
+    }
+    
+    .hero-overlay {
+        padding: 0 2%;
+    }
+    
+    .hero-content h1 {
+        font-size: 2rem;
+        line-height: 1.1;
+    }
+    
+    .hero-content p {
+        font-size: 0.9rem;
+        margin-bottom: 1.2rem;
+    }
+    
+    .btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.85rem;
+    }
+    
+    .carousel-nav {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .carousel-prev {
+        left: 10px;
+    }
+    
+    .carousel-next {
+        right: 10px;
+    }
+    
+    .carousel-indicators {
+        bottom: 15px;
+        gap: 6px;
+    }
+    
+    .indicator {
+        width: 8px;
+        height: 8px;
+    }
 }   
