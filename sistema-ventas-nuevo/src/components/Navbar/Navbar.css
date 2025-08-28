@@ -51,12 +51,12 @@
   color: #2563eb;
   text-decoration: none;
   min-width: 250px;
-  min-height: 50;
+  
 }
 
 .logo-image {
-  width: 45px;
-  height: 45px;
+  width: 150px;
+  height: 80px;
   object-fit: contain;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.1);

@@ -59,10 +59,10 @@ const Navbar = () => {
             alt="OSDEMS Digital" 
             className="logo-image"
           />
-          <div className="logo-content">
+          {/* <div className="logo-content">
             <span className="logo-text">OSDEMSDigital</span>
             <span className="logo-subtitle">Sales Forecast</span>
-          </div>
+          </div> */}
         </div>
 
         {/* Desktop Menu */}
