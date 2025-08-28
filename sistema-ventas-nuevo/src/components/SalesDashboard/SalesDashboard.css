@@ -106,7 +106,6 @@
     color: var(--gray-600);
     font-size: 1.1rem;
     font-weight: 500;
-}
     margin-bottom: 2rem;
     background: var(--glass-bg);
     backdrop-filter: blur(20px);
@@ -115,6 +114,8 @@
     padding: 2rem;
     box-shadow: var(--shadow-lg);
 }
+    
+
 
 .header-content h1.dashboard-title {
     font-size: 2.5rem;

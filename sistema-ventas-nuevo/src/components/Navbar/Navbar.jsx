@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import LoginModal from '../LoginModal/LoginModal.jsx';
-import logoImage from '../../assets/images/logo letra negra.png';
+import logoImage from '../../assets/images/logo.png';
 import './Navbar.css';
 
 const Navbar = () => {
