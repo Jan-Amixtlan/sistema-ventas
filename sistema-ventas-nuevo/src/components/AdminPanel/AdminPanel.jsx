@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import AdminNavbar from '../AdminNavbar/AdminNavbar';
 import VendorManagement from '../VendorManagement/VendorManagement';
@@ -10,7 +10,35 @@ import './AdminPanel.css';
 const AdminPanel = () => {
     
     const { isAuthenticated, isAdmin } = useAuth();
-    const [currentView, setCurrentView] = useState('dashboard');
+    
+    // Estado con persistencia - recuperar del localStorage al inicializar
+    const [currentView, setCurrentView] = useState(() => {
+        const savedView = localStorage.getItem('adminCurrentView');
+        return savedView || 'dashboard';
+    });
+
+    // Efecto para guardar el estado actual en localStorage cuando cambie
+    useEffect(() => {
+        localStorage.setItem('adminCurrentView', currentView);
+    }, [currentView]);
+
+    // Lista de vistas válidas para validación
+    const validViews = ['dashboard', 'vendors', 'table', 'reports', 'settings'];
+
+    // Función mejorada para cambiar vistas con persistencia
+    const handleViewChange = (newView) => {
+        // Validar que la vista sea válida antes de guardarla
+        if (validViews.includes(newView)) {
+            setCurrentView(newView);
+        }
+    };
+
+    // Limpiar estado al cerrar sesión (opcional: se ejecuta cuando el usuario no está autenticado)
+    useEffect(() => {
+        if (!isAuthenticated()) {
+            localStorage.removeItem('adminCurrentView');
+        }
+    }, [isAuthenticated]);
 
     if (!isAuthenticated()) {
         return (
@@ -36,8 +64,6 @@ const AdminPanel = () => {
                 return <SalesDashboard />;
             case 'vendors':
                 return <VendorManagement />;
-            case 'salesControl':
-                return <SalesControl />;
             case 'reports':
                 return <ReportsView />;
             case 'settings':
@@ -45,6 +71,7 @@ const AdminPanel = () => {
             case 'table':
                 return <EditableTable />;   
             default:
+                // Si la vista no es válida, regresar al dashboard
                 return <SalesDashboard />;
         }
     };
@@ -53,7 +80,7 @@ const AdminPanel = () => {
         <div className="admin-panel">
             <AdminNavbar 
                 currentView={currentView}
-                onViewChange={setCurrentView}
+                onViewChange={handleViewChange}
             />
             <div className="admin-content">
                 {renderCurrentView()}

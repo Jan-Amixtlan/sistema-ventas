@@ -147,32 +147,87 @@ const EditableTable = () => {
     };
 
     const exportarACSV = () => {
-        const headers = ['ID', 'Nombre', 'Teléfono', 'Email', 'Activo', 'Cotizaciones', 'Aprobadas', 'Rechazadas', 'Clientes', 'Ventas Total'];
-        const csvContent = [
-            headers.join(','),
-            ...vendedoresData.map(v => [
-                v.id,
-                `"${v.nombre}"`,
-                v.telefono,
-                v.email,
-                v.activo ? 'Sí' : 'No',
-                v.cotizaciones,
-                v.aprobadas,
-                v.rechazadas,
-                v.clientes,
-                v.ventasTotal
-            ].join(','))
-        ].join('\n');
+        // Encabezados organizados para Excel
+        const headers = [
+            'ID',
+            'Nombre Completo', 
+            'Teléfono',
+            'Correo Electrónico',
+            'Estado',
+            'Total Cotizaciones',
+            'Cotizaciones Aprobadas',
+            'Cotizaciones Rechazadas',
+            'Número de Clientes',
+            'Ventas Totales'
+        ];
+        
+        // Crear filas de datos - cada valor en su propia celda
+        const dataRows = vendedoresData.map(vendedor => [
+            vendedor.id,
+            vendedor.nombre,  // Sin comillas extra para mejor visualización
+            vendedor.telefono,
+            vendedor.email,
+            vendedor.activo ? 'ACTIVO' : 'INACTIVO',
+            vendedor.cotizaciones,
+            vendedor.aprobadas,
+            vendedor.rechazadas,
+            vendedor.clientes,
+            vendedor.ventasTotal  // Número puro para que Excel lo reconozca como moneda
+        ]);
 
-        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        // Calcular totales para el resumen
+        const totalVendedores = vendedoresData.length;
+        const vendedoresActivos = vendedoresData.filter(v => v.activo).length;
+        const vendedoresInactivos = vendedoresData.filter(v => !v.activo).length;
+        const totalCotizaciones = vendedoresData.reduce((sum, v) => sum + v.cotizaciones, 0);
+        const totalAprobadas = vendedoresData.reduce((sum, v) => sum + v.aprobadas, 0);
+        const totalRechazadas = vendedoresData.reduce((sum, v) => sum + v.rechazadas, 0);
+        const totalClientes = vendedoresData.reduce((sum, v) => sum + v.clientes, 0);
+        const ventasAcumuladas = vendedoresData.reduce((sum, v) => sum + v.ventasTotal, 0);
+
+        // Construir CSV con estructura de tabla
+        const csvRows = [
+            // Título principal
+            ['REPORTE DE VENDEDORES', '', '', '', '', '', '', '', '', new Date().toLocaleDateString('es-MX')].join(';'),
+            // Línea vacía
+            ['', '', '', '', '', '', '', '', '', ''].join(';'),
+            // Encabezados de tabla
+            headers.join(';'),
+            // Datos de vendedores (cada fila es un vendedor)
+            ...dataRows.map(row => row.join(';')),
+            // Separador
+            ['', '', '', '', '', '', '', '', '', ''].join(';'),
+            // Resumen estadístico en formato tabla
+            ['RESUMEN ESTADÍSTICO', '', '', '', '', '', '', '', '', ''].join(';'),
+            ['Total vendedores', totalVendedores, '', '', '', '', '', '', '', ''].join(';'),
+            ['Vendedores activos', vendedoresActivos, '', '', '', '', '', '', '', ''].join(';'),
+            ['Vendedores inactivos', vendedoresInactivos, '', '', '', '', '', '', '', ''].join(';'),
+            ['Total cotizaciones', totalCotizaciones, '', '', '', '', '', '', '', ''].join(';'),
+            ['Cotizaciones aprobadas', totalAprobadas, '', '', '', '', '', '', '', ''].join(';'),
+            ['Cotizaciones rechazadas', totalRechazadas, '', '', '', '', '', '', '', ''].join(';'),
+            ['Total clientes', totalClientes, '', '', '', '', '', '', '', ''].join(';'),
+            ['Ventas acumuladas', ventasAcumuladas, '', '', '', '', '', '', '', ''].join(';'),
+            // Información del reporte
+            ['', '', '', '', '', '', '', '', '', ''].join(';'),
+            ['Generado el', new Date().toLocaleDateString('es-MX'), 'a las', new Date().toLocaleTimeString('es-MX'), '', '', '', '', '', ''].join(';'),
+            ['Sistema', 'Ventas v1.0', '', '', '', '', '', '', '', ''].join(';')
+        ];
+        
+        const csvContent = csvRows.join('\n');
+        
+        // BOM para UTF-8 y compatibilidad con Excel
+        const BOM = '\uFEFF';
+        const blob = new Blob([BOM + csvContent], { type: 'text/csv;charset=utf-8;' });
+        
         const link = document.createElement('a');
         const url = URL.createObjectURL(blob);
         link.setAttribute('href', url);
-        link.setAttribute('download', 'vendedores_data.csv');
+        link.setAttribute('download', `Reporte_Vendedores_${new Date().toISOString().split('T')[0].replace(/-/g, '')}.csv`);
         link.style.visibility = 'hidden';
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
+        URL.revokeObjectURL(url);
     };
 
     const renderEditableCell = (value, rowIndex, column) => {
