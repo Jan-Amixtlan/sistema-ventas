@@ -58,7 +58,7 @@ const Hero = () => {
     };
 
     return (
-        <section className="hero-carousel">
+        <section id="home" className="hero-carousel">
             <div className="carousel-container">
                 {/* Slides del Carrusel */}
                 {slides.map((slide, index) => (

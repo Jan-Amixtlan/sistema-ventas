@@ -1,0 +1,273 @@
+import { useState, useRef, useEffect } from 'react';
+import './EditableTable.css';
+
+const EditableTable = () => {
+    const [vendedoresData, setVendedoresData] = useState([
+        { id: 1, nombre: 'Juan Pérez', telefono: '555-0101', email: 'juan@empresa.com', activo: true, cotizaciones: 12, aprobadas: 8, rechazadas: 4, clientes: 15, ventasTotal: 125000 },
+        { id: 2, nombre: 'María García', telefono: '555-0102', email: 'maria@empresa.com', activo: true, cotizaciones: 9, aprobadas: 6, rechazadas: 3, clientes: 12, ventasTotal: 98000 },
+        { id: 3, nombre: 'Carlos López', telefono: '555-0103', email: 'carlos@empresa.com', activo: true, cotizaciones: 15, aprobadas: 10, rechazadas: 5, clientes: 20, ventasTotal: 187000 },
+        { id: 4, nombre: 'Ana Martínez', telefono: '555-0104', email: 'ana@empresa.com', activo: true, cotizaciones: 8, aprobadas: 5, rechazadas: 3, clientes: 10, ventasTotal: 76000 },
+        { id: 5, nombre: 'Luis Rodríguez', telefono: '555-0105', email: 'luis@empresa.com', activo: false, cotizaciones: 6, aprobadas: 2, rechazadas: 4, clientes: 8, ventasTotal: 32000 },
+        { id: 6, nombre: 'Elena Sánchez', telefono: '555-0106', email: 'elena@empresa.com', activo: true, cotizaciones: 11, aprobadas: 7, rechazadas: 4, clientes: 14, ventasTotal: 110000 },
+        { id: 7, nombre: 'Roberto Torres', telefono: '555-0107', email: 'roberto@empresa.com', activo: true, cotizaciones: 13, aprobadas: 9, rechazadas: 4, clientes: 18, ventasTotal: 156000 },
+        { id: 8, nombre: 'Carmen Flores', telefono: '555-0108', email: 'carmen@empresa.com', activo: true, cotizaciones: 10, aprobadas: 6, rechazadas: 4, clientes: 13, ventasTotal: 92000 },
+        { id: 9, nombre: 'Diego Herrera', telefono: '555-0109', email: 'diego@empresa.com', activo: false, cotizaciones: 7, aprobadas: 3, rechazadas: 4, clientes: 9, ventasTotal: 45000 },
+        { id: 10, nombre: 'Patricia Vega', telefono: '555-0110', email: 'patricia@empresa.com', activo: true, cotizaciones: 14, aprobadas: 11, rechazadas: 3, clientes: 22, ventasTotal: 198000 }
+    ]);
+
+    const [editingCell, setEditingCell] = useState({ row: null, column: null });
+    const [tempValue, setTempValue] = useState('');
+    const inputRef = useRef(null);
+
+    // Calcular totales
+    const totales = {
+        cotizaciones: vendedoresData.reduce((sum, v) => sum + v.cotizaciones, 0),
+        aprobadas: vendedoresData.reduce((sum, v) => sum + v.aprobadas, 0),
+        rechazadas: vendedoresData.reduce((sum, v) => sum + v.rechazadas, 0),
+        clientes: vendedoresData.reduce((sum, v) => sum + v.clientes, 0),
+        ventasTotal: vendedoresData.reduce((sum, v) => sum + v.ventasTotal, 0)
+    };
+
+    useEffect(() => {
+        if (editingCell.row !== null && inputRef.current) {
+            inputRef.current.focus();
+            inputRef.current.select();
+        }
+    }, [editingCell]);
+
+    const startEditing = (rowIndex, column, currentValue) => {
+        setEditingCell({ row: rowIndex, column });
+        setTempValue(currentValue.toString());
+    };
+
+    const cancelEditing = () => {
+        setEditingCell({ row: null, column: null });
+        setTempValue('');
+    };
+
+    const saveEdit = () => {
+        if (editingCell.row !== null && editingCell.column !== null) {
+            const newData = [...vendedoresData];
+            const field = editingCell.column;
+            
+            // Validar y convertir el valor según el tipo de campo
+            let newValue = tempValue;
+            if (['cotizaciones', 'aprobadas', 'rechazadas', 'clientes', 'ventasTotal'].includes(field)) {
+                newValue = parseInt(tempValue) || 0;
+            } else if (field === 'activo') {
+                newValue = tempValue.toLowerCase() === 'true' || tempValue === '1';
+            }
+
+            newData[editingCell.row][field] = newValue;
+            setVendedoresData(newData);
+            cancelEditing();
+        }
+    };
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            saveEdit();
+        } else if (e.key === 'Escape') {
+            cancelEditing();
+        }
+    };
+
+    const agregarVendedor = () => {
+        const nuevoId = Math.max(...vendedoresData.map(v => v.id)) + 1;
+        const nuevoVendedor = {
+            id: nuevoId,
+            nombre: 'Nuevo Vendedor',
+            telefono: '555-0000',
+            email: 'nuevo@empresa.com',
+            activo: true,
+            cotizaciones: 0,
+            aprobadas: 0,
+            rechazadas: 0,
+            clientes: 0,
+            ventasTotal: 0
+        };
+        setVendedoresData([...vendedoresData, nuevoVendedor]);
+    };
+
+    const eliminarVendedor = (id) => {
+        if (window.confirm('¿Estás seguro de que quieres eliminar este vendedor?')) {
+            setVendedoresData(vendedoresData.filter(v => v.id !== id));
+        }
+    };
+
+    const exportarACSV = () => {
+        const headers = ['ID', 'Nombre', 'Teléfono', 'Email', 'Activo', 'Cotizaciones', 'Aprobadas', 'Rechazadas', 'Clientes', 'Ventas Total'];
+        const csvContent = [
+            headers.join(','),
+            ...vendedoresData.map(v => [
+                v.id,
+                `"${v.nombre}"`,
+                v.telefono,
+                v.email,
+                v.activo ? 'Sí' : 'No',
+                v.cotizaciones,
+                v.aprobadas,
+                v.rechazadas,
+                v.clientes,
+                v.ventasTotal
+            ].join(','))
+        ].join('\n');
+
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        const url = URL.createObjectURL(blob);
+        link.setAttribute('href', url);
+        link.setAttribute('download', 'vendedores_data.csv');
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
+    const renderEditableCell = (value, rowIndex, column) => {
+        const isEditing = editingCell.row === rowIndex && editingCell.column === column;
+        
+        if (isEditing) {
+            return (
+                <input
+                    ref={inputRef}
+                    type={['cotizaciones', 'aprobadas', 'rechazadas', 'clientes', 'ventasTotal'].includes(column) ? 'number' : 'text'}
+                    value={tempValue}
+                    onChange={(e) => setTempValue(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                    onBlur={saveEdit}
+                    className="cell-input"
+                />
+            );
+        }
+
+        return (
+            <span
+                className="editable-cell"
+                onClick={() => startEditing(rowIndex, column, value)}
+            >
+                {column === 'ventasTotal' ? `$${value.toLocaleString()}` :
+                 column === 'activo' ? (value ? 'Activo' : 'Inactivo') :
+                 value}
+            </span>
+        );
+    };
+
+    return (
+        <div className="editable-table-container">
+            <div className="table-header">
+                <div className="table-title">
+                    <h2>Control de Vendedores - Estilo Excel</h2>
+                    <p>Haz clic en cualquier celda para editarla. Presiona Enter para guardar o Escape para cancelar.</p>
+                </div>
+                <div className="table-actions">
+                    <button className="btn-add" onClick={agregarVendedor}>
+                        ➕ Agregar Vendedor
+                    </button>
+                    <button className="btn-export" onClick={exportarACSV}>
+                        📊 Exportar CSV
+                    </button>
+                </div>
+            </div>
+
+            <div className="table-wrapper">
+                <table className="excel-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Teléfono</th>
+                            <th>Email</th>
+                            <th>Estado</th>
+                            <th>Cotizaciones</th>
+                            <th>Aprobadas</th>
+                            <th>Rechazadas</th>
+                            <th>% Éxito</th>
+                            <th>Clientes</th>
+                            <th>Ventas Total</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {vendedoresData.map((vendedor, index) => (
+                            <tr key={vendedor.id} className={!vendedor.activo ? 'inactive-row' : ''}>
+                                <td className="id-cell">{vendedor.id}</td>
+                                <td>{renderEditableCell(vendedor.nombre, index, 'nombre')}</td>
+                                <td>{renderEditableCell(vendedor.telefono, index, 'telefono')}</td>
+                                <td>{renderEditableCell(vendedor.email, index, 'email')}</td>
+                                <td>
+                                    <span className={`status-badge ${vendedor.activo ? 'active' : 'inactive'}`}>
+                                        {renderEditableCell(vendedor.activo, index, 'activo')}
+                                    </span>
+                                </td>
+                                <td className="number-cell">{renderEditableCell(vendedor.cotizaciones, index, 'cotizaciones')}</td>
+                                <td className="number-cell success">{renderEditableCell(vendedor.aprobadas, index, 'aprobadas')}</td>
+                                <td className="number-cell danger">{renderEditableCell(vendedor.rechazadas, index, 'rechazadas')}</td>
+                                <td className="percentage-cell">
+                                    {vendedor.cotizaciones > 0 ? 
+                                        `${((vendedor.aprobadas / vendedor.cotizaciones) * 100).toFixed(1)}%` : 
+                                        '0%'
+                                    }
+                                </td>
+                                <td className="number-cell">{renderEditableCell(vendedor.clientes, index, 'clientes')}</td>
+                                <td className="currency-cell">{renderEditableCell(vendedor.ventasTotal, index, 'ventasTotal')}</td>
+                                <td className="actions-cell">
+                                    <button 
+                                        className="btn-delete"
+                                        onClick={() => eliminarVendedor(vendedor.id)}
+                                        title="Eliminar vendedor"
+                                    >
+                                        🗑️
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                    <tfoot>
+                        <tr className="totals-row">
+                            <td colSpan="5"><strong>TOTALES</strong></td>
+                            <td className="number-cell"><strong>{totales.cotizaciones}</strong></td>
+                            <td className="number-cell success"><strong>{totales.aprobadas}</strong></td>
+                            <td className="number-cell danger"><strong>{totales.rechazadas}</strong></td>
+                            <td className="percentage-cell">
+                                <strong>{totales.cotizaciones > 0 ? `${((totales.aprobadas / totales.cotizaciones) * 100).toFixed(1)}%` : '0%'}</strong>
+                            </td>
+                            <td className="number-cell"><strong>{totales.clientes}</strong></td>
+                            <td className="currency-cell"><strong>${totales.ventasTotal.toLocaleString()}</strong></td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            {/* Resumen de totales */}
+            <div className="table-summary">
+                <div className="summary-cards">
+                    <div className="summary-card">
+                        <h4>Resumen General</h4>
+                        <div className="summary-stats">
+                            <div className="stat-item">
+                                <span>Total Cotizaciones:</span>
+                                <strong>{totales.cotizaciones}</strong>
+                            </div>
+                            <div className="stat-item success">
+                                <span>Aprobadas:</span>
+                                <strong>{totales.aprobadas} ({totales.cotizaciones > 0 ? ((totales.aprobadas / totales.cotizaciones) * 100).toFixed(1) : 0}%)</strong>
+                            </div>
+                            <div className="stat-item danger">
+                                <span>Rechazadas:</span>
+                                <strong>{totales.rechazadas}</strong>
+                            </div>
+                            <div className="stat-item primary">
+                                <span>Total en Ventas:</span>
+                                <strong>${totales.ventasTotal.toLocaleString()}</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default EditableTable;

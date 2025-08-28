@@ -1,0 +1,364 @@
+/* Editable Table Styles - Excel-like */
+.editable-table-container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    margin: 2rem 0;
+    overflow: hidden;
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.table-title h2 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.table-title p {
+    margin: 0;
+    opacity: 0.9;
+    font-size: 0.9rem;
+}
+
+.table-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-add, .btn-export {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-add:hover, .btn-export:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+/* Excel-like Table Styles */
+.excel-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.9rem;
+}
+
+.excel-table th {
+    background: #f8f9fa;
+    color: #495057;
+    font-weight: 600;
+    padding: 12px 8px;
+    border: 1px solid #dee2e6;
+    text-align: left;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.excel-table td {
+    padding: 8px;
+    border: 1px solid #dee2e6;
+    position: relative;
+    transition: background-color 0.2s ease;
+}
+
+.excel-table tr:nth-child(even) {
+    background: #f8f9fa;
+}
+
+.excel-table tr:hover {
+    background: #e3f2fd;
+}
+
+.inactive-row {
+    opacity: 0.6;
+    background: #ffebee !important;
+}
+
+.inactive-row:hover {
+    background: #ffcdd2 !important;
+}
+
+/* Editable Cell Styles */
+.editable-cell {
+    display: block;
+    width: 100%;
+    min-height: 20px;
+    cursor: pointer;
+    padding: 2px 4px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+}
+
+.editable-cell:hover {
+    background: rgba(33, 150, 243, 0.1);
+    border: 1px dashed #2196f3;
+}
+
+.cell-input {
+    width: 100%;
+    border: 2px solid #2196f3;
+    background: white;
+    padding: 4px 8px;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.2);
+}
+
+/* Cell Type Styles */
+.id-cell {
+    background: #e3f2fd;
+    font-weight: 600;
+    color: #1976d2;
+    text-align: center;
+    width: 60px;
+}
+
+.number-cell {
+    text-align: right;
+    font-family: 'Courier New', monospace;
+    font-weight: 500;
+}
+
+.number-cell.success {
+    color: #2e7d32;
+    background: #e8f5e8;
+}
+
+.number-cell.danger {
+    color: #c62828;
+    background: #ffebee;
+}
+
+.currency-cell {
+    text-align: right;
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+    color: #1976d2;
+}
+
+.percentage-cell {
+    text-align: center;
+    font-weight: 600;
+    color: #7b1fa2;
+}
+
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: center;
+    display: inline-block;
+    min-width: 70px;
+}
+
+.status-badge.active {
+    background: #c8e6c9;
+    color: #2e7d32;
+}
+
+.status-badge.inactive {
+    background: #ffcdd2;
+    color: #c62828;
+}
+
+.actions-cell {
+    text-align: center;
+    width: 80px;
+}
+
+.btn-delete {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.btn-delete:hover {
+    background: #ffcdd2;
+    transform: scale(1.1);
+}
+
+/* Totals Row */
+.totals-row {
+    background: linear-gradient(135deg, #ffd54f 0%, #ffb74d 100%);
+    font-weight: 700;
+}
+
+.totals-row td {
+    border-top: 3px solid #ff9800;
+    color: #e65100;
+}
+
+/* Table Summary */
+.table-summary {
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+}
+
+.summary-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.summary-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.summary-card h4 {
+    margin: 0 0 1rem 0;
+    color: #495057;
+    font-size: 1.1rem;
+}
+
+.summary-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem;
+    border-radius: 6px;
+    background: #f8f9fa;
+}
+
+.stat-item.success {
+    background: #e8f5e8;
+    color: #2e7d32;
+}
+
+.stat-item.danger {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.stat-item.primary {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.stat-item span {
+    font-weight: 500;
+}
+
+.stat-item strong {
+    font-weight: 700;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .table-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .table-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .btn-add, .btn-export {
+        width: 100%;
+    }
+
+    .excel-table {
+        font-size: 0.8rem;
+    }
+
+    .excel-table th,
+    .excel-table td {
+        padding: 6px 4px;
+    }
+
+    .summary-stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .editable-table-container {
+        margin: 1rem 0;
+        border-radius: 8px;
+    }
+
+    .table-header {
+        padding: 1rem;
+    }
+
+    .table-title h2 {
+        font-size: 1.2rem;
+    }
+
+    .table-title p {
+        font-size: 0.8rem;
+    }
+
+    .excel-table {
+        font-size: 0.7rem;
+    }
+
+    .excel-table th,
+    .excel-table td {
+        padding: 4px 2px;
+    }
+
+    .status-badge {
+        font-size: 0.7rem;
+        padding: 2px 8px;
+        min-width: 50px;
+    }
+}
+
+/* Scrollbar Styles for Table */
+.table-wrapper::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #a1a1a1;
+}

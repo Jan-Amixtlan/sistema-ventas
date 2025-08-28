@@ -52,7 +52,7 @@ const Navbar = () => {
             <a href="#home" className="navbar-link" onClick={closeMenu}>Inicio</a>
           </li>
           <li className="navbar-item">
-            <a href="#ventas" className="navbar-link" onClick={closeMenu}>Ventas</a>
+            <a href="#dashboard" className="navbar-link" onClick={closeMenu}>Dashboard</a>
           </li>
           <li className="navbar-item">
             <a href="#vendedores" className="navbar-link" onClick={closeMenu}>Vendedores</a>
