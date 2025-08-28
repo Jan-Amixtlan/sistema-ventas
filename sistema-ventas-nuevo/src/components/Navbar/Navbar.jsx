@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -8,9 +8,38 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
+  // Close menu when clicking outside or pressing Escape
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setIsMenuOpen(false);
+      }
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMenuOpen]);
+
   return (
-    <nav className="navbar">
-      <div className="navbar-container">
+    <>
+      {/* Mobile Menu Overlay */}
+      {isMenuOpen && <div className="navbar-overlay" onClick={closeMenu}></div>}
+      
+      <nav className="navbar">
+        <div className="navbar-container">
         {/* Logo */}
         <div className="navbar-logo">
           <span className="logo-icon">💼</span>
@@ -20,24 +49,24 @@ const Navbar = () => {
         {/* Desktop Menu */}
         <ul className={`navbar-menu ${isMenuOpen ? 'active' : ''}`}>
           <li className="navbar-item">
-            <a href="#home" className="navbar-link">Inicio</a>
+            <a href="#home" className="navbar-link" onClick={closeMenu}>Inicio</a>
           </li>
           <li className="navbar-item">
-            <a href="#ventas" className="navbar-link">Ventas</a>
+            <a href="#ventas" className="navbar-link" onClick={closeMenu}>Ventas</a>
           </li>
           <li className="navbar-item">
-            <a href="#vendedores" className="navbar-link">Vendedores</a>
+            <a href="#vendedores" className="navbar-link" onClick={closeMenu}>Vendedores</a>
           </li>
           <li className="navbar-item">
-            <a href="#reportes" className="navbar-link">Reportes</a>
+            <a href="#reportes" className="navbar-link" onClick={closeMenu}>Reportes</a>
           </li>
           <li className="navbar-item">
-            <a href="#contacto" className="navbar-link">Contacto</a>
+            <a href="#contacto" className="navbar-link" onClick={closeMenu}>Contacto</a>
           </li>
         </ul>
 
         {/* Mobile Menu Button */}
-        <div className="navbar-toggle" onClick={toggleMenu}>
+        <div className={`navbar-toggle ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
           <span className="bar"></span>
           <span className="bar"></span>
           <span className="bar"></span>
@@ -48,8 +77,9 @@ const Navbar = () => {
           <button className="btn-login">Iniciar Sesión</button>
           <button className="btn-signup">Registrarse</button>
         </div>
-      </div>
-    </nav>
+        </div>
+      </nav>
+    </>
   );
 };
 

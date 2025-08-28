@@ -1,11 +1,15 @@
 
 import Navbar from '../components/Navbar/Navbar.jsx';
-import './HomeScreens.css';
+import Hero from '../components/Hero/Hero.jsx';
+import Footer from '../components/Footer/Footer.jsx';
+
 
 const HomeScreens = () => {
     return (
         <>
             <Navbar />
+            <Hero />
+            <Footer />
             
         </>
     );

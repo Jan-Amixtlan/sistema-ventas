@@ -1,0 +1,84 @@
+/* Paleta de colores */
+:root {
+    --blue-main: #2563EB;
+    --dark-gray: #1F2937;
+    --light-gray: #F8FAFC;
+    --orange-accent: #F59E0B;
+}
+
+.hero {
+    background: url("https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/blogs/2147505187/images/fee882f-aafc-d3e1-42f0-8bc0b06acb_Como_vender_cada_dia_de_forma_constante.jpeg") no-repeat center center/cover;
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-overlay {
+    background: rgba(0, 0, 0, 0.4);
+    /* oscurecer un poco la imagen */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 5%;
+}
+
+.hero-content {
+    color: white;
+    max-width: 600px;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.hero-content h1 span {
+    color: var(--orange-accent);
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: #e5e7eb;
+    /* gris claro */
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 0.9rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.btn-primary {
+    background-color: var(--blue-main);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--orange-accent);
+}
+
+.btn-secondary {
+    background-color: white;
+    color: var(--dark-gray);
+}
+
+.btn-secondary:hover {
+    background-color: var(--orange-accent);
+    color: white;
+}   
