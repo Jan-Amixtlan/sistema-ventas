@@ -123,6 +123,17 @@ const SalesBenefitsTimeline = () => {
         return () => clearTimeout(timer);
     }, []);
 
+    // Función para abrir WhatsApp Web específicamente
+    const handleSolicitarDemo = () => {
+        const phoneNumber = '3326225912'; // Número con código de país México (+52)
+        const message = encodeURIComponent(
+            '¡Hola! Me interesa solicitar una demo del Sistema de Forecast de Ventas. ¿Podrían proporcionarme más información sobre los beneficios y la implementación?'
+        );
+        // Usar web.whatsapp.com para forzar WhatsApp Web
+        const whatsappWebUrl = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${message}`;
+        window.open(whatsappWebUrl, '_blank');
+    };
+
     return (
         <div className="sales-benefits-timeline">
 
@@ -249,7 +260,7 @@ const SalesBenefitsTimeline = () => {
                     </div>
 
                     <div className="cta-actions">
-                        <button className="cta-btn primary">
+                        <button className="cta-btn primary" onClick={handleSolicitarDemo}>
                             <span>Solicitar Demo</span>
                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

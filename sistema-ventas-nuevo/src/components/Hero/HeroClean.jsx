@@ -4,6 +4,41 @@ import "./HeroProfessional.css";
 const Hero = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
 
+    // Función para abrir WhatsApp Web
+    const handleComenzarAhora = () => {
+        console.log('Botón clickeado - abriendo WhatsApp'); // Debug
+        const phoneNumber = '5217761243832'; // Número con código de país México (+52)
+        const message = encodeURIComponent(
+            '¡Hola! Me interesa comenzar con el Sistema de Ventas. ¿Podrían ayudarme a implementar las estrategias de ventas efectivas en mi empresa?'
+        );
+        // Usar web.whatsapp.com para forzar WhatsApp Web
+        const whatsappWebUrl = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${message}`;
+        console.log('URL generada:', whatsappWebUrl); // Debug
+        window.open(whatsappWebUrl, '_blank');
+    };
+
+    // Función para navegar al dashboard
+    const handleVerDashboard = () => {
+        console.log('Botón Ver Dashboard clickeado - navegando al dashboard'); // Debug
+        const dashboardElement = document.getElementById('dashboard');
+        if (dashboardElement) {
+            dashboardElement.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        } else {
+            console.warn('Elemento dashboard no encontrado');
+        }
+    };
+
+    // Función para redirigir a página web
+    const handleConocerMas = () => {
+        console.log('Botón Conocer Más clickeado - redirigiendo a página web'); // Debug
+        const websiteUrl = 'https://osdemsdigital.com'; // URL de la página web
+        console.log('URL generada:', websiteUrl); // Debug
+        window.open(websiteUrl, '_blank');
+    };
+
     // Datos profesionales para ventas
     const slides = [
         {
@@ -54,7 +89,7 @@ const Hero = () => {
     useEffect(() => {
         const timer = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % slides.length);
-        }, 5000);
+        }, 8000); // Cambiar slides cada 8 segundos (más lento)
 
         return () => clearInterval(timer);
     }, [slides.length]);
@@ -105,10 +140,12 @@ const Hero = () => {
 
                         {/* Action Buttons */}
                         <div className="hero-actions">
-                            <button className="btn btn-primary">
+                            <button className="btn btn-primary" 
+                                onClick={slides[currentSlide].primaryButton === "Ver Dashboard" ? handleVerDashboard : handleComenzarAhora}>
                                 {slides[currentSlide].primaryButton}
                             </button>
-                            <button className="btn btn-secondary">
+                            <button className="btn btn-secondary" 
+                                onClick={slides[currentSlide].secondaryButton === "Conocer Más" ? handleConocerMas : handleComenzarAhora}>
                                 {slides[currentSlide].secondaryButton}
                             </button>
                         </div>
