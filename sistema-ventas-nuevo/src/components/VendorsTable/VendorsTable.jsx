@@ -71,7 +71,6 @@ const VendorsTable = () => {
                             <th>ID</th>
                             <th>Nombre</th>
                             <th>Contacto</th>
-                            <th>Estado</th>
                             <th>Cotizaciones</th>
                             <th>Aprobadas</th>
                             <th>% Éxito</th>
@@ -89,11 +88,6 @@ const VendorsTable = () => {
                                     </div>
                                 </td>
                                 <td className="contact-cell">{vendedor.telefono}</td>
-                                <td className="status-cell">
-                                    <span className={`status-badge ${vendedor.activo ? 'active' : 'inactive'}`}>
-                                        {vendedor.activo ? 'Activo' : 'Inactivo'}
-                                    </span>
-                                </td>
                                 <td className="number-cell">{vendedor.cotizaciones}</td>
                                 <td className="number-cell success">{vendedor.aprobadas}</td>
                                 <td className="percentage-cell">

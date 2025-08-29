@@ -31,9 +31,10 @@
 
 .header-content .vendors-subtitle {
     margin: 0;
-    opacity: 0.9;
+    opacity: 1;
     font-size: 1rem;
     font-weight: 400;
+    color: rgba(255, 255, 255, 0.95);
 }
 
 .vendors-summary {
@@ -46,42 +47,105 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1rem;
-    background: rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.25);
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    min-width: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(15px);
+    min-width: 120px;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .summary-item:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.35);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .summary-item.success {
-    background: rgba(46, 125, 50, 0.2);
-    border-color: rgba(46, 125, 50, 0.3);
+    background: rgba(76, 175, 80, 0.25);
+    border-color: rgba(76, 175, 80, 0.5);
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.2);
+}
+
+.summary-item.success:hover {
+    background: rgba(76, 175, 80, 0.35);
+    box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
 }
 
 .summary-item.primary {
-    background: rgba(25, 118, 210, 0.2);
-    border-color: rgba(25, 118, 210, 0.3);
+    background: rgba(33, 150, 243, 0.25);
+    border-color: rgba(33, 150, 243, 0.5);
+    box-shadow: 0 4px 15px rgba(33, 150, 243, 0.2);
+}
+
+.summary-item.primary:hover {
+    background: rgba(33, 150, 243, 0.35);
+    box-shadow: 0 8px 25px rgba(33, 150, 243, 0.3);
+}
+
+/* Números específicos para mejor contraste */
+.summary-item.success .summary-number {
+    color: #ffffff;
+    text-shadow: 
+        0 2px 6px rgba(0, 0, 0, 0.6),
+        0 0 12px rgba(76, 175, 80, 0.4);
+}
+
+.summary-item.primary .summary-number {
+    color: #ffffff;
+    text-shadow: 
+        0 2px 6px rgba(0, 0, 0, 0.6),
+        0 0 12px rgba(33, 150, 243, 0.4);
+}
+
+.summary-item.success .summary-label,
+.summary-item.primary .summary-label {
+    color: #ffffff;
+    text-shadow: 
+        0 1px 4px rgba(0, 0, 0, 0.5),
+        0 0 8px rgba(255, 255, 255, 0.3);
 }
 
 .summary-number {
-    font-size: 1.75rem;
-    font-weight: 700;
+    font-size: 2.2rem;
+    font-weight: 800;
     margin-bottom: 0.25rem;
-    color: white;
+    color: #ffffff !important;
+    text-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.5),
+        0 0 8px rgba(255, 255, 255, 0.3);
+    opacity: 1 !important;
+    letter-spacing: -0.02em;
+}
+
+/* Asegurar que TODOS los números sean blancos */
+.summary-item .summary-number {
+    color: #ffffff !important;
+    text-shadow: 
+        0 2px 6px rgba(0, 0, 0, 0.6),
+        0 0 12px rgba(255, 255, 255, 0.4);
 }
 
 .summary-label {
-    font-size: 0.875rem;
-    opacity: 0.9;
+    font-size: 0.95rem;
+    opacity: 1 !important;
     text-align: center;
-    font-weight: 500;
+    font-weight: 600;
+    color: #ffffff !important;
+    text-shadow: 
+        0 1px 3px rgba(0, 0, 0, 0.4),
+        0 0 6px rgba(255, 255, 255, 0.2);
+    letter-spacing: 0.02em;
+}
+
+/* Asegurar que TODAS las etiquetas sean blancas */
+.summary-item .summary-label {
+    color: #ffffff !important;
+    text-shadow: 
+        0 1px 4px rgba(0, 0, 0, 0.5),
+        0 0 8px rgba(255, 255, 255, 0.3);
 }
 
 .vendors-table-wrapper {
@@ -99,7 +163,7 @@
 
 .vendors-table th {
     background: #f8fafc;
-    color: #475569;
+    color: #1e293b;
     font-weight: 600;
     padding: 1rem 0.75rem;
     text-align: left;
@@ -121,13 +185,30 @@
     background: #f1f5f9;
 }
 
+.vendors-table tr:hover .contact-cell {
+    color: #0f172a;
+    font-weight: 700;
+    transform: scale(1.02);
+    transition: all 0.2s ease;
+}
+
 .inactive-row {
-    opacity: 0.6;
+    opacity: 0.75;
     background: #fef2f2 !important;
 }
 
 .inactive-row:hover {
     background: #fee2e2 !important;
+    opacity: 0.85;
+}
+
+.inactive-row .vendor-name,
+.inactive-row .vendor-email,
+.inactive-row .contact-cell,
+.inactive-row .number-cell,
+.inactive-row .money-cell {
+    color: #374151 !important;
+    opacity: 1 !important;
 }
 
 /* Cell Specific Styles */
@@ -158,14 +239,18 @@
 
 .vendor-email {
     font-size: 0.8rem;
-    color: #64748b;
+    color: #475569;
     font-style: italic;
 }
 
 .contact-cell {
-    color: #475569;
+    color: #1e293b;
     font-family: 'Courier New', monospace;
-    min-width: 110px;
+    min-width: 120px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 0.02em;
+    padding: 1.2rem 0.75rem;
 }
 
 .status-cell {
@@ -198,8 +283,8 @@
 
 .number-cell {
     text-align: center;
-    font-weight: 500;
-    color: #475569;
+    font-weight: 600;
+    color: #1e293b;
     min-width: 80px;
     font-family: 'Courier New', monospace;
 }
