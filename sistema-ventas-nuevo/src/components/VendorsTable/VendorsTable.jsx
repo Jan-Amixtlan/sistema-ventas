@@ -3,16 +3,26 @@ import './VendorsTable.css';
 
 const VendorsTable = () => {
     const vendedoresData = [
-        { id: 1, nombre: 'Juan Pérez', telefono: '555-0101', email: 'juan@empresa.com', activo: true, cotizaciones: 12, aprobadas: 8, rechazadas: 4, clientes: 15, ventasTotal: 125000 },
-        { id: 2, nombre: 'María García', telefono: '555-0102', email: 'maria@empresa.com', activo: true, cotizaciones: 9, aprobadas: 6, rechazadas: 3, clientes: 12, ventasTotal: 98000 },
-        { id: 3, nombre: 'Carlos López', telefono: '555-0103', email: 'carlos@empresa.com', activo: true, cotizaciones: 15, aprobadas: 10, rechazadas: 5, clientes: 20, ventasTotal: 187000 },
-        { id: 4, nombre: 'Ana Martínez', telefono: '555-0104', email: 'ana@empresa.com', activo: true, cotizaciones: 8, aprobadas: 5, rechazadas: 3, clientes: 10, ventasTotal: 76000 },
-        { id: 5, nombre: 'Luis Rodríguez', telefono: '555-0105', email: 'luis@empresa.com', activo: false, cotizaciones: 6, aprobadas: 2, rechazadas: 4, clientes: 8, ventasTotal: 32000 },
-        { id: 6, nombre: 'Elena Sánchez', telefono: '555-0106', email: 'elena@empresa.com', activo: true, cotizaciones: 11, aprobadas: 7, rechazadas: 4, clientes: 14, ventasTotal: 110000 },
-        { id: 7, nombre: 'Roberto Torres', telefono: '555-0107', email: 'roberto@empresa.com', activo: true, cotizaciones: 13, aprobadas: 9, rechazadas: 4, clientes: 18, ventasTotal: 156000 },
-        { id: 8, nombre: 'Carmen Flores', telefono: '555-0108', email: 'carmen@empresa.com', activo: true, cotizaciones: 10, aprobadas: 6, rechazadas: 4, clientes: 13, ventasTotal: 92000 },
-        { id: 9, nombre: 'Diego Herrera', telefono: '555-0109', email: 'diego@empresa.com', activo: false, cotizaciones: 7, aprobadas: 3, rechazadas: 4, clientes: 9, ventasTotal: 45000 },
-        { id: 10, nombre: 'Patricia Vega', telefono: '555-0110', email: 'patricia@empresa.com', activo: true, cotizaciones: 14, aprobadas: 11, rechazadas: 3, clientes: 22, ventasTotal: 198000 }
+        { id: 1, nombre: 'María Rodríguez', telefono: '555-0101', email: 'maria.rodriguez@empresa.com', activo: true, cotizaciones: 12, aprobadas: 7, rechazadas: 5, clientes: 25, ventasTotal: 190000 },
+        { id: 2, nombre: 'Teresa Nazario', telefono: '555-0102', email: 'teresa.nazario@empresa.com', activo: true, cotizaciones: 10, aprobadas: 6, rechazadas: 4, clientes: 24, ventasTotal: 175000 },
+        { id: 3, nombre: 'Elena Torres', telefono: '555-0103', email: 'elena.torres@empresa.com', activo: true, cotizaciones: 9, aprobadas: 5, rechazadas: 4, clientes: 23, ventasTotal: 165000 },
+        { id: 4, nombre: 'Ricardo Jiménez', telefono: '555-0104', email: 'ricardo.jimenez@empresa.com', activo: true, cotizaciones: 8, aprobadas: 5, rechazadas: 3, clientes: 22, ventasTotal: 150000 },
+        { id: 5, nombre: 'Laura Ramírez', telefono: '555-0105', email: 'laura.ramirez@empresa.com', activo: true, cotizaciones: 7, aprobadas: 4, rechazadas: 3, clientes: 21, ventasTotal: 140000 },
+        { id: 6, nombre: 'Francisco Moreno', telefono: '555-0106', email: 'francisco.moreno@empresa.com', activo: true, cotizaciones: 8, aprobadas: 5, rechazadas: 3, clientes: 20, ventasTotal: 135000 },
+        { id: 7, nombre: 'Carmen López', telefono: '555-0107', email: 'carmen.lopez@empresa.com', activo: true, cotizaciones: 9, aprobadas: 5, rechazadas: 4, clientes: 19, ventasTotal: 130000 },
+        { id: 8, nombre: 'Sofia García', telefono: '555-0108', email: 'sofia.garcia@empresa.com', activo: true, cotizaciones: 6, aprobadas: 3, rechazadas: 3, clientes: 18, ventasTotal: 125000 },
+        { id: 9, nombre: 'Manuel Castro', telefono: '555-0109', email: 'manuel.castro@empresa.com', activo: true, cotizaciones: 7, aprobadas: 4, rechazadas: 3, clientes: 17, ventasTotal: 120000 },
+        { id: 10, nombre: 'Jorge Martín', telefono: '555-0110', email: 'jorge.martin@empresa.com', activo: true, cotizaciones: 8, aprobadas: 4, rechazadas: 4, clientes: 16, ventasTotal: 115000 },
+        { id: 11, nombre: 'Carlos Méndez', telefono: '555-0111', email: 'carlos.mendez@empresa.com', activo: true, cotizaciones: 7, aprobadas: 4, rechazadas: 3, clientes: 15, ventasTotal: 110000 },
+        { id: 12, nombre: 'Manuel Romero', telefono: '555-0112', email: 'manuel.romero@empresa.com', activo: true, cotizaciones: 6, aprobadas: 3, rechazadas: 3, clientes: 14, ventasTotal: 105000 },
+        { id: 13, nombre: 'Patricia Gil', telefono: '555-0113', email: 'patricia.gil@empresa.com', activo: true, cotizaciones: 8, aprobadas: 4, rechazadas: 4, clientes: 13, ventasTotal: 100000 },
+        { id: 14, nombre: 'Miguel Ángel Ruiz', telefono: '555-0114', email: 'miguel.ruiz@empresa.com', activo: true, cotizaciones: 7, aprobadas: 4, rechazadas: 3, clientes: 12, ventasTotal: 95000 },
+        { id: 15, nombre: 'Antonio Molina', telefono: '555-0115', email: 'antonio.molina@empresa.com', activo: true, cotizaciones: 6, aprobadas: 3, rechazadas: 3, clientes: 11, ventasTotal: 90000 },
+        { id: 16, nombre: 'Ana Vargas', telefono: '555-0116', email: 'ana.vargas@empresa.com', activo: true, cotizaciones: 8, aprobadas: 4, rechazadas: 4, clientes: 10, ventasTotal: 85000 },
+        { id: 17, nombre: 'Diego Hernández', telefono: '555-0117', email: 'diego.hernandez@empresa.com', activo: true, cotizaciones: 7, aprobadas: 4, rechazadas: 3, clientes: 9, ventasTotal: 80000 },
+        { id: 18, nombre: 'Isabel Díaz', telefono: '555-0118', email: 'isabel.diaz@empresa.com', activo: false, cotizaciones: 6, aprobadas: 3, rechazadas: 3, clientes: 8, ventasTotal: 75000 },
+        { id: 19, nombre: 'Juan López', telefono: '555-0119', email: 'juan.lopez@empresa.com', activo: true, cotizaciones: 8, aprobadas: 4, rechazadas: 4, clientes: 7, ventasTotal: 70000 },
+        { id: 20, nombre: 'Roberto Sánchez', telefono: '555-0120', email: 'roberto.sanchez@empresa.com', activo: false, cotizaciones: 6, aprobadas: 3, rechazadas: 3, clientes: 6, ventasTotal: 65000 }
     ];
 
     // Calcular estadísticas

@@ -9,10 +9,10 @@ const SalesDashboard = () => {
     
     const [salesData, setSalesData] = useState({
         totalVendedores: 20,
-        cotizacionesTotales: 156,
-        cotizacionesAprobadas: 89,
+        cotizacionesTotales: 153,
+        cotizacionesAprobadas: 84,
         cotizacionesRechazadas: 67,
-        dineroTotal: 2450000,
+        dineroTotal: 2320000,
         metaMensual: 3000000
     });
 
