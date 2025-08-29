@@ -175,7 +175,9 @@ const SalesDashboard = () => {
             {/* Métricas Principales */}
             <div className="metrics-grid">
                 <div className="metric-card">
-                    <div className="metric-icon">👥</div>
+                    <div className="metric-icon">
+                        <img src="/vendedor.png" alt="Vendedores" className="metric-icon-img" />
+                    </div>
                     <div className="metric-info">
                         <h3>{salesData.totalVendedores}</h3>
                         <p>Vendedores Totales</p>
@@ -183,7 +185,9 @@ const SalesDashboard = () => {
                 </div>
                 
                 <div className="metric-card">
-                    <div className="metric-icon">📋</div>
+                    <div className="metric-icon">
+                        <img src="/Cotizaciones.png" alt="Cotizaciones" className="metric-icon-img" />
+                    </div>
                     <div className="metric-info">
                         <h3>{salesData.cotizacionesTotales}</h3>
                         <p>Cotizaciones Totales</p>
@@ -191,7 +195,7 @@ const SalesDashboard = () => {
                 </div>
                 
                 <div className="metric-card success">
-                    <div className="metric-icon">✅</div>
+                   <img src="/Aprobadas.png" alt="Aprobadas" className="metric-icon-img" />
                     <div className="metric-info">
                         <h3>{salesData.cotizacionesAprobadas}</h3>
                         <p>Aprobadas ({porcentajeAprobacion}%)</p>
@@ -199,7 +203,7 @@ const SalesDashboard = () => {
                 </div>
                 
                 <div className="metric-card danger">
-                    <div className="metric-icon">❌</div>
+                    <img src="/Rechazadas.png" alt="Pending" className="metric-icon-img" />
                     <div className="metric-info">
                         <h3>{salesData.cotizacionesRechazadas}</h3>
                         <p>Pending</p>
@@ -207,7 +211,7 @@ const SalesDashboard = () => {
                 </div>
                 
                 <div className="metric-card primary">
-                    <div className="metric-icon">💰</div>
+                    <img src="/TotalVentas.png" alt="TotalVentas" className="metric-icon-img" />
                     <div className="metric-info">
                         <h3>${salesData.dineroTotal.toLocaleString()}</h3>
                         <p>Total en Ventas</p>
@@ -215,7 +219,7 @@ const SalesDashboard = () => {
                 </div>
                 
                 <div className="metric-card">
-                    <div className="metric-icon">🎯</div>
+                    <img src="/MetaVentas.png" alt="MetaMensual" className="metric-icon-img" />
                     <div className="metric-info">
                         <h3>{porcentajeMeta}%</h3>
                         <p>Meta Mensual</p>

@@ -165,9 +165,7 @@ const Navbar = () => {
           <li className="navbar-item">
             <a href="#vendedores" className="navbar-link" onClick={(e) => { e.preventDefault(); scrollToSection('vendedores'); }}>Vendedores</a>
           </li>
-          <li className="navbar-item">
-            <a href="#reportes" className="navbar-link" onClick={(e) => { e.preventDefault(); scrollToSection('reportes'); }}>Reportes</a>
-          </li>
+          
           <li className="navbar-item">
             <a href="#contacto" className="navbar-link" onClick={scrollToFooter}>Contacto</a>
           </li>

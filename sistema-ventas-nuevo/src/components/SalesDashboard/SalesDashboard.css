@@ -220,6 +220,24 @@
 .metric-icon {
     font-size: 2rem;
     opacity: 0.8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+    min-height: 60px;
+}
+
+.metric-icon-img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.metric-card:hover .metric-icon-img {
+    opacity: 1;
+    transform: scale(1.1);
 }
 
 .metric-info h3 {

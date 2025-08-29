@@ -674,7 +674,7 @@
 /* Visualización 3D avanzada */
 .visual-matrix {
     position: relative;
-    height: 700px;
+    height: 320px;
     perspective: 1500px;
 }
 
@@ -689,8 +689,8 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 350px;
-    height: 350px;
+    width: 220px;
+    height: 220px;
     transform: translate(-50%, -50%);
     transform-style: preserve-3d;
     transition: transform 0.3s ease;
@@ -1067,8 +1067,8 @@
     }
     
     .central-sphere {
-        width: 300px;
-        height: 300px;
+        width: 200px;
+        height: 200px;
     }
     
     .content-hologram {
@@ -1095,7 +1095,7 @@
     
     .visual-matrix {
         order: 1;
-        height: 500px;
+        height: 400px;
     }
     
     .title-main {
@@ -1116,7 +1116,7 @@
     
     .visual-matrix {
         order: 1;
-        height: 400px;
+        height: 250px;
     }
     
     .main-content {
@@ -1128,8 +1128,8 @@
     }
     
     .central-sphere {
-        width: 250px;
-        height: 250px;
+        width: 180px;
+        height: 180px;
     }
     
     .content-hologram {
@@ -1194,8 +1194,8 @@
     }
     
     .central-sphere {
-        width: 200px;
-        height: 200px;
+        width: 160px;
+        height: 160px;
     }
     
     .orbital-2 {
