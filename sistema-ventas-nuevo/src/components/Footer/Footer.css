@@ -1097,3 +1097,75 @@
         background: var(--glass-bg);
     }
 }
+
+/* Copyright Section */
+.footer-copyright {
+    background: rgba(0, 0, 0, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 1rem 0;
+    margin-top: 3rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.copyright-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.copyright-text {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.025em;
+    margin: 0;
+    text-align: center;
+    line-height: 1.5;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+}
+
+.copyright-text:hover {
+    color: rgba(255, 255, 255, 1);
+}
+
+/* Responsive para copyright */
+@media (max-width: 768px) {
+    .footer-copyright {
+        padding: 1rem 0;
+        margin-top: 2rem;
+    }
+    
+    .copyright-container {
+        padding: 0 1rem;
+    }
+    
+    .copyright-text {
+        font-size: 0.8rem;
+        line-height: 1.4;
+        white-space: normal;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-copyright {
+        padding: 0.75rem 0;
+    }
+    
+    .copyright-container {
+        padding: 0 0.5rem;
+    }
+    
+    .copyright-text {
+        font-size: 0.75rem;
+        line-height: 1.3;
+    }
+}

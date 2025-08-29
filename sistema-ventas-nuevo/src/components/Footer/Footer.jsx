@@ -320,6 +320,15 @@ const SalesFooter = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Copyright Section */}
+            <div className="footer-copyright">
+                <div className="copyright-container">
+                    <p className="copyright-text">
+                        Copyright © 2025 Osdems Digital | Creado por Osdems Digital Group
+                    </p>
+                </div>
+            </div>
         </footer>
     );
 };
