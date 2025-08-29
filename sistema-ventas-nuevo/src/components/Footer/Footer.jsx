@@ -39,6 +39,27 @@ const SalesFooter = () => {
         }, 2000);
     };
 
+    // Función para manejar el envío de correo electrónico
+    const handleEmailClick = (e) => {
+        e.preventDefault();
+        const email = 'hello@osdemsdigital.com';
+        const subject = 'Consulta sobre servicios digitales';
+        const body = 
+            'Hola equipo de OSDEMS Digital,\n\n' +
+            'Me interesa conocer más sobre sus servicios. ¿Podrían contactarme para agendar una reunión?\n\n' +
+            'Mi información de contacto:\n' +
+            'Nombre: [Su nombre]\n' +
+            'Empresa: [Su empresa]\n' +
+            'Teléfono: [Su teléfono]\n' +
+            'Servicio de interés: [Servicio específico]\n\n' +
+            'Gracias por su tiempo,\n' +
+            '[Su nombre]';
+        
+        // Abrir Gmail con el correo prellenado
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&to=${email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.open(gmailUrl, '_blank');
+    };
+
     return (
         <footer id="contacto" className="sales-footer">
             {/* Background Effects */}
@@ -164,34 +185,34 @@ const SalesFooter = () => {
 
                     <div className="contact-info">
                         <div className="contact-phones">
-                            <div className="phone-item">
+                            <a href="tel:+523326225912" className="phone-item">
                                 <svg className="phone-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                                 </svg>
                                 <span>+52 33 2622 5912</span>
-                            </div>
+                            </a>
 
-                            <div className="phone-item">
+                            <a href="tel:+523311744584" className="phone-item">
                                 <svg className="phone-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
                                 </svg>
                                 <span>+52 33 1174 4584</span>
-                            </div>
+                            </a>
 
-                            <div className="phone-item">
+                            <a href="tel:+523318224312" className="phone-item">
                                 <svg className="phone-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                                 </svg>
                                 <span>+52 33 1822 4312</span>
-                            </div>
+                            </a>
                         </div>
 
-                        <div className="email-item">
+                        <a href="#" onClick={handleEmailClick} className="email-item">
                             <svg className="email-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                             </svg>
                             <span>hello@osdemsdigital.com</span>
-                        </div>
+                        </a>
 
                         <div className="address-item">
                             <svg className="address-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
