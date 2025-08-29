@@ -313,7 +313,7 @@ const SalesFooter = () => {
                                     <img src="/src/assets/images/mastercard.png" alt="MasterCard" />
                                 </div>
                                 <div className="card amex">
-                                    <img src="/src/assets/images/AmericanExpress.png" alt="American Express" />
+                                    <img src="/sistema-ventas-nuevo/public/AmericanExpress.png" alt="American Express" />
                                 </div>
                             </div>
                         </div>
