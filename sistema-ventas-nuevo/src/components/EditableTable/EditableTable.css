@@ -12,7 +12,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #667eea 0%, #674a83 100%);
     color: white;
 }
 
@@ -24,7 +24,8 @@
 
 .table-title p {
     margin: 0;
-    opacity: 0.9;
+    color: white !important;
+    opacity: 1;
     font-size: 0.9rem;
 }
 
@@ -33,7 +34,7 @@
     gap: 1rem;
 }
 
-.btn-add, .btn-export {
+.btn-add, .btn-pdf, .btn-import, .btn-export {
     background: rgba(255, 255, 255, 0.2);
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -44,9 +45,24 @@
     transition: all 0.3s ease;
 }
 
-.btn-add:hover, .btn-export:hover {
+.btn-add:hover, .btn-pdf:hover, .btn-import:hover, .btn-export:hover {
     background: rgba(255, 255, 255, 0.3);
     transform: translateY(-2px);
+}
+
+.btn-import:disabled, .btn-pdf:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-pdf {
+    background: rgba(255, 87, 34, 0.2);
+    border-color: rgba(255, 87, 34, 0.3);
+}
+
+.btn-pdf:hover {
+    background: rgba(255, 87, 34, 0.3);
 }
 
 .table-wrapper {
@@ -391,7 +407,7 @@
         width: 100%;
     }
 
-    .btn-add, .btn-export {
+    .btn-add, .btn-pdf, .btn-import, .btn-export {
         width: 100%;
     }
 
