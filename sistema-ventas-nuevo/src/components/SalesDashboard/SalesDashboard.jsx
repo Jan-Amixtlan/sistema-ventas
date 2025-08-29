@@ -202,7 +202,7 @@ const SalesDashboard = () => {
                     <div className="metric-icon">❌</div>
                     <div className="metric-info">
                         <h3>{salesData.cotizacionesRechazadas}</h3>
-                        <p>Rechazadas</p>
+                        <p>Pending</p>
                     </div>
                 </div>
                 
