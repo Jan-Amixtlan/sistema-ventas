@@ -143,11 +143,18 @@ const Navbar = () => {
         <div className="navbar-container">
         {/* Logo */}
         <div className="navbar-logo">
-          <img 
-            src="/logo.png" 
-            alt="OSDEMS Digital" 
-            className="logo-image"
-          />
+          <a 
+            href="https://osdemsdigital.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="logo-link"
+          >
+            <img 
+              src="/logo.png" 
+              alt="OSDEMS Digital" 
+              className="logo-image"
+            />
+          </a>
           {/* <div className="logo-content">
             <span className="logo-text">OSDEMSDigital</span>
             <span className="logo-subtitle">Sales Forecast</span>

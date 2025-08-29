@@ -75,7 +75,7 @@ const Hero = () => {
             subtitle: "y Crecimiento Sostenible",
             description: "Implemente soluciones escalables que se adapten al crecimiento de su empresa, con herramientas de automatización y análisis avanzado para optimizar su ROI.",
             primaryButton: "Solicitar Consulta",
-            secondaryButton: "Ver Casos Éxito",
+            secondaryButton: "Cotizar",
             image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
             stats: [
                 { number: "5X", label: "ROI Promedio", icon: "💼" },
