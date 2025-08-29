@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import LoginModal from '../LoginModal/LoginModal.jsx';
-import logoImage from '../../assets/images/logo.png';
+// Usando ruta desde public para mejor compatibilidad
+// import logoImage from '../../assets/images/logo.png';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -143,7 +144,7 @@ const Navbar = () => {
         {/* Logo */}
         <div className="navbar-logo">
           <img 
-            src={logoImage} 
+            src="/logo.png" 
             alt="OSDEMS Digital" 
             className="logo-image"
           />
