@@ -510,21 +510,21 @@
 }
 
 .metric-value {
-    font-size: 1.5rem;
+    font-size: 2.2rem;
     font-weight: 700;
     color: #81d4fa;
     margin-bottom: 0.25rem;
 }
 
 .metric-label {
-    font-size: 0.8rem;
+    font-size: 1rem;
     color: #e3f2fd;
     opacity: 0.8;
     margin-bottom: 0.5rem;
 }
 
 .metric-trend {
-    font-size: 0.75rem;
+    font-size: 1rem;
     font-weight: 600;
     padding: 0.25rem 0.5rem;
     border-radius: 12px;
@@ -544,8 +544,9 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 0.5rem;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     color: #e3f2fd;
+    font-weight: 600;
 }
 
 .progress-bar {
