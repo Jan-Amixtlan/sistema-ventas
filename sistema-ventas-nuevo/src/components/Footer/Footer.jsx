@@ -307,13 +307,13 @@ const SalesFooter = () => {
                         <div className="payment-methods">
                             <div className="payment-cards">
                                 <div className="card visa">
-                                    <img src="/src/assets/images/Visa.png" alt="Visa" />
+                                    <img src="/Visa.png" alt="Visa" />
                                 </div>
                                 <div className="card mastercard">
-                                    <img src="/src/assets/images/mastercard.png" alt="MasterCard" />
+                                    <img src="/mastercard.png" alt="MasterCard" />
                                 </div>
                                 <div className="card amex">
-                                    <img src="/sistema-ventas-nuevo/public/AmericanExpress.png" alt="American Express" />
+                                    <img src="/AmericanExpress.png" alt="American Express" />
                                 </div>
                             </div>
                         </div>
