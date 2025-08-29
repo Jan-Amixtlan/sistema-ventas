@@ -1005,17 +1005,25 @@
 
 .phone-item:hover,
 .email-item:hover {
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     transform: translateX(5px);
-    color: var(--primary-blue);
+    color: var(--white);
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
+}
+
+.phone-item:hover span,
+.email-item:hover span {
+    color: var(--white);
+    font-weight: 600;
 }
 
 .phone-item:hover .phone-icon,
 .email-item:hover .email-icon {
-    color: var(--primary-blue);
+    color: var(--success-green);
     transform: scale(1.1);
+    filter: brightness(1.2);
 }
 
 .phone-item:active,
