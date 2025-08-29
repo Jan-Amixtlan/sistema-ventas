@@ -25,8 +25,31 @@ const SalesFooter = () => {
         e.preventDefault();
         setIsSubmitting(true);
 
+        // Preparar datos del correo
+        const email = 'hello@osdemsdigital.com';
+        const subject = `Nueva consulta de ${formData.nombre} - ${formData.servicio}`;
+        const body = 
+            `Hola equipo de OSDEMS Digital,\n\n` +
+            `He recibido una nueva consulta desde el sitio web:\n\n` +
+            `DATOS DEL CLIENTE:\n` +
+            `• Nombre: ${formData.nombre}\n` +
+            `• Email: ${formData.email}\n` +
+            `• Empresa: ${formData.empresa}\n` +
+            `• Teléfono: ${formData.telefono}\n` +
+            `• Servicio de interés: ${formData.servicio}\n\n` +
+            `MENSAJE:\n` +
+            `${formData.mensaje}\n\n` +
+            `---\n` +
+            `Este mensaje fue generado automáticamente desde el formulario de contacto del sitio web.\n` +
+            `Por favor, contacten al cliente lo antes posible.`;
+
         setTimeout(() => {
             console.log('Formulario enviado:', formData);
+            
+            // Abrir Gmail con la información del formulario
+            const gmailUrl = `https://mail.google.com/mail/?view=cm&to=${email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.open(gmailUrl, '_blank');
+            
             setIsSubmitting(false);
             setFormData({
                 nombre: '',
@@ -143,6 +166,9 @@ const SalesFooter = () => {
                                 <option value="Capacitación">Logotipo</option>
                                 <option value="Marca">Recursos de Marca</option>
                                 <option value="Decks">Decks</option>
+                                <option value="Ventas">Sistema de Ventas</option>
+                                <option value="Cotizador">Cotizador</option>
+                                <option value="CRM">CRM</option>
                                 <option value="Otros">Otros</option>
 
                             </select>
