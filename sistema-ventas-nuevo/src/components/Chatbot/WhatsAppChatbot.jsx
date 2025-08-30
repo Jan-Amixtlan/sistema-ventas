@@ -174,7 +174,7 @@ const WhatsAppChatbot = () => {
             {/* Chat Button */}
             <div
                 className={`chat-button ${isOpen ? 'open' : ''}`}
-                onClick={handleOpenChat}
+                onClick={isOpen ? () => setIsOpen(false) : handleOpenChat}
             >
                 <div className="button-icon">
                     {isOpen ? (
