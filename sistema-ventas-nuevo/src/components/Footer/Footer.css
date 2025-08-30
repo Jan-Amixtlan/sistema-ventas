@@ -417,6 +417,28 @@
     transform: translateX(5px);
 }
 
+/* Estilos específicos para el enlace de dirección */
+.address-link {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.address-link:hover {
+    background: rgba(37, 99, 235, 0.2);
+    transform: translateX(8px);
+    border-color: var(--primary-blue);
+}
+
+.address-link:hover .address-icon {
+    color: #60A5FA;
+    transform: scale(1.1);
+}
+
+.address-link:hover .address-details span {
+    color: #E5E7EB;
+}
+
 .address-icon {
     width: 20px;
     height: 20px;

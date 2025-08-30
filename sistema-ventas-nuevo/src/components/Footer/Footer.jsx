@@ -240,7 +240,12 @@ const SalesFooter = () => {
                             <span>hello@osdemsdigital.com</span>
                         </a>
 
-                        <div className="address-item">
+                        <a 
+                            href="https://www.google.com/maps/dir//Blvd.+Puerta+de+Hierro+5153+Fracc.+Plaza+Andares+Zapopan,+Jalisco,+45116+Piso+2/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x8428af0256b97797:0x3471042dfd8fafc8?sa=X&ved=2ahUKEwjgnL6pm7SEAxUtG9AFHfgnA9UQ9Rd6BAglEAA" 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="address-item address-link"
+                        >
                             <svg className="address-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -251,7 +256,7 @@ const SalesFooter = () => {
                                 <span>Andares Zapopan, Jalisco</span>
                                 <span>45116 Piso 2</span>
                             </div>
-                        </div>
+                        </a>
                     </div>
 
                     <div className="social-links">
