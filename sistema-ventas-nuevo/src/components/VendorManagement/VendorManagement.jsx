@@ -16,7 +16,7 @@ const VendorManagement = () => {
     const initialVendors = [
         {
             id: 1,
-            name: 'María Rodríguez',
+            name: 'Eduardo Chávez',
             email: 'maria.rodriguez@empresa.com',
             phone: '+1 (555) 123-4567',
             ventas: 42000,
@@ -27,7 +27,7 @@ const VendorManagement = () => {
         },
         {
             id: 2,
-            name: 'Teresa Nazario',
+            name: 'Carlos Sánchez',
             email: 'teresa.nazario@empresa.com',
             phone: '+1 (555) 234-5678',
             ventas: 41500,
@@ -38,7 +38,7 @@ const VendorManagement = () => {
         },
         {
             id: 3,
-            name: 'Elena Torres',
+            name: 'Felipe Lisardo',
             email: 'elena.torres@empresa.com',
             phone: '+1 (555) 345-6789',
             ventas: 40800,
@@ -49,7 +49,7 @@ const VendorManagement = () => {
         },
         {
             id: 4,
-            name: 'Ricardo Jiménez',
+            name: 'Leonel Burciaga',
             email: 'ricardo.jimenez@empresa.com',
             phone: '+1 (555) 456-7890',
             ventas: 39200,

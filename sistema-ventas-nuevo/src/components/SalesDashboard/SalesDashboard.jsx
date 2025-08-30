@@ -31,10 +31,10 @@ const SalesDashboard = () => {
 
     // Datos para el gráfico de barras - Ventas por Vendedor
     const salesByVendor = [
-        { name: 'María Rodríguez', ventas: 42000 },
-        { name: 'Teresa Nazario', ventas: 41500 },
-        { name: 'Elena Torres', ventas: 40800 },
-        { name: 'Ricardo Jiménez', ventas: 39200 },
+        { name: 'Eduardo Chávez', ventas: 42000 },
+        { name: 'Carlos Sánchez', ventas: 41500 },
+        { name: 'Felipe Lisardo', ventas: 40800 },
+        { name: 'Leonel Burciaga', ventas: 39200 },
         { name: 'Laura Ramírez', ventas: 38700 },
         { name: 'Francisco Moreno', ventas: 37400 },
         { name: 'Carmen López', ventas: 36100 },

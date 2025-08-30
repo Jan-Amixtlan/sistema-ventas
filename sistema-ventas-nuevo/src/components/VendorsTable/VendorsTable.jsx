@@ -3,10 +3,10 @@ import './VendorsTable.css';
 
 const VendorsTable = () => {
     const vendedoresData = [
-        { id: 1, nombre: 'María Rodríguez', telefono: '555-0101', email: 'maria.rodriguez@empresa.com', activo: true, cotizaciones: 12, aprobadas: 7, rechazadas: 5, clientes: 25, ventasTotal: 190000 },
-        { id: 2, nombre: 'Teresa Nazario', telefono: '555-0102', email: 'teresa.nazario@empresa.com', activo: true, cotizaciones: 10, aprobadas: 6, rechazadas: 4, clientes: 24, ventasTotal: 175000 },
-        { id: 3, nombre: 'Elena Torres', telefono: '555-0103', email: 'elena.torres@empresa.com', activo: true, cotizaciones: 9, aprobadas: 5, rechazadas: 4, clientes: 23, ventasTotal: 165000 },
-        { id: 4, nombre: 'Ricardo Jiménez', telefono: '555-0104', email: 'ricardo.jimenez@empresa.com', activo: true, cotizaciones: 8, aprobadas: 5, rechazadas: 3, clientes: 22, ventasTotal: 150000 },
+        { id: 1, nombre: 'Eduardo Chávez', telefono: '555-0101', email: 'eduardo.chavez@empresa.com', activo: true, cotizaciones: 12, aprobadas: 7, rechazadas: 5, clientes: 25, ventasTotal: 190000 },
+        { id: 2, nombre: 'Carlos Sánchez', telefono: '555-0102', email: 'carlos.sanchez@empresa.com', activo: true, cotizaciones: 10, aprobadas: 6, rechazadas: 4, clientes: 24, ventasTotal: 175000 },
+        { id: 3, nombre: 'Felipe Lisardo', telefono: '555-0103', email: 'felipe.lisardo@empresa.com', activo: true, cotizaciones: 9, aprobadas: 5, rechazadas: 4, clientes: 23, ventasTotal: 165000 },
+        { id: 4, nombre: 'Leonel Burciaga', telefono: '555-0104', email: 'leonel.burciaga@empresa.com', activo: true, cotizaciones: 8, aprobadas: 5, rechazadas: 3, clientes: 22, ventasTotal: 150000 },
         { id: 5, nombre: 'Laura Ramírez', telefono: '555-0105', email: 'laura.ramirez@empresa.com', activo: true, cotizaciones: 7, aprobadas: 4, rechazadas: 3, clientes: 21, ventasTotal: 140000 },
         { id: 6, nombre: 'Francisco Moreno', telefono: '555-0106', email: 'francisco.moreno@empresa.com', activo: true, cotizaciones: 8, aprobadas: 5, rechazadas: 3, clientes: 20, ventasTotal: 135000 },
         { id: 7, nombre: 'Carmen López', telefono: '555-0107', email: 'carmen.lopez@empresa.com', activo: true, cotizaciones: 9, aprobadas: 5, rechazadas: 4, clientes: 19, ventasTotal: 130000 },
