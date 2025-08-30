@@ -125,13 +125,45 @@ const SalesBenefitsTimeline = () => {
 
     // Función para abrir WhatsApp Web específicamente
     const handleSolicitarDemo = () => {
-        const phoneNumber = '3326225912'; // Número con código de país México (+52)
+        const phoneNumber = '3326225912'; // Número sin código de país
         const message = encodeURIComponent(
             '¡Hola! Me interesa solicitar una demo del Sistema de Forecast de Ventas. ¿Podrían proporcionarme más información sobre los beneficios y la implementación?'
         );
-        // Usar web.whatsapp.com para forzar WhatsApp Web
-        const whatsappWebUrl = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${message}`;
-        window.open(whatsappWebUrl, '_blank');
+        
+        // Detectar si es dispositivo móvil
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        
+        if (isMobile) {
+            // Para dispositivos móviles: usar wa.me que abre la app nativa
+            const mobileUrl = `whatsapp://send?phone=${phoneNumber}&text=${message}`;
+            const fallbackUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+            
+            // Intentar abrir la app nativa primero
+            window.location.href = mobileUrl;
+            
+            // Fallback si la app no está instalada
+            setTimeout(() => {
+                window.open(fallbackUrl, '_blank');
+            }, 2000);
+            
+        } else {
+            // Para computadoras: usar WhatsApp Web
+            const webUrl = `https://web.whatsapp.com/send?phone=52${phoneNumber}&text=${message}`;
+            const fallbackUrl = `https://wa.me/52${phoneNumber}?text=${message}`;
+            
+            try {
+                // Intentar WhatsApp Web primero
+                const webWindow = window.open(webUrl, '_blank', 'noopener,noreferrer');
+                
+                // Si no se puede abrir WhatsApp Web, usar fallback
+                if (!webWindow || webWindow.closed || typeof webWindow.closed == 'undefined') {
+                    window.open(fallbackUrl, '_blank', 'noopener,noreferrer');
+                }
+            } catch (error) {
+                // Si hay error, usar el fallback
+                window.open(fallbackUrl, '_blank', 'noopener,noreferrer');
+            }
+        }
     };
 
     // Función para redirigir a la página web de OSDEMS
