@@ -74,6 +74,13 @@
 .chat-button.open {
     background: var(--conversion-orange);
     animation: none;
+    cursor: default;
+    pointer-events: none;
+}
+
+.chat-button.open:hover {
+    transform: scale(1);
+    box-shadow: var(--shadow-xl);
 }
 
 .button-icon {
@@ -236,8 +243,8 @@
 }
 
 .close-button {
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     background: rgba(255, 255, 255, 0.2);
     border: none;
     border-radius: 50%;
@@ -246,20 +253,32 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
     backdrop-filter: blur(10px);
     position: relative;
     z-index: 10;
+    border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 .close-button:hover {
     background: rgba(255, 255, 255, 0.3);
-    transform: scale(1.1);
+    transform: scale(1.1) rotate(90deg);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.close-button:active {
+    transform: scale(0.95) rotate(90deg);
 }
 
 .close-button svg {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease;
+}
+
+.close-button:hover svg {
+    transform: rotate(180deg);
 }
 
 /* Mensajes */
@@ -416,6 +435,7 @@
     transition: all 0.2s ease;
     flex-shrink: 0;
 }
+
 
 .send-button:hover:not(:disabled) {
     background: #1D4ED8;
