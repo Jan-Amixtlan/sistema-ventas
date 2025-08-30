@@ -7,6 +7,7 @@ import Footer from '../components/Footer/Footer.jsx';
 import SalesDashboard from '../components/SalesDashboard/SalesDashboard.jsx';
 import SalesBenefitsTimeline from '../components/SalesBenefitsTime/SalesBenefitsTimeline.jsx';
 import VendorsTable from '../components/VendorsTable/VendorsTable.jsx';
+import WhatsAppChatbot from '../components/Chatbot/WhatsAppChatbot.jsx';
 import './HomeScreens.css';
 
 const HomeScreens = () => {
@@ -73,7 +74,7 @@ const HomeScreens = () => {
                     <SalesBenefitsTimeline />
                 </div>
             )}
-            
+            <WhatsAppChatbot />
             <Footer />
         </>
     );
