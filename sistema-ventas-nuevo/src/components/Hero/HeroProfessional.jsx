@@ -207,6 +207,7 @@ const HeroProfessional = () => {
                             </div>
                             
                             <div className="metrics-grid">
+                                {/* Primera fila: Ventas del Mes y Leads Activos */}
                                 <div className="metric-item">
                                     <div className="metric-value">$1.2M</div>
                                     <div className="metric-label">Ventas del Mes</div>
@@ -217,6 +218,8 @@ const HeroProfessional = () => {
                                     <div className="metric-label">Leads Activos</div>
                                     <div className="metric-trend positive">+8%</div>
                                 </div>
+                                
+                                {/* Segunda fila: Tasa Conversión y Clientes Nuevos */}
                                 <div className="metric-item">
                                     <div className="metric-value">89%</div>
                                     <div className="metric-label">Tasa Conversión</div>
