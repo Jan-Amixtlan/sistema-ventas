@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./HeroProfessional.css";
 
-const Hero = () => {
+const HeroProfessional = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
 
     // Función para abrir WhatsApp Web
@@ -139,14 +139,12 @@ const Hero = () => {
 
     return (
         <section id="home" className="hero-professional">
-            {/* Background Image with Overlay */}
-            <div className="hero-background">
-                <div className="hero-overlay"></div>
-                <img 
-                    src={slides[currentSlide].image} 
-                    alt="Background" 
-                    className="hero-bg-image"
-                />
+            {/* Animated Background */}
+            <div className="hero-animated-bg">
+                <div className="gradient-orb orb-1"></div>
+                <div className="gradient-orb orb-2"></div>
+                <div className="gradient-orb orb-3"></div>
+                <div className="animated-grid"></div>
             </div>
 
             {/* Main Content */}
@@ -276,4 +274,4 @@ const Hero = () => {
     );
 };
 
-export default Hero;
+export default HeroProfessional;

@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import Navbar from '../components/Navbar/Navbar.jsx';
-import Hero from '../components/Hero/Hero.jsx';
+import Hero from '../components/Hero/HeroProfessional.jsx';
 import Dashboard from './Dashboard.jsx';
 import Footer from '../components/Footer/Footer.jsx';
 import SalesDashboard from '../components/SalesDashboard/SalesDashboard.jsx';
