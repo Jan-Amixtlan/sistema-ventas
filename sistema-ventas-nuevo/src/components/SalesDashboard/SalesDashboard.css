@@ -182,9 +182,27 @@
 /* Métricas Grid */
 .metrics-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     gap: 1.5rem;
     margin-bottom: 2rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 1024px) {
+    .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .metrics-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, 1fr);
+    }
 }
 
 .metric-card {
@@ -198,6 +216,8 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+    min-height: 100px;
+    height: auto;
 }
 
 .metric-card:hover {
@@ -228,8 +248,8 @@
 }
 
 .metric-icon-img {
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
     object-fit: contain;
     opacity: 0.8;
     transition: all 0.3s ease;
@@ -241,17 +261,19 @@
 }
 
 .metric-info h3 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 800;
     color: var(--gray-900);
     margin-bottom: 0.25rem;
+    line-height: 1.1;
 }
 
 .metric-info p {
     color: var(--gray-600);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 500;
     margin: 0;
+    line-height: 1.2;
 }
 
 .progress-bar {
