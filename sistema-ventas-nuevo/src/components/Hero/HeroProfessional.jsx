@@ -7,7 +7,7 @@ const HeroProfessional = () => {
     // Función para abrir WhatsApp Web
     const handleComenzarAhora = () => {
         console.log('Botón clickeado - abriendo WhatsApp'); // Debug
-        const phoneNumber = '7761243832'; // Número sin código de país
+        const phoneNumber = '3326225912'; // Número sin código de país
         const message = encodeURIComponent(
             '¡Hola! Me interesa comenzar con el Sistema de Ventas. ¿Podrían ayudarme a implementar las estrategias de ventas efectivas en mi empresa?'
         );
