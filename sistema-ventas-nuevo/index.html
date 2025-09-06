@@ -4,9 +4,31 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./src/assets/images/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- 🛡️ PROTECCIÓN CONTRA IFRAME NO AUTORIZADO -->
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="Content-Security-Policy" content="frame-ancestors 'none';" />
+    
     <title>OSDEMSDigital Sales Forecast</title>
   </head>
   <body>
+    <!-- 🛡️ SCRIPT DE PROTECCIÓN ANTI-IFRAME -->
+    <script>
+      (function() {
+        // Detecta si el sitio está siendo cargado en un iframe
+        if (window.top !== window.self) {
+          try {
+            // Redirige al sitio principal para que se vea completo
+            window.top.location.href = window.location.href;
+          } catch (e) {
+            // Si hay restricciones, oculta el contenido
+            document.body.style.display = 'none';
+            alert('Este sitio debe abrirse en una nueva ventana para funcionar correctamente.');
+          }
+        }
+      })();
+    </script>
+    
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
