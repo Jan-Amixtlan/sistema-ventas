@@ -12,66 +12,31 @@
     <title>OSDEMSDigital Sales Forecast</title>
   </head>
   <body>
-    <!-- Script de protección anti-iframe -->
+    <!-- Script de protección anti-iframe con redirección silenciosa -->
     <script>
       (function() {
         // Verificar si el sitio está siendo cargado en un iframe
         if (window.top !== window.self) {
-          // Método 1: Intentar redirigir la ventana padre
           try {
-            window.top.location.href = window.self.location.href;
+            // Método 1: Redirigir la ventana padre directamente (más efectivo)
+            window.top.location.replace(window.self.location.href);
           } catch (e) {
-            // Si no se puede acceder a window.top (por CORS), usar método alternativo
-            // Método 2: Abrir en nueva ventana/pestaña
-            window.open(window.self.location.href, '_blank');
-            
-            // Método 3: Mostrar mensaje y ocultar contenido
-            document.addEventListener('DOMContentLoaded', function() {
-              document.body.innerHTML = `
-                <div style="
-                  display: flex;
-                  flex-direction: column;
-                  justify-content: center;
-                  align-items: center;
-                  height: 100vh;
-                  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                  color: white;
-                  font-family: Arial, sans-serif;
-                  text-align: center;
-                  padding: 20px;
-                ">
-                  <h1 style="font-size: 2rem; margin-bottom: 1rem;">🔒 Sitio Protegido</h1>
-                  <p style="font-size: 1.2rem; margin-bottom: 2rem;">
-                    Este sitio no puede mostrarse en un iframe por seguridad.
-                  </p>
-                  <a href="${window.location.href}" target="_blank" style="
-                    background: white;
-                    color: #667eea;
-                    padding: 15px 30px;
-                    border-radius: 25px;
-                    text-decoration: none;
-                    font-weight: bold;
-                    font-size: 1.1rem;
-                    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-                    transition: transform 0.3s ease;
-                  " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                    🚀 Abrir en Nueva Pestaña
-                  </a>
-                  <p style="font-size: 0.9rem; margin-top: 1rem; opacity: 0.8;">
-                    Para la mejor experiencia, abre el sitio en una ventana completa.
-                  </p>
-                </div>
-              `;
-            });
-          }
-        }
-        
-        // Protección adicional contra manipulación del frameElement
-        if (window.frameElement) {
-          try {
-            window.frameElement.style.display = 'none';
-          } catch (e) {
-            // Silenciar errores de CORS
+            try {
+              // Método 2: Si hay restricciones CORS, usar location.href
+              window.top.location.href = window.self.location.href;
+            } catch (e2) {
+              // Método 3: Abrir en nueva pestaña como último recurso
+              const newWindow = window.open(window.self.location.href, '_blank');
+              if (newWindow) {
+                // Si se abrió correctamente, cerrar el iframe actual
+                try {
+                  window.close();
+                } catch (e3) {
+                  // Si no se puede cerrar, ocultar el contenido
+                  document.documentElement.style.display = 'none';
+                }
+              }
+            }
           }
         }
       })();
