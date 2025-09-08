@@ -5,39 +5,85 @@
     <link rel="icon" type="image/svg+xml" href="./src/assets/images/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <!-- Protección contra iframes - Evita que el sitio se muestre embebido -->
-    <meta http-equiv="X-Frame-Options" content="DENY" />
-    <meta http-equiv="Content-Security-Policy" content="frame-ancestors 'none';" />
+    <!-- Meta tags de protección temporalmente comentados para pruebas -->
+    <!-- <meta http-equiv="X-Frame-Options" content="DENY" /> -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="frame-ancestors 'none';" /> -->
     
     <title>OSDEMSDigital Sales Forecast</title>
   </head>
   <body>
-    <!-- Script de protección anti-iframe con redirección silenciosa -->
+    <!-- Script de redirección forzada para iframes -->
     <script>
       (function() {
-        // Verificar si el sitio está siendo cargado en un iframe
-        if (window.top !== window.self) {
-          try {
-            // Método 1: Redirigir la ventana padre directamente (más efectivo)
-            window.top.location.replace(window.self.location.href);
-          } catch (e) {
+        function forceRedirect() {
+          // Verificar si está en iframe
+          if (window.top !== window.self || window.parent !== window) {
+            const currentUrl = window.location.href;
+            
+            // Método 1: Intentar redirigir la ventana padre
             try {
-              // Método 2: Si hay restricciones CORS, usar location.href
-              window.top.location.href = window.self.location.href;
-            } catch (e2) {
-              // Método 3: Abrir en nueva pestaña como último recurso
-              const newWindow = window.open(window.self.location.href, '_blank');
-              if (newWindow) {
-                // Si se abrió correctamente, cerrar el iframe actual
-                try {
-                  window.close();
-                } catch (e3) {
-                  // Si no se puede cerrar, ocultar el contenido
-                  document.documentElement.style.display = 'none';
-                }
+              if (window.top.location) {
+                window.top.location.replace(currentUrl);
+                return;
               }
-            }
+            } catch (e) {}
+            
+            try {
+              if (window.parent.location) {
+                window.parent.location.replace(currentUrl);
+                return;
+              }
+            } catch (e) {}
+            
+            // Método 2: Forzar nueva ventana con focus
+            try {
+              const newWindow = window.open(currentUrl, '_blank', 'noopener,noreferrer');
+              if (newWindow) {
+                newWindow.focus();
+                // Intentar cerrar el iframe actual
+                setTimeout(() => {
+                  try {
+                    window.close();
+                  } catch (e) {
+                    // Ocultar contenido del iframe
+                    document.body.style.display = 'none';
+                  }
+                }, 100);
+              }
+            } catch (e) {}
+            
+            // Método 3: Usar postMessage para comunicar con el padre
+            try {
+              window.parent.postMessage({
+                type: 'REDIRECT_REQUEST',
+                url: currentUrl
+              }, '*');
+            } catch (e) {}
+            
+            // Método 4: Cambiar la ubicación del iframe como último recurso
+            setTimeout(() => {
+              window.location.replace(currentUrl);
+            }, 200);
           }
+        }
+        
+        // Ejecutar inmediatamente
+        forceRedirect();
+        
+        // Ejecutar cuando el DOM esté listo por si acaso
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', forceRedirect);
+        }
+        
+        // Ejecutar cuando la ventana se cargue completamente
+        window.addEventListener('load', forceRedirect);
+        
+        // Monitorear cambios en el frameElement
+        if (window.frameElement) {
+          try {
+            const observer = new MutationObserver(forceRedirect);
+            observer.observe(document.body, { childList: true, subtree: true });
+          } catch (e) {}
         }
       })();
     </script>
