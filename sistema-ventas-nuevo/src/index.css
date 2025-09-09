@@ -280,3 +280,28 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+/* ===== FORZAR DESKTOP EN IFRAMES ===== */
+body.iframe-desktop {
+  min-width: 100% !important;
+  min-height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Anular media queries móviles cuando está en iframe */
+body.iframe-desktop .container,
+body.iframe-desktop .header,
+body.iframe-desktop .main-content {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+/* Ajustar escalado para iframes */
+@media (max-width: 1400px) {
+  body.iframe-desktop {
+    zoom: 0.9;
+    transform: scale(0.9);
+    transform-origin: top left;
+    width: 111%;
+  }
+}
