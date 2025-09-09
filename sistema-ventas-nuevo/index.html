@@ -7,91 +7,14 @@
     <title>OSDEMSDigital Sales Forecast</title>
   </head>
   <body>
-    <!-- Script de redirección automática desde iframe a nueva pestaña -->
+    <!-- Redirección directa y silenciosa desde iframe -->
     <script>
-      (function() {
-        // Detectar si está en iframe inmediatamente
-        const isInIframe = window.self !== window.top || window.frameElement !== null;
-        
-        if (isInIframe) {
-          const currentUrl = window.location.href;
-          
-          // Función para abrir en nueva pestaña de forma inmediata
-          function openInNewTab() {
-            // Método 1: Usar window.open
-            try {
-              const newWindow = window.open(currentUrl, '_blank', 'noopener,noreferrer');
-              if (newWindow) {
-                newWindow.focus();
-              }
-            } catch (e) {}
-            
-            // Método 2: Crear enlace y simular click
-            try {
-              const link = document.createElement('a');
-              link.href = currentUrl;
-              link.target = '_blank';
-              link.rel = 'noopener noreferrer';
-              
-              // Agregar al DOM temporalmente
-              link.style.display = 'none';
-              document.body.appendChild(link);
-              
-              // Simular click
-              link.click();
-              
-              // Remover del DOM
-              document.body.removeChild(link);
-            } catch (e) {}
-          }
-          
-          // Ejecutar inmediatamente
-          openInNewTab();
-          
-          // Ocultar el contenido del iframe
-          document.documentElement.style.opacity = '0';
-          document.documentElement.style.pointerEvents = 'none';
-          
-          // Mensaje de respaldo después de un momento
-          setTimeout(() => {
-            document.body.innerHTML = `
-              <div style="
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                color: white;
-                font-family: system-ui, -apple-system, sans-serif;
-                text-align: center;
-                opacity: 1;
-              ">
-                <div>
-                  <div style="font-size: 3rem; margin-bottom: 1rem;">🚀</div>
-                  <h2 style="margin: 0 0 1rem 0; font-size: 1.5rem;">Abriendo en nueva pestaña...</h2>
-                  <p style="font-size: 1rem; opacity: 0.9; margin-bottom: 1.5rem;">
-                    Para la mejor experiencia, el sitio se abre en una ventana completa.
-                  </p>
-                  <a href="${currentUrl}" target="_blank" style="
-                    display: inline-block;
-                    background: white;
-                    color: #667eea;
-                    padding: 12px 24px;
-                    border-radius: 25px;
-                    text-decoration: none;
-                    font-weight: 600;
-                    transition: transform 0.2s;
-                  " onmouseover="this.style.transform='scale(1.05)'" 
-                     onmouseout="this.style.transform='scale(1)'">
-                    Abrir Sitio Completo
-                  </a>
-                </div>
-              </div>
-            `;
-            document.documentElement.style.opacity = '1';
-          }, 1000);
-        }
-      })();
+      if (window.self !== window.top) {
+        // Abrir en nueva pestaña inmediatamente
+        window.open(window.location.href, '_blank');
+        // Ocultar iframe
+        document.documentElement.style.display = 'none';
+      }
     </script>
     
     <div id="root"></div>
