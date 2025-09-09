@@ -3,8 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./src/assets/images/logo.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- ✅ VIEWPORT DINÁMICO: Desktop en iframe, normal fuera de él -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" id="viewportMeta"/>
+    
     <title>OSDEMSDigital Sales Forecast</title>
+
+    <!-- ✅ SCRIPT para detectar iframe y ajustar viewport -->
+    <script>
+      // Detectar si está en iframe y ajustar viewport para desktop
+      if (window.self !== window.top) {
+        console.log('🔄 Detectado en iframe - Forzando vista desktop');
+        document.getElementById('viewportMeta').content = 'width=1200, initial-scale=1.0';
+        
+        // Estilos para pantalla completa
+        document.body.style.margin = '0';
+        document.body.style.padding = '0';
+        document.body.style.overflow = 'hidden';
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
