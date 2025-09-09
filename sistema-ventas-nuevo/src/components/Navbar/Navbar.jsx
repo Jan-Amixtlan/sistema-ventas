@@ -142,7 +142,7 @@ const Navbar = () => {
       <nav className="navbar">
         <div className="navbar-container">
         {/* Logo */}
-        <div className="navbar-logo">
+        {/* <div className="navbar-logo">
           <a 
             href="https://osdemsdigital.com" 
             target="_blank" 
@@ -158,8 +158,8 @@ const Navbar = () => {
           {/* <div className="logo-content">
             <span className="logo-text">OSDEMSDigital</span>
             <span className="logo-subtitle">Sales Forecast</span>
-          </div> */}
-        </div>
+          </div> */ }
+        {/*</div> */}
 
         {/* Desktop Menu */}
         <ul className={`navbar-menu ${isMenuOpen ? 'active' : ''}`}>
