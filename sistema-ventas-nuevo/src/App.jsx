@@ -12,16 +12,23 @@ function App() {
       
       // ✅ SOLUCIÓN CORRECTA: Ajustar para mobile y desktop
       const adjustViewport = () => {
-        if (window.innerWidth <= 768) {
-          // Vista mobile: viewport responsive
-          document.querySelector('meta[name="viewport"]')?.setAttribute('content', 
-            'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
-        } else {
-          // Vista desktop: ancho fijo pero escalable
-          document.querySelector('meta[name="viewport"]')?.setAttribute('content', 
-            'width=1200, initial-scale=1.0');
-        }
-      };
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  
+  if (window.innerWidth <= 768 || isIOS) {
+    // Vista mobile y iOS: viewport responsive con cover para notch
+    document.querySelector('meta[name="viewport"]')?.setAttribute('content', 
+      'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover');
+    
+    // Añadir clase específica para iOS
+    if (isIOS) {
+      document.body.classList.add('ios-device');
+    }
+  } else {
+    // Vista desktop: ancho fijo pero escalable
+    document.querySelector('meta[name="viewport"]')?.setAttribute('content', 
+      'width=1200, initial-scale=1.0');
+  }
+};
       
       // Crear o actualizar meta viewport
       let viewportMeta = document.querySelector('meta[name="viewport"]');

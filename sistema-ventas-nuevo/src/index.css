@@ -305,3 +305,50 @@ body.iframe-desktop .main-content {
     width: 111%;
   }
 }
+/* ========== CORRECCIONES ESPECÍFICAS PARA iOS ========== */
+@supports (-webkit-touch-callout: none) {
+  /* Ajustar altura para iOS */
+  #root {
+    height: -webkit-fill-available !important;
+    min-height: -webkit-fill-available !important;
+  }
+  
+  /* Asegurar que el body y html ocupen toda la pantalla */
+  html {
+    height: -webkit-fill-available !important;
+  }
+  
+  body {
+    min-height: -webkit-fill-available !important;
+    overscroll-behavior: none !important;
+    -webkit-overflow-scrolling: auto !important;
+  }
+  
+  /* Prevenir el bounce effect en iOS */
+  body.iframe-desktop {
+    position: fixed !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow: hidden !important;
+  }
+  
+  /* Corrección específica para el contenedor de tu app */
+  .app-container {
+    height: -webkit-fill-available !important;
+    min-height: -webkit-fill-available !important;
+  }
+}
+
+/* ========== CORRECCIÓN PARA SAFARI iOS ========== */
+/* Esto ayuda con el viewport en iframes */
+@supports (-webkit-touch-callout: none) and (not (translate: none)) {
+  body.iframe-desktop {
+    transform: none !important;
+    zoom: 1 !important;
+  }
+  
+  #root {
+    position: relative;
+    z-index: 1;
+  }
+}
