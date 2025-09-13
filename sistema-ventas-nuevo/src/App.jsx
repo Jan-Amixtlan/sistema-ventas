@@ -10,21 +10,33 @@ function App() {
     if (window.self !== window.top) {
       console.log('✅ Detectado en iframe - Ajustando para pantalla completa');
       
-      // ✅ SOLUCIÓN CORRECTA: Ajustar para mobile y desktop
-      const adjustViewport = () => {
+const adjustViewport = () => {
   const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
   
-  if (window.innerWidth <= 768 || isIOS) {
-    // Vista mobile y iOS: viewport responsive con cover para notch
-    document.querySelector('meta[name="viewport"]')?.setAttribute('content', 
-      'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover');
+  if (isIOS) {
+    // ✅ CORRECCIÓN ESPECÍFICA PARA iOS
+    document.body.classList.add('ios', 'iframe-desktop');
     
-    // Añadir clase específica para iOS
-    if (isIOS) {
-      document.body.classList.add('ios-device');
-    }
+    const viewportContent = 'width=device-width, initial-scale=1.0, ' +
+                           'maximum-scale=1.0, user-scalable=no, ' +
+                           'viewport-fit=cover, ' +
+                           'shrink-to-fit=no';
+    
+    document.querySelector('meta[name="viewport"]')?.setAttribute('content', viewportContent);
+    
+    // ✅ AJUSTES ADICIONALES PARA iOS
+    document.documentElement.style.height = '100%';
+    document.body.style.height = '100%';
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100%';
+    document.body.style.overflow = 'hidden';
+    
+  } else if (window.innerWidth <= 768) {
+    // Para otros móviles
+    document.querySelector('meta[name="viewport"]')?.setAttribute('content', 
+      'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
   } else {
-    // Vista desktop: ancho fijo pero escalable
+    // Vista desktop
     document.querySelector('meta[name="viewport"]')?.setAttribute('content', 
       'width=1200, initial-scale=1.0');
   }
